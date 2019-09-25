@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="tfCustomerID" layoutX="130.0" layoutY="20.0" prefHeight="25.0" prefWidth="99.0" promptText="Agent ID" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerAddress" layoutX="130.0" layoutY="120.0" prefHeight="25.0" prefWidth="128.0" promptText="Address" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerFName" layoutX="130.0" layoutY="70.0" prefHeight="25.0" prefWidth="128.0" promptText="First name" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerLName" layoutX="400.0" layoutY="70.0" prefHeight="25.0" prefWidth="91.0" promptText="Last name" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerCity" layoutX="400.0" layoutY="120.0" promptText="City" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerProvince" layoutX="130.0" layoutY="170.0" prefHeight="26.0" prefWidth="128.0" promptText="Province" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerPostalCode" layoutX="400.0" layoutY="170.0" prefHeight="25.0" prefWidth="128.0" promptText="Postal code" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerCountry" layoutX="130.0" layoutY="220.0" promptText="Country" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerHomePhone" layoutX="400.0" layoutY="220.0" promptText="Home phone" stylesheets="@../css/textbox_style.css" />
+      <Label layoutX="30.0" layoutY="26.0" text="Customer ID" />
+      <Label layoutX="30.0" layoutY="76.0" text="First Name" />
+      <Label layoutX="30.0" layoutY="126.0" text="Address" />
+      <Label layoutX="306.0" layoutY="76.0" text="Last Name" />
+      <Label layoutX="30.0" layoutY="175.0" text="Province" />
+      <Label layoutX="302.0" layoutY="175.0" text="Postal Code" />
+      <Label layoutX="30.0" layoutY="227.0" text="Country" />
+      <Label layoutX="309.0" layoutY="227.0" text="Home Phone" />
+      <Label layoutX="306.0" layoutY="126.0" text="City" />
+      <Button fx:id="btnAgentSave" layoutX="541.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnCustomerSave" text="Save">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnCustomerEdit" layoutX="482.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnCustomerEdit" text="Edit">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnCustomerBack" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#onActionBtnCustomerBack" stylesheets="@../css/button_style.css" text="Back" />
+      <Label layoutX="30.0" layoutY="273.0" text="Buisness Phone" />
+      <TextField fx:id="tfCustomerBusPhone" layoutX="130.0" layoutY="270.0" promptText="Buisness phone" stylesheets="@../css/textbox_style.css" />
+      <Label layoutX="330.0" layoutY="273.0" text="Email" />
+      <TextField fx:id="tfCustomerEmail" layoutX="400.0" layoutY="270.0" promptText="Email" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="tfCustomerAgentID" layoutX="130.0" layoutY="320.0" promptText="Agent ID" stylesheets="@../css/textbox_style.css" />
+      <Label layoutX="30.0" layoutY="318.0" text="Agent ID" />
+   </children>
+</AnchorPane>

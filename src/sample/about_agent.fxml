@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="88.0" layoutY="60.0" text="Select Agent ID">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="119.0" text="First name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="119.0" text="Middle initial">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="119.0" text="Last name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="178.0" text="Business phone">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="263.0" layoutY="178.0" text="Email">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="91.0" layoutY="229.0" text="Position">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="229.0" text="Acency ID">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="279.0" text="Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAgentSave" layoutX="541.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnAgentSave" text="Save">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnAgentEdit" layoutX="482.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnAgentEdit" text="Edit">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <TextField fx:id="txtID" layoutX="88.0" layoutY="80.0" />
+      <TextField fx:id="txtFName" layoutX="88.0" layoutY="139.0" />
+      <TextField fx:id="txtMiddleInitial" layoutX="263.0" layoutY="139.0" prefHeight="25.0" prefWidth="81.0" />
+      <TextField fx:id="txtLName" layoutX="364.0" layoutY="139.0" />
+      <TextField fx:id="txtBusPhone" layoutX="88.0" layoutY="198.0" />
+      <TextField fx:id="txtEmail" layoutX="263.0" layoutY="198.0" />
+      <TextField fx:id="txtPosition" layoutX="88.0" layoutY="249.0" />
+      <TextField fx:id="txtAgencyID" layoutX="263.0" layoutY="249.0" />
+      <TextField fx:id="txtPassword" layoutX="88.0" layoutY="299.0" />
+      <Button fx:id="btnAgentBack" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#onActionBtnAgentBack" stylesheets="@../css/button_style.css" text="Back" />
+   </children>
+</AnchorPane>

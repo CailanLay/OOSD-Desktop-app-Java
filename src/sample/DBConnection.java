@@ -1,0 +1,26 @@
+/*
+* Author: Cailan Lay
+* */
+package sample;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class DBConnection {
+    // returns a connection to the database
+    public Connection returnConnection() {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Properties userInfo = new Properties();
+            userInfo.put("user", "root");
+            userInfo.put("password", "");
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/travelexperts", userInfo);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
+}
