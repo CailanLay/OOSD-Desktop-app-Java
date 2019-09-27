@@ -3,4 +3,8 @@
 */
 #apMenu {
     -fx-background-color: #74b9ff;
+    -fx-background-color: linear-gradient(from 25% 89% to 50% 50%, #3ddad7, #2a93d5);
+
 }
+
+-fx-opacity: 0.7;

@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,9 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class AgentCardController implements Initializable {
+
+    @FXML
+    private HBox hbCard;
 
     @FXML
     private Label lblAgentID;

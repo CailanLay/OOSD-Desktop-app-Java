@@ -18,25 +18,25 @@
                <children>
                   <Button fx:id="btnAgents" mnemonicParsing="false" onAction="#onActionBtnAgents" prefHeight="58.0" prefWidth="259.0" stylesheets="@../css/button_style.css" text="Agents">
                      <font>
-                        <Font size="13.0" />
+                        <Font size="16.0" />
                      </font></Button>
                   <Button fx:id="btnCustomers" mnemonicParsing="false" onAction="#onActionBtnCustomers" prefHeight="58.0" prefWidth="259.0" stylesheets="@../css/button_style.css" text="Customers">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="16.0" />
                      </font></Button>
                   <Button fx:id="btnBookings" mnemonicParsing="false" onAction="#onActionBtnBookings" prefHeight="58.0" prefWidth="259.0" stylesheets="@../css/button_style.css" text="Bookings">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="16.0" />
                      </font></Button>
                   <Button fx:id="btnSuppliers" mnemonicParsing="false" onAction="#onActionBtnSuppliers" prefHeight="58.0" prefWidth="259.0" stylesheets="@../css/button_style.css" text="Suppliers">
                      <font>
-                        <Font size="14.0" />
+                        <Font size="16.0" />
                      </font></Button>
                </children>
             </VBox>
-            <Pane layoutY="104.0" prefHeight="58.0" prefWidth="250.0" style="-fx-background-color: #a29bfe; -fx-background-radius: 5 5 5 5;">
+            <Pane layoutY="104.0" prefHeight="58.0" prefWidth="250.0" style="-fx-background-color: #135589;">
                <children>
-                  <Label layoutX="14.0" layoutY="16.0" text="Tables">
+                  <Label layoutX="14.0" layoutY="16.0" style="-fx-text-fill: #FFFF;" text="Tables">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -49,7 +49,7 @@
          <children>
             <Pane fx:id="pnSuppliers" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #dfe6e9;" />
             <Pane fx:id="pnBookings" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #dfe6e9;" />
-            <Pane fx:id="pnAgents" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #dfe6e9;">
+            <Pane fx:id="pnAgents" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;">
                <children>
                   <HBox fx:id="hboxHeader" layoutX="20.0" layoutY="99.0" prefHeight="33.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
                      <children>
@@ -87,11 +87,11 @@
                         </Label>
                      </children>
                   </HBox>
-                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="331.0" prefWidth="537.0" style="-fx-background-color: #dfe6e9;">
+                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="331.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="521.0" style="-fx-background-color: #dfe6e9;">
                            <children>
-                              <VBox fx:id="hbItems" prefHeight="331.0" prefWidth="521.0" />
+                              <VBox fx:id="hbItems" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -103,7 +103,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="pnCustomers" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #dfe6e9;">
+            <Pane fx:id="pnCustomers" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;">
                <children>
                   <HBox fx:id="hboxCustomerHeader" alignment="CENTER_LEFT" layoutX="17.0" layoutY="104.0" prefHeight="33.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
                      <children>
@@ -138,11 +138,11 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="17.0" layoutY="155.0" prefHeight="331.0" prefWidth="537.0" style="-fx-background-color: #dfe6e9;">
+                  <ScrollPane layoutX="17.0" layoutY="155.0" prefHeight="331.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="522.0" style="-fx-background-color: #dfe6e9;">
                            <children>
-                              <VBox fx:id="vbCustomerItems" prefHeight="331.0" prefWidth="521.0" />
+                              <VBox fx:id="vbCustomerItems" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
                            </children>
                         </AnchorPane>
                      </content>

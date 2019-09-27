@@ -2,23 +2,25 @@
  * Author: Cailan Lay
  */
 #btnAgents, #btnCustomers, #btnBookings, #btnSuppliers {
-    -fx-background-radius: 35 0 0 35;
-    -fx-background-color: #74b9ff;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-color: transparent;
 }
 
 #btnAgents:hover, #btnCustomers:hover, #btnBookings:hover, #btnSuppliers:hover {
-    -fx-background-color: #74a5ff;
+    -fx-background-color: #3ddad7;
+    -fx-effect: dropshadow(three-pass-box, #133589, 10, 0, 0, 0);
 }
 
 #btnAbout, #btnCustomerAbout {
-    -fx-background-color:  #dfe6e9;
+    -fx-background-color: transparent;
     -fx-border-width: 1;
-    -fx-border-color: #37474F;
-    -fx-border-radius: 3;
+    -fx-border-color: #3ddad7;
+    -fx-border-radius: 50;
+    -fx-background-radius: 50;
 }
 
 #btnAbout:hover, #btnCustomerAbout:hover{
-    -fx-background-color: #B0BEC5;
+    -fx-background-color: #edfafd;
 }
 
 #btnCustomerEdit, #btnAgentEdit {
