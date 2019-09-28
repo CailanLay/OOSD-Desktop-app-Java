@@ -44,6 +44,7 @@ public class AgentCardController implements Initializable {
 
     private Agent agent = new Agent();
 
+
     public AgentCardController(Agent agent) {
         this.agent = agent;
     }
@@ -52,7 +53,7 @@ public class AgentCardController implements Initializable {
     public void initialize(URL location, ResourceBundle resource) {
         lblAgentID.setText(String.valueOf(agent.getId()));
         lblAgentFName.setText(agent.getFName());
-        lblMiddleInitial.setText(agent.getMiddleInitial());
+        //lblMiddleInitial.setText(agent.getMiddleInitial());
         lblAgentLName.setText(agent.getLName());
     }
 
