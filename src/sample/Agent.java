@@ -1,7 +1,6 @@
 /*
  * Author: Cailan Lay
  */
-
 package sample;
 
 public class Agent {

@@ -44,11 +44,12 @@ public class AgentCardController implements Initializable {
 
     private Agent agent = new Agent();
 
-
+    // Constructor
     public AgentCardController(Agent agent) {
         this.agent = agent;
     }
 
+    // initialize is called after the constructor when the scene loads
     @FXML
     public void initialize(URL location, ResourceBundle resource) {
         lblAgentID.setText(String.valueOf(agent.getId()));

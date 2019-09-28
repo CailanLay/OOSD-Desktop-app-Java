@@ -1,6 +1,3 @@
-/*
- * Author: Cailan Lay
- */
 package sample;
 
 import javafx.event.ActionEvent;
@@ -66,12 +63,14 @@ public class MainController implements Initializable {
 
     DBConnection helper = new DBConnection(); // Global object
 
+    // Author: Cailan Lay
     @FXML
     public void initialize(URL location, ResourceBundle resource) {
          makeAgentCards();
          makeCustomerCards();
     }
 
+    // Author: Cailan Lay
     private void makeCustomerCards(){
         ArrayList<Customer> customers = new ArrayList<Customer>();
         try {
@@ -92,6 +91,7 @@ public class MainController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // Method creates an arraylist of customers from the database
     private ArrayList<Customer> getCustomers() throws SQLException {
         ArrayList<Customer> customers = new ArrayList();
@@ -120,6 +120,7 @@ public class MainController implements Initializable {
         return customers; // returns the an array of agents
     }
 
+    // Author: Cailan Lay
     // Create and adds the agents cards
     private void makeAgentCards(){
         ArrayList<Agent> agents = new ArrayList<Agent>();
@@ -141,6 +142,7 @@ public class MainController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // Method to create an arraylist of agents from the databse
     private ArrayList<Agent> getAgents() throws SQLException {
         ArrayList<Agent> agents = new ArrayList();
@@ -167,11 +169,11 @@ public class MainController implements Initializable {
     }
 
 
+    // Author: Cailan Lay
     @FXML
     void onActionBtnAgents(ActionEvent event) {
         pnAgents.toFront();
         pnAgents.setVisible(true);
-
         pnCustomers.toBack();
         pnCustomers.setVisible(false);
         pnBookings.toBack();
@@ -180,6 +182,7 @@ public class MainController implements Initializable {
         pnSuppliers.setVisible(false);
     }
 
+    // Author: Cailan Lay
     @FXML
     void onActionBtnBookings(ActionEvent event) {
         pnBookings.toFront();
@@ -193,6 +196,7 @@ public class MainController implements Initializable {
         pnSuppliers.setVisible(false);
     }
 
+    // Author: Cailan Lay
     @FXML
     void onActionBtnCustomers(ActionEvent event) {
         pnCustomers.toFront();
@@ -206,6 +210,7 @@ public class MainController implements Initializable {
         pnSuppliers.setVisible(false);
     }
 
+    // Author: Cailan Lay
     @FXML
     void onActionBtnSuppliers(ActionEvent event) {
         pnSuppliers.toFront();
@@ -218,15 +223,4 @@ public class MainController implements Initializable {
         pnAgents.toBack();
         pnAgents.setVisible(false);
     }
-
-    @FXML
-    void onActionBtnEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionBtnSave(ActionEvent event) {
-
-    }
-
 }

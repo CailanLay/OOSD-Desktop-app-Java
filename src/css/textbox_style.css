@@ -2,8 +2,9 @@
  * Author: Cailan Lay
 */
 #tfCustomerID, #tfCustomerFName, #tfCustomerLName, #tfCustomerAddress, #tfCustomerCity, #tfCustomerProvince, #tfCustomerPostalCode,
-#tfCustomerCountry, #tfCustomerHomePhone, #tfCustomerBusPhone, #tfCustomerEmail, #tfCustomerAgentID {
-    -fx-background-color: #dfe6e9;
+#tfCustomerCountry, #tfCustomerHomePhone, #tfCustomerBusPhone, #tfCustomerEmail, #tfCustomerAgentID, #txtID, #txtFName, #txtMiddleInitial,
+#txtLName, #txtBusPhone, #txtEmail, #txtPosition, #txtPassword, #txtAgencyID {
+    -fx-background-color: #ffff;
     -fx-border-width: 0 0 1 0;
-    -fx-border-color: #2d3436;
+    -fx-border-color: #3ddad7;
 }

@@ -17,14 +17,13 @@ public class Main extends Application {
         primaryStage.setTitle("Travel Experts");
         primaryStage.setScene(new Scene(root));
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        //primaryStage.setOpacity(0.7);
-        // Author: Cailan Lay
+        //primaryStage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
         root.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
         });
 
-        // Author Cailan Lay
         root.setOnMouseDragged(event -> {
             primaryStage.setX(event.getScreenX() - x);
             primaryStage.setY(event.getScreenY() - y);

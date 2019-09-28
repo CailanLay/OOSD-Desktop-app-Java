@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="88.0" layoutY="60.0" text="Select Agent ID">
          <font>
@@ -54,7 +54,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnAgentSave" layoutX="541.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnAgentSave" text="Save">
+      <Button fx:id="btnAgentSave" layoutX="541.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnAgentSave" stylesheets="@../css/button_style.css" text="Save">
          <font>
             <Font size="14.0" />
          </font>
@@ -62,7 +62,7 @@
             <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <Button fx:id="btnAgentEdit" layoutX="482.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnAgentEdit" text="Edit">
+      <Button fx:id="btnAgentEdit" layoutX="482.0" layoutY="356.0" mnemonicParsing="false" onAction="#onActionBtnAgentEdit" stylesheets="@../css/button_style.css" text="Edit">
          <font>
             <Font size="14.0" />
          </font>
@@ -70,15 +70,15 @@
             <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Button>
-      <TextField fx:id="txtID" layoutX="88.0" layoutY="80.0" />
-      <TextField fx:id="txtFName" layoutX="88.0" layoutY="139.0" />
-      <TextField fx:id="txtMiddleInitial" layoutX="263.0" layoutY="139.0" prefHeight="25.0" prefWidth="81.0" />
-      <TextField fx:id="txtLName" layoutX="364.0" layoutY="139.0" />
-      <TextField fx:id="txtBusPhone" layoutX="88.0" layoutY="198.0" />
-      <TextField fx:id="txtEmail" layoutX="263.0" layoutY="198.0" />
-      <TextField fx:id="txtPosition" layoutX="88.0" layoutY="249.0" />
-      <TextField fx:id="txtAgencyID" layoutX="263.0" layoutY="249.0" />
-      <TextField fx:id="txtPassword" layoutX="88.0" layoutY="299.0" />
+      <TextField fx:id="txtID" layoutX="88.0" layoutY="80.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtFName" layoutX="88.0" layoutY="139.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtMiddleInitial" layoutX="263.0" layoutY="139.0" prefHeight="25.0" prefWidth="81.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtLName" layoutX="364.0" layoutY="139.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtBusPhone" layoutX="88.0" layoutY="198.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtEmail" layoutX="263.0" layoutY="198.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtPosition" layoutX="88.0" layoutY="249.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtAgencyID" layoutX="263.0" layoutY="249.0" stylesheets="@../css/textbox_style.css" />
+      <TextField fx:id="txtPassword" layoutX="88.0" layoutY="299.0" stylesheets="@../css/textbox_style.css" />
       <Button fx:id="btnAgentBack" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#onActionBtnAgentBack" stylesheets="@../css/button_style.css" text="Back" />
    </children>
 </AnchorPane>

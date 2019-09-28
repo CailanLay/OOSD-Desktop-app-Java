@@ -23,7 +23,26 @@
     -fx-background-color: #edfafd;
 }
 
-#btnCustomerEdit, #btnAgentEdit {
-    -fx-background-color: #dfe6e9;
+#btnCustomerEdit, #btnAgentEdit, #btnAgentBack, #btnCustomerBack  {
+    -fx-background-color: transp, arent;
+    -fx-border-width: 1;
     -fx-border-color: #2d3436;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnAgentBack:hover, #btnCustomerBack:hover {
+    -fx-background-color: #ECEFF1;
+}
+
+#btnCustomerSave, #btnAgentSave {
+    -fx-background-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-color: #3ddad7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+#btnCustomerSave:hover, #btnAgentSave:hover {
+    -fx-background-color: #edfafd;
 }

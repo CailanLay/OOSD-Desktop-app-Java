@@ -33,10 +33,12 @@ public class CustomerCardController implements Initializable {
 
     private Customer customer = new Customer();
 
+    // controller constructor
     public CustomerCardController(Customer customer) {
         this.customer = customer;
     }
 
+    // initialize called after the constructor every time a card is made
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblCustomerID.setText(String.valueOf(customer.getId()));
@@ -44,6 +46,7 @@ public class CustomerCardController implements Initializable {
         lblCustomerLName.setText(customer.getLName());
     }
 
+    // Action handler for the about button on customer card
     @FXML
     void onActionBtnCustomerAbout(ActionEvent event) throws IOException {
         AboutCustomerController aboutCustomer = new AboutCustomerController(customer);
