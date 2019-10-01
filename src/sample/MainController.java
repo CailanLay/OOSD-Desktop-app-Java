@@ -187,7 +187,6 @@ public class MainController implements Initializable {
     void onActionBtnBookings(ActionEvent event) {
         pnBookings.toFront();
         pnBookings.setVisible(true);
-
         pnCustomers.toBack();
         pnCustomers.setVisible(false);
         pnAgents.toBack();
@@ -201,7 +200,6 @@ public class MainController implements Initializable {
     void onActionBtnCustomers(ActionEvent event) {
         pnCustomers.toFront();
         pnCustomers.setVisible(true);
-
         pnAgents.toBack();
         pnAgents.setVisible(false);
         pnBookings.toBack();
@@ -215,7 +213,6 @@ public class MainController implements Initializable {
     void onActionBtnSuppliers(ActionEvent event) {
         pnSuppliers.toFront();
         pnSuppliers.setVisible(true);
-
         pnCustomers.toBack();
         pnCustomers.setVisible(false);
         pnBookings.toBack();
