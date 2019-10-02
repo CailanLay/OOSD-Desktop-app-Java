@@ -23,7 +23,7 @@
     -fx-background-color: #edfafd;
 }
 
-#btnCustomerEdit, #btnAgentEdit, #btnAgentBack, #btnCustomerBack  {
+#btnCustomerEdit, #btnAgentEdit {
     -fx-background-color: transp, arent;
     -fx-border-width: 1;
     -fx-border-color: #2d3436;
@@ -31,7 +31,7 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnAgentBack:hover, #btnCustomerBack:hover {
+#btnCustomerEdit:hover, #btnAgentEdit:hover {
     -fx-background-color: #ECEFF1;
 }
 
@@ -45,4 +45,13 @@
 
 #btnCustomerSave:hover, #btnAgentSave:hover {
     -fx-background-color: #edfafd;
+}
+
+#btnAgentBack, #btnCustomerBack  {
+    -fx-background-color: linear-gradient(from 25% 89% to 50% 50%, #3ddad7, #2a93d5);
+    -fx-background-radius: 0;
+}
+
+#btnAgentBack:hover, #btnCustomerBack:hover {
+    -fx-background-color: #2a93d5;
 }

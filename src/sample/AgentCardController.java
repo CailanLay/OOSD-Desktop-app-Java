@@ -14,6 +14,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -58,9 +60,35 @@ public class AgentCardController implements Initializable {
         lblAgentLName.setText(agent.getLName());
     }
 
+    private double x, y;
     // This is the action handler for the about button on each card
     @FXML
     void onActionBtnAbout(ActionEvent event) throws IOException {
+            AboutAgentController aboutAgent = new AboutAgentController(agent);
+            Parent root;
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("about_agent.fxml"));
+            loader.setController(aboutAgent);
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("About" + agent.getFName());
+            stage.setScene(new Scene(root));
+            stage.initStyle(StageStyle.UNDECORATED);
+            //stage.setOpacity(0.7); this makes the stage transparent
+            // this allows the window to be dragged
+            root.setOnMousePressed(eventTwo -> {
+                x = eventTwo.getSceneX();
+                y = eventTwo.getSceneY();
+            });
+
+            root.setOnMouseDragged(eventTwo -> {
+                stage.setX(eventTwo.getScreenX() - x);
+                stage.setY(eventTwo.getScreenY() - y);
+            });
+            stage.showAndWait();
+            // SELECT edited user from database
+            // Use returned object to overwrite this agent's cached data and rebuild card.
+
+/*
         AboutAgentController aboutAgent = new AboutAgentController(agent);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("about_agent.fxml")));
         loader.setController(aboutAgent);
@@ -70,6 +98,7 @@ public class AgentCardController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(aboutScene);
         window.show();
+*/
     }
 
 }

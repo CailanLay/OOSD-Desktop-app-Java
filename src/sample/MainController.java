@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -124,21 +126,21 @@ public class MainController implements Initializable {
     // Create and adds the agents cards
     private void makeAgentCards(){
         ArrayList<Agent> agents = new ArrayList<Agent>();
-        try {
-            agents = getAgents(); // populates the the agents array
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // the array of nodes to the same size as the as the the array length
-        Node[] agentCards = new Node[agents.size()]; // is also the number of cards to be created
-        for(int i = 0; i < agentCards.length; i++) {
             try {
-                AgentCardController card = new AgentCardController(agents.get(i)); // create controller and pass the agent to the controller
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("agent_card.fxml")); // get the FXML file
-                loader.setController(card); // set the controller for the fxml file
-                agentCards[i] = loader.load(); // add the file to the array of nodes
-                hbItems.getChildren().add(agentCards[i]); // add the scene to the vbox
-            } catch(IOException  e) { e.printStackTrace();}
+                agents = getAgents(); // populates the the agents array
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            // the array of nodes to the same size as the as the the array length
+            Node[] agentCards = new Node[agents.size()]; // is also the number of cards to be created
+            for(int i = 0; i < agentCards.length; i++) {
+                try {
+                    AgentCardController card = new AgentCardController(agents.get(i)); // create controller and pass the agent to the controller
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("agent_card.fxml")); // get the FXML file
+                    loader.setController(card); // set the controller for the fxml file
+                    agentCards[i] = loader.load(); // add the file to the array of nodes
+                    hbItems.getChildren().add(agentCards[i]); // add the scene to the vbox
+                } catch(IOException  e) { e.printStackTrace();}
         }
     }
 
