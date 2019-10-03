@@ -180,7 +180,6 @@ public class AboutAgentController implements Initializable {
             window.show();
             */
             Stage stage = (Stage) btnAgentBack.getScene().getWindow();
-
             stage.close();
         }
     }

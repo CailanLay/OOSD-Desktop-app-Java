@@ -73,24 +73,29 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
-    private void makeCustomerCards(){
-        ArrayList<Customer> customers = new ArrayList<Customer>();
-        try {
-            customers = getCustomers(); // populates the the agents array
-        } catch (SQLException e) {
-            e.printStackTrace();
+    // Method to create an arraylist of agents from the databse
+    private ArrayList<Agent> getAgents() throws SQLException {
+        ArrayList<Agent> agents = new ArrayList();
+
+        Connection connection = helper.returnConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM `agents`");
+
+        // Populates the arraylist with agents created from database
+        while(rs.next()) {
+            agents.add(new Agent(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getInt(8),
+                    rs.getString(9)));
         }
-        // the array of nodes to the same size as the as the the array length
-        Node[] customerCards = new Node[customers.size()]; // is also the number of cards to be created
-        for(int i = 0; i < customerCards.length; i++) {
-            try {
-                CustomerCardController card = new CustomerCardController(customers.get(i)); // create controller and pass the agent to the controller
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("customer_card.fxml")); // get the FXML file
-                loader.setController(card); // set the controller for the fxml file
-                customerCards[i] = loader.load(); // add the file to the array of nodes
-                vbCustomerItems.getChildren().add(customerCards[i]); // add the scene to the vbox
-            } catch(IOException  e) { e.printStackTrace();}
-        }
+        connection.close();
+        return agents; // returns the an array of agents
     }
 
     // Author: Cailan Lay
@@ -145,29 +150,25 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
-    // Method to create an arraylist of agents from the databse
-    private ArrayList<Agent> getAgents() throws SQLException {
-        ArrayList<Agent> agents = new ArrayList();
-
-        Connection connection = helper.returnConnection();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM `agents`");
-
-        // Populates the arraylist with agents created from database
-        while(rs.next()) {
-            agents.add(new Agent(
-                    rs.getInt(1),
-                    rs.getString(2),
-                    rs.getString(3),
-                    rs.getString(4),
-                    rs.getString(5),
-                    rs.getString(6),
-                    rs.getString(7),
-                    rs.getInt(8),
-                    rs.getString(9)));
+    // Create and adds the customer cards
+    private void makeCustomerCards(){
+        ArrayList<Customer> customers = new ArrayList<Customer>();
+        try {
+            customers = getCustomers(); // populates the the agents array
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        connection.close();
-        return agents; // returns the an array of agents
+        // the array of nodes to the same size as the as the the array length
+        Node[] customerCards = new Node[customers.size()]; // is also the number of cards to be created
+        for(int i = 0; i < customerCards.length; i++) {
+            try {
+                CustomerCardController card = new CustomerCardController(customers.get(i)); // create controller and pass the agent to the controller
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("customer_card.fxml")); // get the FXML file
+                loader.setController(card); // set the controller for the fxml file
+                customerCards[i] = loader.load(); // add the file to the array of nodes
+                vbCustomerItems.getChildren().add(customerCards[i]); // add the scene to the vbox
+            } catch(IOException  e) { e.printStackTrace();}
+        }
     }
 
 

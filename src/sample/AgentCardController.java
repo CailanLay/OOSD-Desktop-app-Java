@@ -13,9 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -44,7 +44,8 @@ public class AgentCardController implements Initializable {
     @FXML
     private Button btnAbout;
 
-    private Agent agent = new Agent();
+    private Agent agent;
+    private double x, y; // used for screen positioning when moving the window
 
     // Constructor
     public AgentCardController(Agent agent) {
@@ -60,7 +61,7 @@ public class AgentCardController implements Initializable {
         lblAgentLName.setText(agent.getLName());
     }
 
-    private double x, y;
+
     // This is the action handler for the about button on each card
     @FXML
     void onActionBtnAbout(ActionEvent event) throws IOException {
@@ -79,16 +80,16 @@ public class AgentCardController implements Initializable {
                 x = eventTwo.getSceneX();
                 y = eventTwo.getSceneY();
             });
-
             root.setOnMouseDragged(eventTwo -> {
                 stage.setX(eventTwo.getScreenX() - x);
                 stage.setY(eventTwo.getScreenY() - y);
             });
             stage.showAndWait();
+
             // SELECT edited user from database
             // Use returned object to overwrite this agent's cached data and rebuild card.
 
-/*
+        /*
         AboutAgentController aboutAgent = new AboutAgentController(agent);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("about_agent.fxml")));
         loader.setController(aboutAgent);
@@ -98,7 +99,11 @@ public class AgentCardController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(aboutScene);
         window.show();
-*/
+        */
+    }
+
+    private void refreshCard(){
+
     }
 
 }
