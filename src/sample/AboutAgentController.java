@@ -98,6 +98,7 @@ public class AboutAgentController implements Initializable {
 
     private Agent agent = new Agent();
 
+    // Author: Cailan Lay
     // Controller constructor
     public AboutAgentController(Agent agent) {
         this.agent = agent;
@@ -108,6 +109,7 @@ public class AboutAgentController implements Initializable {
         loadLabeles();
     }
 
+    // Author: Cailan Lay
     // sets the text fields to non editable
     private void notEditable() {
         txtID.setEditable(false);
@@ -120,6 +122,7 @@ public class AboutAgentController implements Initializable {
         txtPassword.setEditable(false);
     }
 
+    // Author: Cailan Lay
     // checks if the agent object is not null
     private boolean notNull(Agent agent){
         if(agent != null) {
@@ -129,12 +132,14 @@ public class AboutAgentController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // set the label text to to the agent data
     private void loadLabeles() {
         pnEditAgent.toBack();
         pnEditAgent.setVisible(false);
         pnViewAgent.toFront();
         pnViewAgent.setVisible(true);
+        btnAgentBack.setText("Done");
         notEditable();
         if(notNull(agent)) {
             lblTitleName.setText(agent.getFName());
@@ -150,6 +155,7 @@ public class AboutAgentController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // populates the text fields
     private void loadBoxes() {
         if (notNull(agent)) {
@@ -165,25 +171,20 @@ public class AboutAgentController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // Action handler for the back button on the about agents page
     @FXML
-    void onActionBtnAgentBack(ActionEvent event) throws IOException {
+    void onActionBtnAgentBack(ActionEvent event) {
         if(pnEditAgent.isVisible() && !pnViewAgent.isVisible()) {
             btnAgentBack.setText("Back");
             loadLabeles();
         } else {
-            /*
-            Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-            Scene aboutScene = new Scene(aboutView);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(aboutScene);
-            window.show();
-            */
             Stage stage = (Stage) btnAgentBack.getScene().getWindow();
             stage.close();
         }
     }
 
+    // Author: Cailan Lay
     // action handler for the edit button on the about agents page
     @FXML
     void onActionBtnAgentEdit(ActionEvent event) {
@@ -203,6 +204,7 @@ public class AboutAgentController implements Initializable {
         btnAgentBack.setText("Cancel");
     }
 
+    // Author: Cailan Lay
     // action handler for the save button on the about agents page
     @FXML
     void onActionBtnAgentSave(ActionEvent event) throws IOException, SQLException {
@@ -229,10 +231,10 @@ public class AboutAgentController implements Initializable {
         stmt.setString(9, String.valueOf(agent.getId()));
         int rows = stmt.executeUpdate();
         if(rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
             alert.show();
         } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Update Successful", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Changes have been saved", ButtonType.OK);
             alert.show();
         }
         loadLabeles();

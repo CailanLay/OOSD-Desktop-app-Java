@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.StageStyle;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,8 +62,11 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbCustomerItems;
 
+    @FXML
+    private Button btnClose;
 
-    DBConnection helper = new DBConnection(); // Global object
+
+    private DBConnection helper = new DBConnection(); // Global object
 
     // Author: Cailan Lay
     @FXML
@@ -173,6 +176,7 @@ public class MainController implements Initializable {
 
 
     // Author: Cailan Lay
+    // shows the agent page when agent menu button is clicked
     @FXML
     void onActionBtnAgents(ActionEvent event) {
         pnAgents.toFront();
@@ -186,6 +190,23 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
+    // shows the customers page when the customer menu is clicked
+    @FXML
+    void onActionBtnCustomers(ActionEvent event) {
+        pnCustomers.toFront();
+        pnCustomers.setVisible(true);
+        pnAgents.toBack();
+        pnAgents.setVisible(false);
+        pnBookings.toBack();
+        pnBookings.setVisible(false);
+        pnSuppliers.toBack();
+        pnSuppliers.setVisible(false);
+        btnClose.toFront();
+        btnClose.setVisible(true);
+    }
+
+    // Author: Cailan Lay
+    // shows the bookings page when bookings menu button is clicked
     @FXML
     void onActionBtnBookings(ActionEvent event) {
         pnBookings.toFront();
@@ -199,19 +220,7 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
-    @FXML
-    void onActionBtnCustomers(ActionEvent event) {
-        pnCustomers.toFront();
-        pnCustomers.setVisible(true);
-        pnAgents.toBack();
-        pnAgents.setVisible(false);
-        pnBookings.toBack();
-        pnBookings.setVisible(false);
-        pnSuppliers.toBack();
-        pnSuppliers.setVisible(false);
-    }
-
-    // Author: Cailan Lay
+    // shows the suppliers page when the customer menu is clicked
     @FXML
     void onActionBtnSuppliers(ActionEvent event) {
         pnSuppliers.toFront();
@@ -222,5 +231,11 @@ public class MainController implements Initializable {
         pnBookings.setVisible(false);
         pnAgents.toBack();
         pnAgents.setVisible(false);
+    }
+
+    @FXML
+    void onActionBtnClose(ActionEvent event) {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
     }
 }

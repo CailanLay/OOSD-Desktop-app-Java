@@ -55,3 +55,13 @@
 #btnAgentBack:hover, #btnCustomerBack:hover {
     -fx-background-color: #2a93d5;
 }
+
+#btnClose {
+    -fx-background-color: #3ddad7;
+    -fx-background-radius: 0;
+    -fx-text-fill: #ffff;
+}
+
+#btnClose:hover, #btnClose:pressed {
+    -fx-background-color: #2a93d5;
+}

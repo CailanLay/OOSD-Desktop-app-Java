@@ -13,9 +13,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CustomerCardController implements Initializable {
@@ -31,7 +37,9 @@ public class CustomerCardController implements Initializable {
     @FXML
     private Button btnCustomerAbout;
 
-    private Customer customer = new Customer();
+    private Customer customer;
+    private double x, y; // used for screen positioning when moving the window
+    private DBConnection helper = new DBConnection(); // Database connection helper
 
     // controller constructor
     public CustomerCardController(Customer customer) {
@@ -50,13 +58,27 @@ public class CustomerCardController implements Initializable {
     @FXML
     void onActionBtnCustomerAbout(ActionEvent event) throws IOException {
         AboutCustomerController aboutCustomer = new AboutCustomerController(customer);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(("about_customer.fxml")));
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_agent.fxml"));
         loader.setController(aboutCustomer);
-        Parent aboutView = loader.load();
-        //Parent aboutView = FXMLLoader.load(getClass().getResource("about_agent.fxml"));
-        Scene aboutScene = new Scene(aboutView);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(aboutScene);
-        window.show();
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("About" + customer.getFName());
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        renewCard();
     }
+
+
 }
