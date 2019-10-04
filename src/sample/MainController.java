@@ -14,7 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -71,6 +70,9 @@ public class MainController implements Initializable {
     @FXML
     private Button btnNewAgent;
 
+    @FXML
+    private Button btnNewCustomer;
+
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
 
@@ -109,9 +111,34 @@ public class MainController implements Initializable {
         makeAgentCards();
     }
 
+    @FXML
+    void onActionBtnNewCustomer(ActionEvent event) throws IOException {
+        AboutCustomerController aboutCustomer = new AboutCustomerController(true);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_customer.fxml"));
+        loader.setController(aboutCustomer);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Customer");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        vbCustomerItems.getChildren().clear();
+        makeCustomerCards();
+    }
 
     // Author: Cailan Lay
-    // Method to create an arraylist of agents from the databse
+    // Method to create an arraylist of agents from the database
     private ArrayList<Agent> getAgents() throws SQLException {
         ArrayList<Agent> agents = new ArrayList();
 

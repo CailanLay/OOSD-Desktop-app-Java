@@ -26,10 +26,10 @@ public class Customer {
         this.FName = FName;
         this.LName = LName;
         this.address = address;
-        City = city;
+        this.City = city;
         this.province = province;
         this.postalCode = postalCode;
-        Country = country;
+        this.Country = country;
         this.homePhone = homePhone;
         this.busPhone = busPhone;
         this.email = email;

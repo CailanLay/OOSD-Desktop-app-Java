@@ -331,6 +331,7 @@ public class AboutAgentController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Changes have been saved", ButtonType.OK);
             alert.show();
         }
+        connection.close();
         loadLabeles();
     }
 }

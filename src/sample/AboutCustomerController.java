@@ -30,7 +30,7 @@ public class AboutCustomerController implements Initializable {
     private Line line;
 
     @FXML
-    private Label lblCustomerTItleName;
+    private Label lblNewCustomerTItleName;
 
     @FXML
     private Pane pnCustomerEdit;
@@ -116,17 +116,73 @@ public class AboutCustomerController implements Initializable {
     @FXML
     private Label lblCustomerEmail;
 
-    private Customer customer;
+    @FXML
+    private Pane pnNewCustomer;
 
+    @FXML
+    private TextField tfNewCustomerID;
+
+    @FXML
+    private TextField tfNewCustomerFName;
+
+    @FXML
+    private TextField tfNewCustomerLName;
+
+    @FXML
+    private TextField tfNewCustomerAddress;
+
+    @FXML
+    private TextField tfNewCustomerCity;
+
+    @FXML
+    private TextField tfNewCustomerProvince;
+
+    @FXML
+    private TextField tfNewCustomerPostalCode;
+
+    @FXML
+    private TextField tfNewCustomerCountry;
+
+    @FXML
+    private TextField tfNewCustomerHomePhone;
+
+    @FXML
+    private TextField tfNewCustomerBusPhone;
+
+    @FXML
+    private TextField tfNewCustomerEmail;
+
+    @FXML
+    private TextField tfNewCustomerAgentID;
+
+    @FXML
+    private Button btnNewCustomer;
+
+    private Customer customer = new Customer();
+    private boolean newCustomer;
+
+    // Author: Cailan Lay
     // Constructor
     public AboutCustomerController(Customer customer) {
         this.customer = customer;
     }
 
+    // Author: Cailan Lay
+    // Constructor
+    public AboutCustomerController(boolean newCustomer) { this.newCustomer = newCustomer; }
+
+    // Author: Cailan Lay
     // initialize is called after the constructor when the page loads
     @Override
-    public void initialize(URL location, ResourceBundle resources) { loadLabeles(); }
+    public void initialize(URL location, ResourceBundle resources) {
+        if(newCustomer == true) {
+            loadNewCustomerView();
+        } else {
+            loadLabeles();
+        }
+    }
 
+    // Author: Cailan Lay
     // set the text fields no non editable
     private void notEditable(){
         tfCustomerID.setEditable(false);
@@ -153,9 +209,20 @@ public class AboutCustomerController implements Initializable {
         }
     }
 
+    private void loadNewCustomerView() {
+        pnNewCustomer.toFront();
+        pnNewCustomer.setVisible(true);
+        pnCustomerView.toBack();
+        pnCustomerView.setVisible(false);
+        pnCustomerEdit.toBack();
+        pnCustomerEdit.setVisible(false);
+    }
+
     // Author: Cailan Lay
     // set the label text to to the agent data
     private void loadLabeles() {
+        pnNewCustomer.toBack();
+        pnNewCustomer.setVisible(false);
         pnCustomerEdit.toBack();
         pnCustomerEdit.setVisible(false);
         pnCustomerView.toFront();
@@ -178,6 +245,7 @@ public class AboutCustomerController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // populates the boxes from the data stored in the agent
     private void loadBoxes() {
         tfCustomerID.setText(String.valueOf(customer.getId()));
@@ -194,6 +262,51 @@ public class AboutCustomerController implements Initializable {
         tfCustomerAgentID.setText(String.valueOf(customer.getAgentId()));
     }
 
+    // Author: Cailan Lay
+    // action handler for the add button to add new customer
+    @FXML
+    void onActionBtnNewCustomer(ActionEvent event) throws SQLException {
+        DBConnection helper = new DBConnection();
+        Connection connection = helper.returnConnection();
+        String sql = "INSERT INTO `customers`(`CustomerId`, `CustFirstName`, `CustLastName`, `CustAddress`, `CustCity`, `CustProv`, `CustPostal`, `CustCountry`, `CustHomePhone`, `CustBusPhone`, `CustEmail`, `AgentId`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, Integer.valueOf(tfNewCustomerID.getText()));
+        customer.setId(Integer.valueOf(tfNewCustomerID.getText()));
+        stmt.setString(2, tfNewCustomerFName.getText());
+        customer.setFName(tfNewCustomerFName.getText());
+        stmt.setString(3, tfNewCustomerLName.getText());
+        customer.setLName(tfNewCustomerLName.getText());
+        stmt.setString(4, tfNewCustomerAddress.getText());
+        customer.setAddress(tfNewCustomerAddress.getText());
+        stmt.setString(5, tfNewCustomerCity.getText());
+        customer.setCity(tfNewCustomerCity.getText());
+        stmt.setString(6, tfNewCustomerProvince.getText());
+        customer.setProvince(tfNewCustomerProvince.getText());
+        stmt.setString(7, tfNewCustomerPostalCode.getText());
+        customer.setPostalCode(tfNewCustomerPostalCode.getText());
+        stmt.setString(8, tfNewCustomerCountry.getText());
+        customer.setCountry(tfNewCustomerCountry.getText());
+        stmt.setString(9, tfNewCustomerHomePhone.getText());
+        customer.setHomePhone(tfNewCustomerHomePhone.getText());
+        stmt.setString(10, tfNewCustomerBusPhone.getText());
+        customer.setBusPhone(tfNewCustomerBusPhone.getText());
+        stmt.setString(11, tfNewCustomerEmail.getText());
+        customer.setEmail(tfNewCustomerEmail.getText());
+        stmt.setInt(12, Integer.valueOf(tfNewCustomerAgentID.getText()));
+        customer.setAgentId(Integer.parseInt(tfNewCustomerAgentID.getText()));
+        int rows = stmt.executeUpdate();
+        if(rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error adding new customer", ButtonType.OK);
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "New customer has been added", ButtonType.OK);
+            alert.show();
+        }
+        connection.close();
+        loadLabeles();
+    }
+
+    // Author: Cailan Lay
     // action handler for the back button on the about agents page
     @FXML
     void onActionBtnCustomerBack(ActionEvent event) throws IOException {
@@ -206,9 +319,12 @@ public class AboutCustomerController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // action handler for the edit customer button on the about customer page
     @FXML
     void onActionBtnCustomerEdit(ActionEvent event) {
+        pnNewCustomer.toBack();
+        pnNewCustomer.setVisible(false);
         pnCustomerEdit.toFront();
         pnCustomerEdit.setVisible(true);
         pnCustomerView.toBack();
@@ -230,6 +346,7 @@ public class AboutCustomerController implements Initializable {
         tfCustomerAgentID.setEditable(true);
     }
 
+    // Author: Cailan Lay
     // action handler for the save button on the about customer page
     @FXML
     void onActionBtnCustomerSave(ActionEvent event) throws SQLException {
