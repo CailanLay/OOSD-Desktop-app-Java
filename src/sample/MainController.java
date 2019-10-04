@@ -73,8 +73,12 @@ public class MainController implements Initializable {
     @FXML
     private Button btnNewCustomer;
 
+    @FXML
+    private AnchorPane apScroll;
+
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
+    private double cardHeight = 0.0; // used for increasing the number of cards that can fit in the scroll pane
 
     // Author: Cailan Lay
     @FXML
@@ -192,6 +196,11 @@ public class MainController implements Initializable {
         return customers; // returns the an array of agents
     }
 
+    // used to increase the space for cards within the scroll pane
+    private void addCardSpace(){
+        apScroll.setPrefHeight(cardHeight);
+    }
+
     // Author: Cailan Lay
     // Create and adds the agents cards
     private void makeAgentCards(){
@@ -201,6 +210,8 @@ public class MainController implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            cardHeight = 0.0;
+            addCardSpace();
             // the array of nodes to the same size as the as the the array length
             Node[] agentCards = new Node[agents.size()]; // is also the number of cards to be created
             for(int i = 0; i < agentCards.length; i++) {
@@ -209,6 +220,8 @@ public class MainController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("agent_card.fxml")); // get the FXML file
                     loader.setController(card); // set the controller for the fxml file
                     agentCards[i] = loader.load(); // add the file to the array of nodes
+                    cardHeight += 50.0;
+                    addCardSpace(); // used to dynamicaly increase the scroll space to add more cards
                     hbItems.getChildren().add(agentCards[i]); // add the scene to the vbox
                 } catch(IOException  e) { e.printStackTrace();}
         }
@@ -223,6 +236,8 @@ public class MainController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        cardHeight = 0.0;
+        addCardSpace();
         // the array of nodes to the same size as the as the the array length
         Node[] customerCards = new Node[customers.size()]; // is also the number of cards to be created
         for(int i = 0; i < customerCards.length; i++) {
@@ -231,6 +246,8 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("customer_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 customerCards[i] = loader.load(); // add the file to the array of nodes
+                cardHeight += 50.0;
+                addCardSpace(); // used to dynamicaly increase the scroll space to add more cards
                 vbCustomerItems.getChildren().add(customerCards[i]); // add the scene to the vbox
             } catch(IOException  e) { e.printStackTrace();}
         }

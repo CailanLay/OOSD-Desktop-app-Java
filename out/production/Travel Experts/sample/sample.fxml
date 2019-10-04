@@ -110,7 +110,7 @@
                   </Label>
                   <ScrollPane layoutX="20.0" layoutY="149.0" prefHeight="337.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="522.0" style="-fx-background-color: #dfe6e9;">
+                        <AnchorPane fx:id="apScroll" minHeight="0.0" minWidth="0.0" prefHeight="481.0" prefWidth="522.0" style="-fx-background-color: #dfe6e9;">
                            <children>
                               <VBox fx:id="vbCustomerItems" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
                            </children>
