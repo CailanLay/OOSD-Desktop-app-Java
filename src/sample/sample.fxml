@@ -149,6 +149,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
+                  <Button fx:id="btnNewAgent" layoutX="152.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnNewAgent" prefHeight="30.0" prefWidth="90.0" stylesheets="@../css/button_style.css" text="New" />
                </children>
             </Pane>
          </children>

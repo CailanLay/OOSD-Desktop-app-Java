@@ -19,7 +19,7 @@
     -fx-background-radius: 50;
 }
 
-#btnAbout:hover, #btnCustomerAbout:hover{
+#btnAbout:hover, #btnCustomerAbout:hover, #btnNewAgent:hover {
     -fx-background-color: #edfafd;
 }
 
@@ -65,3 +65,13 @@
 #btnClose:hover, #btnClose:pressed {
     -fx-background-color: #2a93d5;
 }
+
+#btnNewAgent {
+    -fx-background-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-color: #3ddad7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+

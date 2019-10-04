@@ -5,12 +5,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,8 +68,11 @@ public class MainController implements Initializable {
     @FXML
     private Button btnClose;
 
+    @FXML
+    private Button btnNewAgent;
 
     private DBConnection helper = new DBConnection(); // Global object
+    private double x, y; // used for screen positioning when moving the window
 
     // Author: Cailan Lay
     @FXML
@@ -74,6 +80,35 @@ public class MainController implements Initializable {
          makeAgentCards();
          makeCustomerCards();
     }
+
+    // Author: Cailan Lay
+    // Action handler for the button that adds a new agent
+    @FXML
+    void onActionBtnNewAgent(ActionEvent event) throws IOException {
+        AboutAgentController aboutAgent = new AboutAgentController(true);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_agent.fxml"));
+        loader.setController(aboutAgent);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Agent");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        hbItems.getChildren().clear();
+        makeAgentCards();
+    }
+
 
     // Author: Cailan Lay
     // Method to create an arraylist of agents from the databse

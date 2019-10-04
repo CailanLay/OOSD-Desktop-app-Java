@@ -22,6 +22,12 @@ import java.util.ResourceBundle;
 public class AboutAgentController implements Initializable {
 
     @FXML
+    private Button btnAgentBack;
+
+    @FXML
+    private Label lblTitleName;
+
+    @FXML
     private Line line;
 
     @FXML
@@ -58,12 +64,6 @@ public class AboutAgentController implements Initializable {
     private Button btnAgentSave;
 
     @FXML
-    private Button btnAgentBack;
-
-    @FXML
-    private Label lblTitleName;
-
-    @FXML
     private Pane pnViewAgent;
 
     @FXML
@@ -96,7 +96,41 @@ public class AboutAgentController implements Initializable {
     @FXML
     private Label lblPassword;
 
+    @FXML
+    private Pane pnNewAgent;
+
+    @FXML
+    private TextField tfNewAgentID;
+
+    @FXML
+    private TextField tfNewAgentFName;
+
+    @FXML
+    private TextField tfNewAgentLName;
+
+    @FXML
+    private TextField tfNewAgentMiddleInitial;
+
+    @FXML
+    private TextField tfNewAgentBusPhone;
+
+    @FXML
+    private TextField tfNewAgentEmail;
+
+    @FXML
+    private TextField tfNewAgentPosition;
+
+    @FXML
+    private TextField tfNewAgencyID;
+
+    @FXML
+    private TextField tfNewAgentPassword;
+
+    @FXML
+    private Button btnAddAgent;
+
     private Agent agent = new Agent();
+    private boolean newAgent;
 
     // Author: Cailan Lay
     // Controller constructor
@@ -104,9 +138,17 @@ public class AboutAgentController implements Initializable {
         this.agent = agent;
     }
 
+    // Author: Cailan Lay
+    // Controller default constructor
+    public AboutAgentController(boolean newAgent){ this.newAgent = newAgent; }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadLabeles();
+        if(newAgent == true) {
+            loadNewAgentView();
+        } else {
+            loadLabeles();
+        }
     }
 
     // Author: Cailan Lay
@@ -133,10 +175,23 @@ public class AboutAgentController implements Initializable {
     }
 
     // Author: Cailan Lay
+    // load the window for a new agent to be added
+    private void loadNewAgentView() {
+        pnNewAgent.toFront();
+        pnNewAgent.setVisible(true);
+        pnEditAgent.toBack();
+        pnEditAgent.setVisible(false);
+        pnViewAgent.toBack();
+        pnViewAgent.setVisible(false);
+    }
+
+    // Author: Cailan Lay
     // set the label text to to the agent data
     private void loadLabeles() {
         pnEditAgent.toBack();
         pnEditAgent.setVisible(false);
+        pnNewAgent.toBack();
+        pnNewAgent.setVisible(false);
         pnViewAgent.toFront();
         pnViewAgent.setVisible(true);
         btnAgentBack.setText("Done");
@@ -172,6 +227,43 @@ public class AboutAgentController implements Initializable {
     }
 
     // Author: Cailan Lay
+    // Action handler for the add new agent button
+    @FXML
+    void onActionBtnAddAgent(ActionEvent event) throws SQLException {
+        DBConnection helper = new DBConnection();
+        Connection connection = helper.returnConnection();
+        String sql = "INSERT INTO `agents`(`AgentId`, `AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`, `Password`) VALUES (?,?,?,?,?,?,?,?,?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1,Integer.valueOf(tfNewAgentID.getText()));
+        agent.setId(Integer.valueOf(tfNewAgentID.getText()));
+        stmt.setString(2, tfNewAgentFName.getText());
+        agent.setFName(tfNewAgentFName.getText());
+        stmt.setString(3, tfNewAgentMiddleInitial.getText());
+        agent.setMiddleInitial(tfNewAgentMiddleInitial.getText());
+        stmt.setString(4, tfNewAgentLName.getText());
+        agent.setLName(tfNewAgentLName.getText());
+        stmt.setString(5, tfNewAgentBusPhone.getText());
+        agent.setBusPhone(tfNewAgentBusPhone.getText());
+        stmt.setString(6, tfNewAgentEmail.getText());
+        agent.setEmail(tfNewAgentEmail.getText());
+        stmt.setString(7, tfNewAgentPosition.getText());
+        agent.setPosition(tfNewAgentPosition.getText());
+        stmt.setInt(8, Integer.valueOf(tfNewAgencyID.getText()));
+        agent.setAgencyId(Integer.valueOf(tfNewAgencyID.getText()));
+        stmt.setString(9, tfNewAgentPassword.getText());
+        agent.setPassword(tfNewAgentPassword.getText());
+        int rows = stmt.executeUpdate();
+        if(rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error adding agent", ButtonType.OK);
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "New Agent added", ButtonType.OK);
+            alert.show();
+        }
+        loadLabeles();
+    }
+
+    // Author: Cailan Lay
     // Action handler for the back button on the about agents page
     @FXML
     void onActionBtnAgentBack(ActionEvent event) {
@@ -190,6 +282,8 @@ public class AboutAgentController implements Initializable {
     void onActionBtnAgentEdit(ActionEvent event) {
         pnEditAgent.toFront();
         pnEditAgent.setVisible(true);
+        pnNewAgent.toBack();
+        pnNewAgent.setVisible(false);
         pnViewAgent.toBack();
         pnViewAgent.setVisible(false);
         loadBoxes();
