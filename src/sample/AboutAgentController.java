@@ -327,10 +327,13 @@ public class AboutAgentController implements Initializable {
         if(rows == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
             alert.show();
-        } else {
+        }
+        /*
+        else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Changes have been saved", ButtonType.OK);
             alert.show();
         }
+        */
         connection.close();
         loadLabeles();
     }

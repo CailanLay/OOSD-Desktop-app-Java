@@ -35,6 +35,9 @@ public class MainController implements Initializable {
     private Button btnCustomers;
 
     @FXML
+    private Button btnProducts;
+
+    @FXML
     private Button btnBookings;
 
     @FXML
@@ -56,26 +59,37 @@ public class MainController implements Initializable {
     private VBox hbItems;
 
     @FXML
-    private Pane pnCustomers;
-
-    @FXML
-    private HBox hboxCustomerHeader;
-
-    @FXML
-    private VBox vbCustomerItems;
-
-    @FXML
     private Button btnClose;
 
     @FXML
     private Button btnNewAgent;
 
     @FXML
-    private Button btnNewCustomer;
+    private Pane pnCustomers;
 
     @FXML
     private AnchorPane apScroll;
 
+    @FXML
+    private VBox vbCustomerItems;
+
+    @FXML
+    private HBox hboxCustomerHeader;
+
+    @FXML
+    private Button btnNewCustomer;
+
+    @FXML
+    private Pane pnProducts;
+
+    @FXML
+    private AnchorPane apProductsScroll;
+
+    @FXML
+    private VBox VBoxProducts;
+
+    @FXML
+    private HBox HBoxProductsTitleBox;
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
     private double cardHeight = 0.0; // used for increasing the number of cards that can fit in the scroll pane
@@ -168,6 +182,23 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
+    // Method to create an arraylist of products from the database
+    private ArrayList<Product> getProducts() throws SQLException {
+        ArrayList<Product> products = new ArrayList();
+
+        Connection connection = helper.returnConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM `products`");
+
+        // Populates the arraylist with agents created from database
+        while(rs.next()) {
+            products.add(new Product( rs.getInt(1), rs.getString(2)));
+        }
+        connection.close();
+        return products; // returns the an array of agents
+    }
+
+    // Author: Cailan Lay
     // Method creates an arraylist of customers from the database
     private ArrayList<Customer> getCustomers() throws SQLException {
         ArrayList<Customer> customers = new ArrayList();
@@ -196,6 +227,7 @@ public class MainController implements Initializable {
         return customers; // returns the an array of agents
     }
 
+    // Author: Cailan Lay
     // used to increase the space for cards within the scroll pane
     private void addCardSpace(){
         apScroll.setPrefHeight(cardHeight);
@@ -266,6 +298,8 @@ public class MainController implements Initializable {
         pnBookings.setVisible(false);
         pnSuppliers.toBack();
         pnSuppliers.setVisible(false);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
     }
 
     // Author: Cailan Lay
@@ -282,6 +316,8 @@ public class MainController implements Initializable {
         pnSuppliers.setVisible(false);
         btnClose.toFront();
         btnClose.setVisible(true);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
     }
 
     // Author: Cailan Lay
@@ -296,6 +332,8 @@ public class MainController implements Initializable {
         pnAgents.setVisible(false);
         pnSuppliers.toBack();
         pnSuppliers.setVisible(false);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
     }
 
     // Author: Cailan Lay
@@ -310,6 +348,23 @@ public class MainController implements Initializable {
         pnBookings.setVisible(false);
         pnAgents.toBack();
         pnAgents.setVisible(false);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
+    }
+
+    // shows the products page when the customer menu is clicked
+    @FXML
+    void onactionBtnProducts(ActionEvent event) {
+        pnSuppliers.toBack();
+        pnSuppliers.setVisible(false);
+        pnCustomers.toBack();
+        pnCustomers.setVisible(false);
+        pnBookings.toBack();
+        pnBookings.setVisible(false);
+        pnAgents.toBack();
+        pnAgents.setVisible(false);
+        pnProducts.toFront();
+        pnProducts.setVisible(true);
     }
 
     @FXML
