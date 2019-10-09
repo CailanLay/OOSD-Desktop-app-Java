@@ -3,11 +3,12 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ProductsCardController implements Initializable {
@@ -50,11 +51,11 @@ public class ProductsCardController implements Initializable {
     // Author: Cailan Lay
     // This sets the default view for the card
     private void loadView(){
+        loadLabels();
         HBoxView.toFront();
         HBoxView.setVisible(true);
         HBoxEdit.toBack();
         HBoxEdit.setVisible(false);
-        loadLabels();
     }
 
     // Author: Cailan Lay
@@ -73,8 +74,21 @@ public class ProductsCardController implements Initializable {
 
     // this is the event handler for the save button on the card
     @FXML
-    void onActionBtnProductsSave(ActionEvent event) {
-
+    void onActionBtnProductsSave(ActionEvent event) throws SQLException {
+        DBConnection helper = new DBConnection();
+        Connection connection = helper.returnConnection();
+        String sql = "UPDATE `products` SET `ProductId`=?,`ProdName`=? WHERE ProductId=" + product.getId();
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, Integer.valueOf(tfProductID.getText()));
+        product.setId(Integer.valueOf(tfProductID.getText()));
+        stmt.setString(2, tfProductName.getText());
+        product.setName(tfProductName.getText());
+        int rows = stmt.executeUpdate();
+        if(rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
+            alert.show();
+        }
+        loadView();
     }
 
     // Author: Cailan Lay
