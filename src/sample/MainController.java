@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -99,6 +100,7 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resource) {
          makeAgentCards();
          makeCustomerCards();
+         makeProductCards();
     }
 
     // Author: Cailan Lay
@@ -182,23 +184,6 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
-    // Method to create an arraylist of products from the database
-    private ArrayList<Product> getProducts() throws SQLException {
-        ArrayList<Product> products = new ArrayList();
-
-        Connection connection = helper.returnConnection();
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM `products`");
-
-        // Populates the arraylist with agents created from database
-        while(rs.next()) {
-            products.add(new Product( rs.getInt(1), rs.getString(2)));
-        }
-        connection.close();
-        return products; // returns the an array of agents
-    }
-
-    // Author: Cailan Lay
     // Method creates an arraylist of customers from the database
     private ArrayList<Customer> getCustomers() throws SQLException {
         ArrayList<Customer> customers = new ArrayList();
@@ -225,6 +210,51 @@ public class MainController implements Initializable {
         }
         connection.close();
         return customers; // returns the an array of agents
+    }
+
+    // Author: Cailan Lay
+    // Method creates an arraylist of customers from the database
+    private ArrayList<Product> getProducts() throws SQLException {
+        ArrayList<Product> products = new ArrayList();
+
+        Connection connection = helper.returnConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM `products`");
+
+        // Populates the arraylist with agents created from database
+        while(rs.next()) {
+            products.add(new Product(
+                    rs.getInt(1),
+                    rs.getString(2)));
+        }
+        connection.close();
+        return products; // returns the an array of agents
+    }
+
+    // Author: Cailan Lay
+    // Create and adds the agents cards
+    private void makeProductCards(){
+        ArrayList<Product> products = new ArrayList<Product>();
+        try {
+            products = getProducts(); // populates the the agents array
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        cardHeight = 0.0;
+        addCardSpace();
+        // the array of nodes to the same size as the as the the array length
+        Node[] productCards = new Node[products.size()]; // is also the number of cards to be created
+        for(int i = 0; i < productCards.length; i++) {
+            try {
+                ProductsCardController card = new ProductsCardController(products.get(i)); // create controller and pass the agent to the controller
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("products_card.fxml")); // get the FXML file
+                loader.setController(card); // set the controller for the fxml file
+                productCards[i] = loader.load(); // add the file to the array of nodes
+                cardHeight += 50.0;
+                addCardSpace(); // used to dynamicaly increase the scroll space to add more cards
+                VBoxProducts.getChildren().add(productCards[i]); // add the scene to the vbox
+            } catch(IOException  e) { e.printStackTrace();}
+        }
     }
 
     // Author: Cailan Lay
