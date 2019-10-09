@@ -7,9 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProductsCardController implements Initializable {
@@ -40,11 +38,13 @@ public class ProductsCardController implements Initializable {
 
     private Product product;
 
+    // called when the card is made
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadView();
     }
 
+    // Constructor for the controller
     public ProductsCardController(Product product) { this.product = product; }
 
     // Author: Cailan Lay
@@ -64,16 +64,21 @@ public class ProductsCardController implements Initializable {
         lblPRoductName.setText(product.getName());
     }
 
+    // Author: Cailan Lay
+    // This loads the text fields for the card
     private void loadTextFeilds() {
         tfProductName.setText(product.getName());
         tfProductID.setText(String.valueOf(product.getId()));
     }
 
+    // this is the event handler for the save button on the card
     @FXML
     void onActionBtnProductsSave(ActionEvent event) {
 
     }
 
+    // Author: Cailan Lay
+    // This the the event handler for the edit button the card
     @FXML
     void onActionbtnProductsEdit(ActionEvent event) {
         loadTextFeilds();
