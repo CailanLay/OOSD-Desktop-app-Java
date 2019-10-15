@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="351.0" prefWidth="392.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AboutSupplier">
+   <children>
+      <Label layoutX="108.0" layoutY="80.0" text="SupplierID">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="174.0" text="SupplierName">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSupplierSave" layoutX="334.0" layoutY="309.0" mnemonicParsing="false" onAction="#onActionBtnSupplierSave" text="Save">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <Button fx:id="btnSupplierEdit" layoutX="257.0" layoutY="309.0" mnemonicParsing="false" onAction="#onActionBtnSupplierEdit" text="Edit">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <padding>
+            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+         </padding>
+      </Button>
+      <TextField fx:id="txtSID" layoutX="108.0" layoutY="100.0" />
+      <TextField fx:id="txtSName" layoutX="108.0" layoutY="203.0" />
+      <Button fx:id="btnSupplierBack" layoutX="37.0" layoutY="312.0" mnemonicParsing="false" onAction="#onActionBtnSupplierBack" stylesheets="@../css/button_style.css" text="Back" />
+   </children>
+</AnchorPane>

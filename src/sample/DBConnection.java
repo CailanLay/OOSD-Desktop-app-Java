@@ -15,12 +15,14 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Properties userInfo = new Properties();
-            userInfo.put("user", "root");
-            userInfo.put("password", "");
-            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/travelexperts", userInfo);
+            userInfo.put("user", "Harpreet");
+            userInfo.put("password", "Password");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", userInfo);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return connection;
     }
+
+
 }

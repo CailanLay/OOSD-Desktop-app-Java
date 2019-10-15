@@ -1,5 +1,5 @@
 /*
- * Author: Cailan Lay
+ * Author: Cailan lay
  */
 
 package sample;
