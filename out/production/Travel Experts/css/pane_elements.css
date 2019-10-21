@@ -1,7 +1,7 @@
 /*
  * Author: Cailan Lay
  */
-#hboxHeader, #hboxCustomerHeader {
+#hboxHeader, #hboxCustomerHeader, #HBoxTitleBox {
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #3ddad7;
 }

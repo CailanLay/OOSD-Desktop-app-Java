@@ -33,48 +33,6 @@ public class AboutCustomerController implements Initializable {
     private Label lblNewCustomerTItleName;
 
     @FXML
-    private Pane pnCustomerEdit;
-
-    @FXML
-    private TextField tfCustomerID;
-
-    @FXML
-    private TextField tfCustomerFName;
-
-    @FXML
-    private TextField tfCustomerLName;
-
-    @FXML
-    private TextField tfCustomerAddress;
-
-    @FXML
-    private TextField tfCustomerCity;
-
-    @FXML
-    private TextField tfCustomerProvince;
-
-    @FXML
-    private TextField tfCustomerPostalCode;
-
-    @FXML
-    private TextField tfCustomerCountry;
-
-    @FXML
-    private TextField tfCustomerHomePhone;
-
-    @FXML
-    private TextField tfCustomerBusPhone;
-
-    @FXML
-    private TextField tfCustomerEmail;
-
-    @FXML
-    private TextField tfCustomerAgentID;
-
-    @FXML
-    private Button btnCustomerSave;
-
-    @FXML
     private Pane pnCustomerView;
 
     @FXML
@@ -158,6 +116,48 @@ public class AboutCustomerController implements Initializable {
     @FXML
     private Button btnNewCustomer;
 
+    @FXML
+    private Pane pnCustomerEdit;
+
+    @FXML
+    private TextField tfCustomerFName;
+
+    @FXML
+    private TextField tfCustomerLName;
+
+    @FXML
+    private TextField tfCustomerAddress;
+
+    @FXML
+    private TextField tfCustomerCity;
+
+    @FXML
+    private TextField tfCustomerProvince;
+
+    @FXML
+    private TextField tfCustomerPostalCode;
+
+    @FXML
+    private TextField tfCustomerCountry;
+
+    @FXML
+    private TextField tfCustomerHomePhone;
+
+    @FXML
+    private TextField tfCustomerBusPhone;
+
+    @FXML
+    private TextField tfCustomerEmail;
+
+    @FXML
+    private Button btnCustomerSave;
+
+    @FXML
+    private Label lblEditCustomerID;
+
+    @FXML
+    private Label lblEditCustomerAgentID;
+
     private Customer customer = new Customer();
     private boolean newCustomer;
 
@@ -185,7 +185,7 @@ public class AboutCustomerController implements Initializable {
     // Author: Cailan Lay
     // set the text fields no non editable
     private void notEditable(){
-        tfCustomerID.setEditable(false);
+        //tfCustomerID.setEditable(false);
         tfCustomerFName.setEditable(false);
         tfCustomerLName.setEditable(false);
         tfCustomerAddress.setEditable(false);
@@ -196,7 +196,7 @@ public class AboutCustomerController implements Initializable {
         tfCustomerHomePhone.setEditable(false);
         tfCustomerBusPhone.setEditable(false);
         tfCustomerEmail.setEditable(false);
-        tfCustomerAgentID.setEditable(false);
+        //tfCustomerAgentID.setEditable(false);
     }
 
     // Author: Cailan Lay
@@ -228,6 +228,8 @@ public class AboutCustomerController implements Initializable {
         pnCustomerView.toFront();
         pnCustomerView.setVisible(true);
         btnCustomerBack.setText("Done");
+        btnCustomerEdit.setVisible(true);
+        btnCustomerEdit.toFront();
         notEditable();
         if(notNull(customer)) {
             lblCustomerID.setText(String.valueOf(customer.getId()));
@@ -248,7 +250,7 @@ public class AboutCustomerController implements Initializable {
     // Author: Cailan Lay
     // populates the boxes from the data stored in the agent
     private void loadBoxes() {
-        tfCustomerID.setText(String.valueOf(customer.getId()));
+        lblEditCustomerID.setText(String.valueOf(customer.getId()));
         tfCustomerFName.setText(customer.getFName());
         tfCustomerLName.setText(customer.getLName());
         tfCustomerAddress.setText(customer.getAddress());
@@ -259,7 +261,7 @@ public class AboutCustomerController implements Initializable {
         tfCustomerHomePhone.setText(customer.getHomePhone());
         tfCustomerBusPhone.setText(customer.getBusPhone());
         tfCustomerEmail.setText(customer.getEmail());
-        tfCustomerAgentID.setText(String.valueOf(customer.getAgentId()));
+        lblEditCustomerAgentID.setText(String.valueOf(customer.getAgentId()));
     }
 
     // Author: Cailan Lay
@@ -332,7 +334,7 @@ public class AboutCustomerController implements Initializable {
         loadBoxes();
         btnCustomerSave.setVisible(true);
         btnCustomerEdit.setVisible(false);
-        tfCustomerID.setEditable(true);
+        //tfCustomerID.setEditable(true);
         tfCustomerFName.setEditable(true);
         tfCustomerLName.setEditable(true);
         tfCustomerAddress.setEditable(true);
@@ -343,51 +345,49 @@ public class AboutCustomerController implements Initializable {
         tfCustomerHomePhone.setEditable(true);
         tfCustomerBusPhone.setEditable(true);
         tfCustomerEmail.setEditable(true);
-        tfCustomerAgentID.setEditable(true);
+        //tfCustomerAgentID.setEditable(true);
     }
 
     // Author: Cailan Lay
     // action handler for the save button on the about customer page
     @FXML
     void onActionBtnCustomerSave(ActionEvent event) throws SQLException {
-        DBConnection helper = new DBConnection();
-        Connection connection = helper.returnConnection();
-        String sql = "UPDATE `customers` SET `CustFirstName`=?,`CustLastName`=?,`CustAddress`=?,`CustCity`=?,`CustProv`=?,`CustPostal`=?,`CustCountry`=?,`CustHomePhone`=?,`CustBusPhone`=?,`CustEmail`=?,`AgentId`=? WHERE `CustomerId`=?";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, tfCustomerFName.getText());
-        customer.setFName(tfCustomerFName.getText());
-        stmt.setString(2, tfCustomerLName.getText());
-        customer.setLName(tfCustomerLName.getText());
-        stmt.setString(3, tfCustomerAddress.getText());
-        customer.setAddress(tfCustomerAddress.getText());
-        stmt.setString(4, tfCustomerCity.getText());
-        customer.setCity(tfCustomerCity.getText());
-        stmt.setString(5, tfCustomerProvince.getText());
-        customer.setProvince(tfCustomerProvince.getText());
-        stmt.setString(6, tfCustomerPostalCode.getText());
-        customer.setPostalCode(tfCustomerPostalCode.getText());
-        stmt.setString(7, tfCustomerCountry.getText());
-        customer.setCountry(tfCustomerCountry.getText());
-        stmt.setString(8, tfCustomerHomePhone.getText());
-        customer.setHomePhone(tfCustomerHomePhone.getText());
-        stmt.setString(9, tfCustomerBusPhone.getText());
-        customer.setBusPhone(tfCustomerBusPhone.getText());
-        stmt.setString(10, tfCustomerEmail.getText());
-        customer.setEmail(tfCustomerEmail.getText());
-        stmt.setString(11, tfCustomerAgentID.getText());
-        customer.setAgentId(Integer.valueOf(tfCustomerAgentID.getText()));
-        stmt.setString(12, String.valueOf(customer.getId()));
-        int rows = stmt.executeUpdate();
-        if(rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
-            alert.show();
+        if(Validator.validateCustomer(tfCustomerFName.getText(), tfCustomerLName.getText(), tfCustomerAddress.getText(), tfCustomerCity.getText(), tfCustomerProvince.getText(), tfCustomerPostalCode.getText(), tfCustomerCountry.getText(),  tfCustomerHomePhone.getText(), tfCustomerBusPhone.getText(), tfCustomerEmail.getText())) {
+            DBConnection helper = new DBConnection();
+            Connection connection = helper.returnConnection();
+            String sql = "UPDATE `customers` SET `CustFirstName`=?,`CustLastName`=?,`CustAddress`=?,`CustCity`=?,`CustProv`=?,`CustPostal`=?,`CustCountry`=?,`CustHomePhone`=?,`CustBusPhone`=?,`CustEmail`=? WHERE `CustomerId`=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, tfCustomerFName.getText());
+            customer.setFName(tfCustomerFName.getText());
+            stmt.setString(2, tfCustomerLName.getText());
+            customer.setLName(tfCustomerLName.getText());
+            stmt.setString(3, tfCustomerAddress.getText());
+            customer.setAddress(tfCustomerAddress.getText());
+            stmt.setString(4, tfCustomerCity.getText());
+            customer.setCity(tfCustomerCity.getText());
+            stmt.setString(5, tfCustomerProvince.getText());
+            customer.setProvince(tfCustomerProvince.getText());
+            stmt.setString(6, tfCustomerPostalCode.getText());
+            customer.setPostalCode(tfCustomerPostalCode.getText());
+            stmt.setString(7, tfCustomerCountry.getText());
+            customer.setCountry(tfCustomerCountry.getText());
+            stmt.setString(8, tfCustomerHomePhone.getText());
+            customer.setHomePhone(tfCustomerHomePhone.getText());
+            stmt.setString(9, tfCustomerBusPhone.getText());
+            customer.setBusPhone(tfCustomerBusPhone.getText());
+            stmt.setString(10, tfCustomerEmail.getText());
+            customer.setEmail(tfCustomerEmail.getText());
+            //stmt.setString(11, tfCustomerAgentID.getText());
+            //customer.setAgentId(Integer.valueOf(tfCustomerAgentID.getText()));
+            stmt.setString(11, String.valueOf(customer.getId()));
+            int rows = stmt.executeUpdate();
+            if(rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
+                alert.show();
+            }
+            loadLabeles();
+        } else {
+            loadLabeles();
         }
-        /*
-        else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Changes have been saved", ButtonType.OK);
-            alert.show();
-        }
-        */
-        loadLabeles();
     }
 }
