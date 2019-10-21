@@ -3,7 +3,7 @@
 */
 #tfCustomerID, #tfCustomerFName, #tfCustomerLName, #tfCustomerAddress, #tfCustomerCity, #tfCustomerProvince, #tfCustomerPostalCode,
 #tfCustomerCountry, #tfCustomerHomePhone, #tfCustomerBusPhone, #tfCustomerEmail, #tfCustomerAgentID, #txtID, #txtFName, #txtMiddleInitial,
-#txtLName, #txtBusPhone, #txtEmail, #txtPosition, #txtPassword, #txtAgencyID, #tfProductName, #tfProductID {
+#txtLName, #txtBusPhone, #txtEmail, #txtPosition, #txtPassword, #txtAgencyID, #tfProductName, #tfProductID, #txtNewProductName {
     -fx-background-color: #ffff;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #3ddad7;

@@ -19,11 +19,11 @@
     -fx-background-radius: 50;
 }
 
-#btnAbout:hover, #btnCustomerAbout:hover, #btnNewAgent:hover, #btnNewCustomer:hover {
+#btnAbout:hover, #btnCustomerAbout:hover, #btnNewAgent:hover, #btnNewCustomer:hover, #btnNewProduct:hover {
     -fx-background-color: #edfafd;
 }
 
-#btnCustomerEdit, #btnAgentEdit, #btnEdit {
+#btnCustomerEdit, #btnAgentEdit, #btnEdit, #btnCancel {
     -fx-background-color: transp, arent;
     -fx-border-width: 1;
     -fx-border-color: #2d3436;
@@ -31,11 +31,11 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover {
+#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover, #btnCancel:hover {
     -fx-background-color: #ECEFF1;
 }
 
-#btnCustomerSave, #btnAgentSave, #btnProductsSave, #btnAddAgent {
+#btnCustomerSave, #btnAgentSave, #btnProductsSave, #btnAddAgent, #btnAddProduct {
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-color: #3ddad7;
@@ -43,7 +43,7 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerSave:hover, #btnAgentSave:hover, #btnProductsSave:hover, #btnAddAgent:hover {
+#btnCustomerSave:hover, #btnAgentSave:hover, #btnProductsSave:hover, #btnAddAgent:hover, #btnAddProduct:hover {
     -fx-background-color: #edfafd;
 }
 
@@ -66,7 +66,7 @@
     -fx-background-color: #2a93d5;
 }
 
-#btnNewAgent, #btnNewCustomer {
+#btnNewAgent, #btnNewCustomer, #btnNewProduct {
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-color: #3ddad7;
