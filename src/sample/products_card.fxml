@@ -26,7 +26,7 @@
                   <Font size="14.0" />
                </font>
                <HBox.margin>
-                  <Insets left="80.0" />
+                  <Insets left="70.0" />
                </HBox.margin>
             </Label>
             <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#onActionbtnProductsEdit" stylesheets="@../css/button_style.css" text="Edit">
@@ -36,24 +36,24 @@
             </Button>
          </children>
       </HBox>
-      <HBox fx:id="HBoxEdit" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="510.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="HBoxEdit" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="510.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="tfProductID" prefHeight="30.0" prefWidth="43.0" stylesheets="@../css/textbox_style.css">
+            <Label fx:id="lblEditID" text="ID">
                <font>
                   <Font size="14.0" />
                </font>
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
-            </TextField>
+            </Label>
             <TextField fx:id="tfProductName" prefHeight="25.0" prefWidth="134.0" stylesheets="@../css/textbox_style.css">
                <HBox.margin>
-                  <Insets left="45.0" />
+                  <Insets left="90.0" />
                </HBox.margin>
             </TextField>
             <Button fx:id="btnProductsSave" mnemonicParsing="false" onAction="#onActionBtnProductsSave" stylesheets="@../css/button_style.css" text="Save">
                <HBox.margin>
-                  <Insets left="182.0" />
+                  <Insets left="155.0" />
                </HBox.margin>
             </Button>
          </children>

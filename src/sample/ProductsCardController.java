@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 public class ProductsCardController implements Initializable {
 
@@ -29,7 +30,7 @@ public class ProductsCardController implements Initializable {
     private HBox HBoxEdit;
 
     @FXML
-    private TextField tfProductID;
+    private Label lblEditID;
 
     @FXML
     private TextField tfProductName;
@@ -68,28 +69,32 @@ public class ProductsCardController implements Initializable {
     // Author: Cailan Lay
     // This loads the text fields for the card
     private void loadTextFeilds() {
+        lblEditID.setText(String.valueOf(product.getId()));
         tfProductName.setText(product.getName());
-        tfProductID.setText(String.valueOf(product.getId()));
     }
 
     // this is the event handler for the save button on the card
     @FXML
     void onActionBtnProductsSave(ActionEvent event) throws SQLException {
-        DBConnection helper = new DBConnection();
-        Connection connection = helper.returnConnection();
-        String sql = "UPDATE `products` SET `ProductId`=?,`ProdName`=? WHERE ProductId=" + product.getId();
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setInt(1, Integer.valueOf(tfProductID.getText()));
-        product.setId(Integer.valueOf(tfProductID.getText()));
-        stmt.setString(2, tfProductName.getText());
-        product.setName(tfProductName.getText());
-        int rows = stmt.executeUpdate();
-        if(rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
-            alert.show();
+        if(Validator.validateProduct(tfProductName.getText())) {
+            DBConnection helper = new DBConnection();
+            Connection connection = helper.returnConnection();
+            String sql = "UPDATE `products` SET `ProdName`=? WHERE ProductId=" + product.getId();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, tfProductName.getText());
+            product.setName(tfProductName.getText());
+            int rows = stmt.executeUpdate();
+            if(rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
+                alert.show();
+            }
+            loadView();
+        } else {
+            loadTextFeilds();
         }
-        loadView();
     }
+
+
 
     // Author: Cailan Lay
     // This the the event handler for the edit button the card

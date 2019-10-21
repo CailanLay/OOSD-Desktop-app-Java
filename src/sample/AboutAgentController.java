@@ -230,37 +230,42 @@ public class AboutAgentController implements Initializable {
     // Action handler for the add new agent button
     @FXML
     void onActionBtnAddAgent(ActionEvent event) throws SQLException {
-        DBConnection helper = new DBConnection();
-        Connection connection = helper.returnConnection();
-        String sql = "INSERT INTO `agents`(`AgentId`, `AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`, `Password`) VALUES (?,?,?,?,?,?,?,?,?)";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setInt(1,Integer.valueOf(tfNewAgentID.getText()));
-        agent.setId(Integer.valueOf(tfNewAgentID.getText()));
-        stmt.setString(2, tfNewAgentFName.getText());
-        agent.setFName(tfNewAgentFName.getText());
-        stmt.setString(3, tfNewAgentMiddleInitial.getText());
-        agent.setMiddleInitial(tfNewAgentMiddleInitial.getText());
-        stmt.setString(4, tfNewAgentLName.getText());
-        agent.setLName(tfNewAgentLName.getText());
-        stmt.setString(5, tfNewAgentBusPhone.getText());
-        agent.setBusPhone(tfNewAgentBusPhone.getText());
-        stmt.setString(6, tfNewAgentEmail.getText());
-        agent.setEmail(tfNewAgentEmail.getText());
-        stmt.setString(7, tfNewAgentPosition.getText());
-        agent.setPosition(tfNewAgentPosition.getText());
-        stmt.setInt(8, Integer.valueOf(tfNewAgencyID.getText()));
-        agent.setAgencyId(Integer.valueOf(tfNewAgencyID.getText()));
-        stmt.setString(9, tfNewAgentPassword.getText());
-        agent.setPassword(tfNewAgentPassword.getText());
-        int rows = stmt.executeUpdate();
-        if(rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error adding agent", ButtonType.OK);
-            alert.show();
+        if(Validator.validateAgent(tfNewAgentFName.getText(), tfNewAgentMiddleInitial.getText(), tfNewAgentLName.getText(), tfNewAgentBusPhone.getText(), tfNewAgentPosition.getText(), tfNewAgentEmail.getText()) == true) {
+            DBConnection helper = new DBConnection();
+            Connection connection = helper.returnConnection();
+            String sql = "INSERT INTO `agents`(`AgentId`, `AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`, `Password`) VALUES (?,?,?,?,?,?,?,?,?)";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1,Integer.valueOf(tfNewAgentID.getText()));
+            agent.setId(Integer.valueOf(tfNewAgentID.getText()));
+            stmt.setString(2, tfNewAgentFName.getText());
+            agent.setFName(tfNewAgentFName.getText());
+            stmt.setString(3, tfNewAgentMiddleInitial.getText());
+            agent.setMiddleInitial(tfNewAgentMiddleInitial.getText());
+            stmt.setString(4, tfNewAgentLName.getText());
+            agent.setLName(tfNewAgentLName.getText());
+            stmt.setString(5, tfNewAgentBusPhone.getText());
+            agent.setBusPhone(tfNewAgentBusPhone.getText());
+            stmt.setString(6, tfNewAgentEmail.getText());
+            agent.setEmail(tfNewAgentEmail.getText());
+            stmt.setString(7, tfNewAgentPosition.getText());
+            agent.setPosition(tfNewAgentPosition.getText());
+            stmt.setInt(8, Integer.valueOf(tfNewAgencyID.getText()));
+            agent.setAgencyId(Integer.valueOf(tfNewAgencyID.getText()));
+            stmt.setString(9, tfNewAgentPassword.getText());
+            agent.setPassword(tfNewAgentPassword.getText());
+            int rows = stmt.executeUpdate();
+            if(rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error adding agent", ButtonType.OK);
+                alert.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "New Agent added", ButtonType.OK);
+                alert.show();
+            }
+            loadLabeles();
         } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "New Agent added", ButtonType.OK);
-            alert.show();
+            loadLabeles();
         }
-        loadLabeles();
+
     }
 
     // Author: Cailan Lay
@@ -302,39 +307,38 @@ public class AboutAgentController implements Initializable {
     // action handler for the save button on the about agents page
     @FXML
     void onActionBtnAgentSave(ActionEvent event) throws IOException, SQLException {
-        DBConnection helper = new DBConnection();
-        Connection connection = helper.returnConnection();
-        String sql = "UPDATE `agents` SET `AgtFirstName`=?,`AgtMiddleInitial`=?,`AgtLastName`=?,`AgtBusPhone`=?,`AgtEmail`=?,`AgtPosition`=?,`AgencyId`=?,`Password`=? WHERE AgentId = ?";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, txtFName.getText());
-        agent.setFName(txtFName.getText());
-        stmt.setString(2, txtMiddleInitial.getText());
-        agent.setMiddleInitial(txtMiddleInitial.getText());
-        stmt.setString(3, txtLName.getText());
-        agent.setLName(txtLName.getText());
-        stmt.setString(4,txtBusPhone.getText());
-        agent.setBusPhone(txtBusPhone.getText());
-        stmt.setString(5, txtEmail.getText());
-        agent.setEmail(txtEmail.getText());
-        stmt.setString(6, txtPosition.getText());
-        agent.setPosition(txtPosition.getText());
-        stmt.setString(7, txtAgencyID.getText());
-        agent.setAgencyId(Integer.valueOf(txtAgencyID.getText()));
-        stmt.setString(8, txtPassword.getText());
-        agent.setPassword(txtPassword.getText());
-        stmt.setString(9, String.valueOf(agent.getId()));
-        int rows = stmt.executeUpdate();
-        if(rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
-            alert.show();
+        if(Validator.validateAgent(txtFName.getText(), txtMiddleInitial.getText(), txtLName.getText(), txtBusPhone.getText(), txtPosition.getText(), tfNewAgentEmail.getText()) == true) {
+            DBConnection helper = new DBConnection();
+            Connection connection = helper.returnConnection();
+            String sql = "UPDATE `agents` SET `AgtFirstName`=?,`AgtMiddleInitial`=?,`AgtLastName`=?,`AgtBusPhone`=?,`AgtEmail`=?,`AgtPosition`=?,`AgencyId`=?,`Password`=? WHERE AgentId = ?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, txtFName.getText());
+            agent.setFName(txtFName.getText());
+            stmt.setString(2, txtMiddleInitial.getText());
+            agent.setMiddleInitial(txtMiddleInitial.getText());
+            stmt.setString(3, txtLName.getText());
+            agent.setLName(txtLName.getText());
+            stmt.setString(4,txtBusPhone.getText());
+            agent.setBusPhone(txtBusPhone.getText());
+            stmt.setString(5, txtEmail.getText());
+            agent.setEmail(txtEmail.getText());
+            stmt.setString(6, txtPosition.getText());
+            agent.setPosition(txtPosition.getText());
+            stmt.setString(7, txtAgencyID.getText());
+            agent.setAgencyId(Integer.valueOf(txtAgencyID.getText()));
+            stmt.setString(8, txtPassword.getText());
+            agent.setPassword(txtPassword.getText());
+            stmt.setString(9, String.valueOf(agent.getId()));
+            int rows = stmt.executeUpdate();
+            if(rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
+                alert.show();
+            }
+            connection.close();
+            loadLabeles();
+        } else {
+            loadBoxes();
         }
-        /*
-        else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Changes have been saved", ButtonType.OK);
-            alert.show();
-        }
-        */
-        connection.close();
-        loadLabeles();
+
     }
 }
