@@ -232,6 +232,7 @@ public class AboutCustomerController implements Initializable {
         btnCustomerEdit.toFront();
         notEditable();
         if(notNull(customer)) {
+            lblNewCustomerTItleName.setText(customer.getFName());
             lblCustomerID.setText(String.valueOf(customer.getId()));
             lblCutomerFName.setText(customer.getFName());
             lblCustomerLName.setText(customer.getLName());

@@ -31,39 +31,6 @@ public class AboutAgentController implements Initializable {
     private Line line;
 
     @FXML
-    private Pane pnEditAgent;
-
-    @FXML
-    private TextField txtID;
-
-    @FXML
-    private TextField txtFName;
-
-    @FXML
-    private TextField txtLName;
-
-    @FXML
-    private TextField txtMiddleInitial;
-
-    @FXML
-    private TextField txtBusPhone;
-
-    @FXML
-    private TextField txtEmail;
-
-    @FXML
-    private TextField txtPosition;
-
-    @FXML
-    private TextField txtAgencyID;
-
-    @FXML
-    private TextField txtPassword;
-
-    @FXML
-    private Button btnAgentSave;
-
-    @FXML
     private Pane pnViewAgent;
 
     @FXML
@@ -129,6 +96,39 @@ public class AboutAgentController implements Initializable {
     @FXML
     private Button btnAddAgent;
 
+    @FXML
+    private Pane pnEditAgent;
+
+    @FXML
+    private TextField txtFName;
+
+    @FXML
+    private TextField txtLName;
+
+    @FXML
+    private TextField txtMiddleInitial;
+
+    @FXML
+    private TextField txtBusPhone;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtPosition;
+
+    @FXML
+    private TextField txtAgencyID;
+
+    @FXML
+    private TextField txtPassword;
+
+    @FXML
+    private Button btnAgentSave;
+
+    @FXML
+    private Label lblEditAgentID;
+
     private Agent agent = new Agent();
     private boolean newAgent;
 
@@ -154,7 +154,7 @@ public class AboutAgentController implements Initializable {
     // Author: Cailan Lay
     // sets the text fields to non editable
     private void notEditable() {
-        txtID.setEditable(false);
+        //txtID.setEditable(false);
         txtFName.setEditable(false);
         txtMiddleInitial.setEditable(false);
         txtBusPhone.setEditable(false);
@@ -214,7 +214,7 @@ public class AboutAgentController implements Initializable {
     // populates the text fields
     private void loadBoxes() {
         if (notNull(agent)) {
-            txtID.setText(String.valueOf(agent.getId()));
+            lblEditAgentID.setText(String.valueOf(agent.getId()));
             txtFName.setText(agent.getFName());
             txtMiddleInitial.setText(agent.getMiddleInitial());
             txtLName.setText(agent.getLName());
@@ -292,7 +292,7 @@ public class AboutAgentController implements Initializable {
         pnViewAgent.toBack();
         pnViewAgent.setVisible(false);
         loadBoxes();
-        txtID.setEditable(true);
+        //txtID.setEditable(true);
         txtFName.setEditable(true);
         txtMiddleInitial.setEditable(true);
         txtBusPhone.setEditable(true);
@@ -307,7 +307,7 @@ public class AboutAgentController implements Initializable {
     // action handler for the save button on the about agents page
     @FXML
     void onActionBtnAgentSave(ActionEvent event) throws IOException, SQLException {
-        if(Validator.validateAgent(txtFName.getText(), txtMiddleInitial.getText(), txtLName.getText(), txtBusPhone.getText(), txtPosition.getText(), tfNewAgentEmail.getText()) == true) {
+        if(Validator.validateAgent(txtFName.getText(), txtMiddleInitial.getText(), txtLName.getText(), txtBusPhone.getText(), txtPosition.getText(), txtEmail.getText())) {
             DBConnection helper = new DBConnection();
             Connection connection = helper.returnConnection();
             String sql = "UPDATE `agents` SET `AgtFirstName`=?,`AgtMiddleInitial`=?,`AgtLastName`=?,`AgtBusPhone`=?,`AgtEmail`=?,`AgtPosition`=?,`AgencyId`=?,`Password`=? WHERE AgentId = ?";

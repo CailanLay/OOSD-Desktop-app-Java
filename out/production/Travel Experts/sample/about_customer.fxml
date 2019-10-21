@@ -13,11 +13,47 @@
    <children>
       <Button fx:id="btnCustomerBack" layoutX="14.0" layoutY="359.0" mnemonicParsing="false" onAction="#onActionBtnCustomerBack" prefHeight="480.0" prefWidth="65.0" stylesheets="@../css/button_style.css" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Line fx:id="line" endX="500.0" layoutX="180.0" layoutY="85.0" startX="-100.0" style="-fx-stroke: #2a93d5;" />
-      <Label fx:id="lblNewCustomerTItleName" layoutX="100.0" layoutY="20.0" text="Label">
+      <Label fx:id="lblNewCustomerTItleName" layoutX="100.0" layoutY="20.0" text=" New Customer ">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <Pane fx:id="pnCustomerEdit" layoutX="81.0" layoutY="87.0" prefHeight="393.0" prefWidth="601.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="19.0">
+         <children>
+            <TextField fx:id="tfCustomerFName" layoutX="130.0" layoutY="80.0" prefHeight="25.0" prefWidth="128.0" promptText="First name" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="35.0" text="Customer ID" />
+            <Label layoutX="30.0" layoutY="85.0" text="First Name" />
+            <TextField fx:id="tfCustomerLName" layoutX="410.0" layoutY="80.0" prefHeight="25.0" prefWidth="91.0" promptText="Last name" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="325.0" layoutY="85.0" text="Last Name" />
+            <TextField fx:id="tfCustomerAddress" layoutX="130.0" layoutY="130.0" prefHeight="25.0" prefWidth="128.0" promptText="Address" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="tfCustomerCity" layoutX="410.0" layoutY="130.0" promptText="City" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="135.0" text="Address" />
+            <Label layoutX="325.0" layoutY="135.0" text="City" />
+            <TextField fx:id="tfCustomerProvince" layoutX="130.0" layoutY="180.0" prefHeight="26.0" prefWidth="128.0" promptText="Province" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="tfCustomerPostalCode" layoutX="410.0" layoutY="180.0" prefHeight="25.0" prefWidth="128.0" promptText="Postal code" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="185.0" text="Province" />
+            <Label layoutX="325.0" layoutY="185.0" text="Postal Code" />
+            <TextField fx:id="tfCustomerCountry" layoutX="130.0" layoutY="230.0" promptText="Country" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="tfCustomerHomePhone" layoutX="410.0" layoutY="230.0" promptText="Home phone" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="235.0" text="Country" />
+            <Label layoutX="325.0" layoutY="235.0" text="Home Phone" />
+            <Label layoutX="30.0" layoutY="285.0" text="Buisness Phone" />
+            <TextField fx:id="tfCustomerBusPhone" layoutX="130.0" layoutY="280.0" promptText="Buisness phone" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="325.0" layoutY="285.0" text="Email" />
+            <TextField fx:id="tfCustomerEmail" layoutX="410.0" layoutY="280.0" prefHeight="26.0" prefWidth="177.0" promptText="Email" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="336.0" text="Agent ID" />
+            <Button fx:id="btnCustomerSave" layoutX="543.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionBtnCustomerSave" stylesheets="@../css/button_style.css" text="Save">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
+            <Label fx:id="lblEditCustomerID" layoutX="130.0" layoutY="35.0" prefHeight="17.0" prefWidth="99.0" />
+            <Label fx:id="lblEditCustomerAgentID" layoutX="130.0" layoutY="335.0" prefHeight="17.0" prefWidth="149.0" />
+         </children>
+      </Pane>
       <Pane fx:id="pnCustomerView" layoutX="81.0" layoutY="87.0" prefHeight="393.0" prefWidth="601.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="19.0">
          <children>
             <Button fx:id="btnCustomerEdit" layoutX="545.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionBtnCustomerEdit" stylesheets="@../css/button_style.css" text="Edit">
@@ -54,32 +90,30 @@
             <Label fx:id="lblCustomerEmail" layoutX="410.0" layoutY="285.0" text="Label" />
          </children>
       </Pane>
-      <Pane fx:id="pnNewCustomer" layoutX="76.0" layoutY="88.0" prefHeight="393.0" prefWidth="601.0">
+      <Pane fx:id="pnNewCustomer" layoutX="76.0" layoutY="88.0" prefHeight="393.0" prefWidth="601.0" style="-fx-background-color: #ffff;">
          <children>
-            <TextField fx:id="tfNewCustomerID" layoutX="130.0" layoutY="30.0" prefHeight="25.0" prefWidth="99.0" promptText="Customer ID" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfNewCustomerFName" layoutX="130.0" layoutY="80.0" prefHeight="25.0" prefWidth="128.0" promptText="First name" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="35.0" text="Customer ID" />
-            <Label layoutX="30.0" layoutY="85.0" text="First Name" />
-            <TextField fx:id="tfNewCustomerLName" layoutX="410.0" layoutY="80.0" prefHeight="25.0" prefWidth="91.0" promptText="Last name" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="325.0" layoutY="85.0" text="Last Name" />
-            <TextField fx:id="tfNewCustomerAddress" layoutX="130.0" layoutY="130.0" prefHeight="25.0" prefWidth="128.0" promptText="Address" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfNewCustomerCity" layoutX="410.0" layoutY="130.0" promptText="City" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="135.0" text="Address" />
-            <Label layoutX="325.0" layoutY="135.0" text="City" />
-            <TextField fx:id="tfNewCustomerProvince" layoutX="130.0" layoutY="179.0" prefHeight="26.0" prefWidth="128.0" promptText="Province" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfNewCustomerPostalCode" layoutX="410.0" layoutY="180.0" prefHeight="25.0" prefWidth="128.0" promptText="Postal code" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="185.0" text="Province" />
-            <Label layoutX="325.0" layoutY="185.0" text="Postal Code" />
-            <TextField fx:id="tfNewCustomerCountry" layoutX="130.0" layoutY="230.0" promptText="Country" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfNewCustomerHomePhone" layoutX="410.0" layoutY="230.0" promptText="Home phone" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="235.0" text="Country" />
-            <Label layoutX="325.0" layoutY="235.0" text="Home Phone" />
-            <Label layoutX="30.0" layoutY="285.0" text="Buisness Phone" />
-            <TextField fx:id="tfNewCustomerBusPhone" layoutX="130.0" layoutY="280.0" promptText="Buisness phone" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="325.0" layoutY="285.0" text="Email" />
-            <TextField fx:id="tfNewCustomerEmail" layoutX="410.0" layoutY="279.0" prefHeight="26.0" prefWidth="177.0" promptText="Email" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfNewCustomerAgentID" layoutX="130.0" layoutY="330.0" promptText="Agent ID" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="336.0" text="Agent ID" />
+            <TextField fx:id="tfNewCustomerFName" layoutX="130.0" layoutY="52.0" prefHeight="25.0" prefWidth="128.0" promptText="First name" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="57.0" text="First Name" />
+            <TextField fx:id="tfNewCustomerLName" layoutX="410.0" layoutY="52.0" prefHeight="25.0" prefWidth="91.0" promptText="Last name" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="325.0" layoutY="57.0" text="Last Name" />
+            <TextField fx:id="tfNewCustomerAddress" layoutX="130.0" layoutY="102.0" prefHeight="25.0" prefWidth="128.0" promptText="Address" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="tfNewCustomerCity" layoutX="410.0" layoutY="102.0" promptText="City" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="107.0" text="Address" />
+            <Label layoutX="325.0" layoutY="107.0" text="City" />
+            <TextField fx:id="tfNewCustomerProvince" layoutX="130.0" layoutY="151.0" prefHeight="26.0" prefWidth="128.0" promptText="Province" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="tfNewCustomerPostalCode" layoutX="410.0" layoutY="152.0" prefHeight="25.0" prefWidth="128.0" promptText="Postal code" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="157.0" text="Province" />
+            <Label layoutX="325.0" layoutY="157.0" text="Postal Code" />
+            <TextField fx:id="tfNewCustomerCountry" layoutX="130.0" layoutY="202.0" promptText="Country" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="tfNewCustomerHomePhone" layoutX="410.0" layoutY="202.0" promptText="Home phone" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="207.0" text="Country" />
+            <Label layoutX="325.0" layoutY="207.0" text="Home Phone" />
+            <Label layoutX="30.0" layoutY="257.0" text="Buisness Phone" />
+            <TextField fx:id="tfNewCustomerBusPhone" layoutX="130.0" layoutY="252.0" promptText="Buisness phone" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="325.0" layoutY="257.0" text="Email" />
+            <TextField fx:id="tfNewCustomerEmail" layoutX="410.0" layoutY="251.0" prefHeight="26.0" prefWidth="177.0" promptText="Email" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="tfNewCustomerAgentID" layoutX="130.0" layoutY="302.0" promptText="Agent ID" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="30.0" layoutY="308.0" text="Agent ID" />
             <Button fx:id="btnNewCustomer" layoutX="542.0" layoutY="346.0" mnemonicParsing="false" onAction="#onActionBtnNewCustomer" stylesheets="@../css/button_style.css" text="Add">
                <font>
                   <Font size="14.0" />
@@ -88,42 +122,6 @@
                   <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
                </padding>
             </Button>
-         </children>
-      </Pane>
-      <Pane fx:id="pnCustomerEdit" layoutX="81.0" layoutY="87.0" prefHeight="393.0" prefWidth="601.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="19.0">
-         <children>
-            <TextField fx:id="tfCustomerFName" layoutX="130.0" layoutY="80.0" prefHeight="25.0" prefWidth="128.0" promptText="First name" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="35.0" text="Customer ID" />
-            <Label layoutX="30.0" layoutY="85.0" text="First Name" />
-            <TextField fx:id="tfCustomerLName" layoutX="410.0" layoutY="80.0" prefHeight="25.0" prefWidth="91.0" promptText="Last name" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="325.0" layoutY="85.0" text="Last Name" />
-            <TextField fx:id="tfCustomerAddress" layoutX="130.0" layoutY="130.0" prefHeight="25.0" prefWidth="128.0" promptText="Address" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfCustomerCity" layoutX="410.0" layoutY="130.0" promptText="City" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="135.0" text="Address" />
-            <Label layoutX="325.0" layoutY="135.0" text="City" />
-            <TextField fx:id="tfCustomerProvince" layoutX="130.0" layoutY="180.0" prefHeight="26.0" prefWidth="128.0" promptText="Province" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfCustomerPostalCode" layoutX="410.0" layoutY="180.0" prefHeight="25.0" prefWidth="128.0" promptText="Postal code" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="185.0" text="Province" />
-            <Label layoutX="325.0" layoutY="185.0" text="Postal Code" />
-            <TextField fx:id="tfCustomerCountry" layoutX="130.0" layoutY="230.0" promptText="Country" stylesheets="@../css/textbox_style.css" />
-            <TextField fx:id="tfCustomerHomePhone" layoutX="410.0" layoutY="230.0" promptText="Home phone" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="235.0" text="Country" />
-            <Label layoutX="325.0" layoutY="235.0" text="Home Phone" />
-            <Label layoutX="30.0" layoutY="285.0" text="Buisness Phone" />
-            <TextField fx:id="tfCustomerBusPhone" layoutX="130.0" layoutY="280.0" promptText="Buisness phone" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="325.0" layoutY="285.0" text="Email" />
-            <TextField fx:id="tfCustomerEmail" layoutX="410.0" layoutY="280.0" prefHeight="26.0" prefWidth="177.0" promptText="Email" stylesheets="@../css/textbox_style.css" />
-            <Label layoutX="30.0" layoutY="336.0" text="Agent ID" />
-            <Button fx:id="btnCustomerSave" layoutX="543.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionBtnCustomerSave" stylesheets="@../css/button_style.css" text="Save">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <padding>
-                  <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
-               </padding>
-            </Button>
-            <Label fx:id="lblEditCustomerID" layoutX="130.0" layoutY="35.0" prefHeight="17.0" prefWidth="99.0" />
-            <Label fx:id="lblEditCustomerAgentID" layoutX="130.0" layoutY="335.0" prefHeight="17.0" prefWidth="149.0" />
          </children>
       </Pane>
    </children>
