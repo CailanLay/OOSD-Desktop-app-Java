@@ -75,7 +75,9 @@ public class MainController implements Initializable {
     private Button btnClose;
 
 
-    DBConnection helper = new DBConnection(); // Global object
+    private DBConnection helper = new DBConnection(); // Global object
+    private double x, y; // used for screen positioning when moving the window
+    private double cardHeight = 0.0; // used for increasing the number of cards that can fit in the scroll pane
 
     @FXML
     public void initialize(URL location, ResourceBundle resource) {
