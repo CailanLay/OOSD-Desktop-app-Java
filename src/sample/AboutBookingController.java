@@ -23,10 +23,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AboutBookingController implements Initializable {
-    
+
     DBConnection helper = new DBConnection(); // Global object
-    Validator validator = new Validator();
-    
+
     @FXML
     private TextField txtBID;
 
@@ -125,82 +124,81 @@ public class AboutBookingController implements Initializable {
         txtPId.setEditable(false);
         btnBookingEdit.setDisable(true);
         btnBookingSave.setDisable(false);
-
     }
 
     @FXML
-     void onActionBtnBookingSave(ActionEvent event) throws SQLException, IOException {
-
-        Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Scene aboutScene = new Scene(aboutView);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(aboutScene);
-        window.show();
-
-        Connection connection = helper.returnConnection();
-        String sql = " UPDATE `bookings` SET `BookingNo`=?, `BookingDate`=?,`TravelerCount`=?,`CustomerId`=?,`TripTypeId`=?," +
-                "`PackageId`=? WHERE `BookingId`=?";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-
-        stmt.setString(1, String.valueOf(txtBNo.getText()));
-        stmt.setString(2,String.valueOf( txtBDate.getText()));
-        stmt.setInt(3, Integer.parseInt(txtTCount.getText()));
-        stmt.setInt(4, Integer.parseInt(txtCId.getText()));
-        stmt.setString(5,String.valueOf (txtTTypeId.getText()));
-        stmt.setInt(6, Integer.parseInt(txtPId.getText()));
-        stmt.setInt(7, Integer.parseInt(txtBID.getText()));
-        btnBookingSave.setDisable(true);
-        btnBookingEdit.setDisable(false);
-
-        int rows = stmt.executeUpdate();
-        connection.close();
-        if (rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed, contact tech support", ButtonType.OK);
-            alert.show();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful", ButtonType.OK);
-            alert.show();
-        }
-
-
-    }
-    @FXML
-    void onActionbtnBookingAdd(ActionEvent event) throws IOException, SQLException {
-        if(Validator.validateBooking(txtBID.getText(), txtBDate.getText(),txtBNo.getText(),(txtTCount.getText() ))){
+    void onActionBtnBookingSave(ActionEvent event) throws SQLException, IOException {
+        if (Validator.validateBooking(txtBID.getText(), txtBDate.getText(), txtBNo.getText(), txtTCount.getText())) {
             Connection connection = helper.returnConnection();
-            String sql = " INSERT INTO `bookings` (BookingNo, BookingDate,TravelerCount,CustomerId,TripTypeId, PackageId,BookingId) VALUES (?,?,?,?,?,?,?)";
+            String sql = " UPDATE `bookings` SET `BookingNo`=?, `BookingDate`=?,`TravelerCount`=?,`CustomerId`=?,`TripTypeId`=?," +
+                    "`PackageId`=? WHERE `BookingId`=?";
             PreparedStatement stmt = connection.prepareStatement(sql);
+
             stmt.setString(1, String.valueOf(txtBNo.getText()));
-            stmt.setString(2,String.valueOf( txtBDate.getText()));
+            stmt.setString(2, String.valueOf(txtBDate.getText()));
             stmt.setInt(3, Integer.parseInt(txtTCount.getText()));
             stmt.setInt(4, Integer.parseInt(txtCId.getText()));
-            stmt.setString(5,String.valueOf (txtTTypeId.getText()));
+            stmt.setString(5, String.valueOf(txtTTypeId.getText()));
             stmt.setInt(6, Integer.parseInt(txtPId.getText()));
             stmt.setInt(7, Integer.parseInt(txtBID.getText()));
             btnBookingSave.setDisable(true);
             btnBookingEdit.setDisable(false);
+
             int rows = stmt.executeUpdate();
             connection.close();
             if (rows == 0) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Insert failed, contact tech support", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed, contact tech support", ButtonType.OK);
                 alert.show();
             } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful", ButtonType.OK);
                 alert.show();
             }
             Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
             Scene aboutScene = new Scene(aboutView);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(aboutScene);
             window.show();
-        } else {
+        }
+    }
+
+        @FXML
+        void onActionbtnBookingAdd(ActionEvent event) throws IOException, SQLException {
+            if (Validator.validateBooking(txtBID.getText(), txtBDate.getText(), txtBNo.getText(), txtTCount.getText())) {
+                Connection connection = helper.returnConnection();
+                String sql = " INSERT INTO `bookings` (BookingNo, BookingDate,TravelerCount,CustomerId,TripTypeId, PackageId,BookingId) VALUES (?,?,?,?,?,?,?)";
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setString(1, String.valueOf(txtBNo.getText()));
+                stmt.setString(2, String.valueOf(txtBDate.getText()));
+                stmt.setInt(3, Integer.parseInt(txtTCount.getText()));
+                stmt.setInt(4, Integer.parseInt(txtCId.getText()));
+                stmt.setString(5, String.valueOf(txtTTypeId.getText()));
+                stmt.setInt(6, Integer.parseInt(txtPId.getText()));
+                stmt.setInt(7, Integer.parseInt(txtBID.getText()));
+                btnBookingSave.setDisable(true);
+                btnBookingEdit.setDisable(false);
+                int rows = stmt.executeUpdate();
+                connection.close();
+                if (rows == 0) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Insert failed, contact tech support", ButtonType.OK);
+                    alert.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
+                    alert.show();
+                }
+                Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
+                Scene aboutScene = new Scene(aboutView);
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                window.setScene(aboutScene);
+                window.show();
+            } else {
+
+                   }
+
 
         }
 
-
-
     }
-}
+
 
 
 

@@ -18,7 +18,8 @@ public class Validator {
     }
     //Author:Harpreet kalsi
     private static boolean validId(String input) {
-        boolean flag = Pattern.matches("^[0-9]*[1-9][0-9]*$", input);
+       // boolean flag = Pattern.matches("^[0-9]*[1-9][0-9]*$", input);
+        boolean flag = Pattern.matches("^\\d+", input);
         if (flag == true) {
             return true;
         } else {
@@ -27,7 +28,7 @@ public class Validator {
     }
     //Author:Harpreet kalsi
     private static boolean validBookingDate(String input) {
-        boolean flag = Pattern.matches("\\d{4}-[01]\\d-[0-3]\\d", input);
+        boolean flag = Pattern.matches("\\d{4}-[01]\\d-[0-3]\\d\\s[0-2]\\d((:[0-5]\\d)?){2}[.]\\d", input);
         if (flag == true) {
             return true;
         } else {
@@ -77,8 +78,9 @@ public class Validator {
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid BookingId", ButtonType.OK);
             alert.show();
+            return false;
         }
-        return false;
+
     }
     //Author:Harpreet kalsi
     public static boolean validateSupplier(String SupplierId, String SuppName) {
@@ -87,12 +89,12 @@ public class Validator {
             if (validName(SuppName) == true) {
                 return true;
             } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid email", ButtonType.OK);
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid SuppName", ButtonType.OK);
                 alert.show();
                 return false;
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid business phone", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid SupplierId", ButtonType.OK);
             alert.show();
             return false;
         }

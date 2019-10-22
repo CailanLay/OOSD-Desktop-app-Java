@@ -1,8 +1,19 @@
 /*
  * Author: Cailan Lay
+ * Add stuff By Harpreet kalsi
 */
 #tfCustomerID, #tfCustomerFName, #tfCustomerLName, #tfCustomerAddress, #tfCustomerCity, #tfCustomerProvince, #tfCustomerPostalCode,
 #tfCustomerCountry, #tfCustomerHomePhone, #tfCustomerBusPhone, #tfCustomerEmail, #tfCustomerAgentID {
+    -fx-background-color: #dfe6e9;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #2d3436;
+}
+#txtBID,#txtBDate,#txtBNo,#txtTCount,#txtCId,#txtTTypeId,#txtPId{
+    -fx-background-color: #dfe6e9;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #2d3436;
+}
+#txtSID,#txtSName{
     -fx-background-color: #dfe6e9;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #2d3436;

@@ -82,61 +82,59 @@ public class AboutSupplierController implements Initializable {
     void onActionBtnSupplierEdit(ActionEvent event) {
         txtSID.setEditable(true);
         txtSName.setEditable(true);
-
     }
 
     @FXML
     void onActionBtnSupplierSave(ActionEvent event) throws IOException, SQLException {
-        Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Scene aboutScene = new Scene(aboutView);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(aboutScene);
-        window.show();
+        if (Validator.validateSupplier(txtSName.getText(),txtSID.getText())) {
+            Connection connection = helper.returnConnection();
+            String sql = " UPDATE `suppliers` SET `SupName`=? WHERE `SupplierId`=?";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, String.valueOf(txtSName.getText()));
+            stmt.setString(2, String.valueOf(txtSID.getText()));
+            btnSupplierSave.setDisable(true);
+            btnSupplierEdit.setDisable(false);
 
-        Connection connection = helper.returnConnection();
-        String sql = " UPDATE `suppliers` SET `SupName`=? WHERE `SupplierId`=?";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1,String.valueOf( txtSName.getText()));
-        stmt.setString(2, String.valueOf(txtSID.getText()));
-        btnSupplierSave.setDisable(true);
-        btnSupplierEdit.setDisable(false);
-
-        int rows = stmt.executeUpdate();
-        connection.close();
-        if (rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed, contact tech support", ButtonType.OK);
-            alert.show();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful", ButtonType.OK);
-            alert.show();
+            int rows = stmt.executeUpdate();
+            connection.close();
+            if (rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed, contact tech support", ButtonType.OK);
+                alert.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful", ButtonType.OK);
+                alert.show();
+            }
+            Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Scene aboutScene = new Scene(aboutView);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(aboutScene);
+            window.show();
         }
-
     }
     @FXML
     void onActionbtnSupplierAdd(ActionEvent event) throws IOException, SQLException {
-        Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Scene aboutScene = new Scene(aboutView);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(aboutScene);
-        window.show();
-
-        Connection connection = helper.returnConnection();
-        String sql = " INSERT INTO `suppliers` (SupplierId, `SupName`) VALUES (?,?)";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setInt(1, Integer.parseInt(txtSID.getText()));
-        stmt.setString(2,String.valueOf( txtSName.getText()));
-        btnSupplierSave.setDisable(false);
-        btnSupplierEdit.setDisable(true);
-        int rows = stmt.executeUpdate();
-        connection.close();
-        if (rows == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Insert failed, contact tech support", ButtonType.OK);
-            alert.show();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
-            alert.show();
+        if (Validator.validateSupplier(txtSName.getText(),txtSID.getText())) {
+            Connection connection = helper.returnConnection();
+            String sql = " INSERT INTO `suppliers` (SupplierId, `SupName`) VALUES (?,?)";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, Integer.parseInt(txtSID.getText()));
+            stmt.setString(2, String.valueOf(txtSName.getText()));
+            btnSupplierSave.setDisable(false);
+            btnSupplierEdit.setDisable(true);
+            int rows = stmt.executeUpdate();
+            connection.close();
+            if (rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Insert failed, contact tech support", ButtonType.OK);
+                alert.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
+                alert.show();
+            }
+            Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Scene aboutScene = new Scene(aboutView);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(aboutScene);
+            window.show();
         }
-
-
     }
-    }
+}
