@@ -65,6 +65,12 @@ public class MainController implements Initializable {
     @FXML
     private VBox vbCustomerItems;
 
+    @FXML
+    private Pane pnProducts;
+
+    @FXML
+    private Button btnClose;
+
 
     DBConnection helper = new DBConnection(); // Global object
 
