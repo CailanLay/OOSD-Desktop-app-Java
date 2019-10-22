@@ -13,6 +13,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -167,56 +169,91 @@ public class MainController implements Initializable {
     }
 
 
+    // Author: Cailan Lay
+    // shows the agent page when agent menu button is clicked
     @FXML
     void onActionBtnAgents(ActionEvent event) {
         pnAgents.toFront();
         pnAgents.setVisible(true);
-
         pnCustomers.toBack();
         pnCustomers.setVisible(false);
         pnBookings.toBack();
         pnBookings.setVisible(false);
         pnSuppliers.toBack();
         pnSuppliers.setVisible(false);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
     }
 
-    @FXML
-    void onActionBtnBookings(ActionEvent event) {
-        pnBookings.toFront();
-        pnBookings.setVisible(true);
-
-        pnCustomers.toBack();
-        pnCustomers.setVisible(false);
-        pnAgents.toBack();
-        pnAgents.setVisible(false);
-        pnSuppliers.toBack();
-        pnSuppliers.setVisible(false);
-    }
-
+    // Author: Cailan Lay
+    // shows the customers page when the customer menu is clicked
     @FXML
     void onActionBtnCustomers(ActionEvent event) {
         pnCustomers.toFront();
         pnCustomers.setVisible(true);
-
         pnAgents.toBack();
         pnAgents.setVisible(false);
         pnBookings.toBack();
         pnBookings.setVisible(false);
         pnSuppliers.toBack();
         pnSuppliers.setVisible(false);
+        btnClose.toFront();
+        btnClose.setVisible(true);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
     }
 
+    // Author: Cailan Lay
+    // shows the bookings page when bookings menu button is clicked
+    @FXML
+    void onActionBtnBookings(ActionEvent event) {
+        pnBookings.toFront();
+        pnBookings.setVisible(true);
+        pnCustomers.toBack();
+        pnCustomers.setVisible(false);
+        pnAgents.toBack();
+        pnAgents.setVisible(false);
+        pnSuppliers.toBack();
+        pnSuppliers.setVisible(false);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
+    }
+
+    // Author: Cailan Lay
+    // shows the suppliers page when the customer menu is clicked
     @FXML
     void onActionBtnSuppliers(ActionEvent event) {
         pnSuppliers.toFront();
         pnSuppliers.setVisible(true);
-
         pnCustomers.toBack();
         pnCustomers.setVisible(false);
         pnBookings.toBack();
         pnBookings.setVisible(false);
         pnAgents.toBack();
         pnAgents.setVisible(false);
+        pnProducts.toBack();
+        pnProducts.setVisible(false);
+    }
+
+    // shows the products page when the customer menu is clicked
+    @FXML
+    void onactionBtnProducts(ActionEvent event) {
+        pnSuppliers.toBack();
+        pnSuppliers.setVisible(false);
+        pnCustomers.toBack();
+        pnCustomers.setVisible(false);
+        pnBookings.toBack();
+        pnBookings.setVisible(false);
+        pnAgents.toBack();
+        pnAgents.setVisible(false);
+        pnProducts.toFront();
+        pnProducts.setVisible(true);
+    }
+
+    @FXML
+    void onActionBtnClose(ActionEvent event) {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
