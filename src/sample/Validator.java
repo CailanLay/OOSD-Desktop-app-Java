@@ -6,8 +6,108 @@ import javafx.scene.control.ButtonType;
 import java.util.regex.Pattern;
 
 public class Validator {
+<<<<<<< HEAD
 
     // Author: Cailan Lay
+
+    //Author:Harpreet kalsi
+    //validate Name with only characters
+    private static boolean validName(String input) {
+        boolean flag = Pattern.matches("^\\b[a-zA-Z]+\\b$", input);
+        if (flag == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Author:Harpreet kalsi
+    private static boolean validId(String input) {
+       // boolean flag = Pattern.matches("^[0-9]*[1-9][0-9]*$", input);
+        boolean flag = Pattern.matches("^\\d+", input);
+        if (flag == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Author:Harpreet kalsi
+    private static boolean validBookingDate(String input) {
+        boolean flag = Pattern.matches("\\d{4}-[01]\\d-[0-3]\\d\\s[0-2]\\d((:[0-5]\\d)?){2}[.]\\d", input);
+        if (flag == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Author:Harpreet kalsi
+    private static boolean validTravelerCount(String input) {
+        boolean flag = Pattern.matches("^[0-9]*[1-9][0-9]*$", input);
+        if (flag == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Author:Harpreet kalsi
+    private static boolean validBookingNo(String input) {
+        boolean flag = Pattern.matches("^[a-zA-Z0-9]+$", input);
+        if (flag == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //Author:Harpreet kalsi
+    public static boolean validateBooking(String BookingId, String BookingDate, String BookingNo, String TravelerCount) {
+        if (validId(BookingId) == true) {
+            if (validBookingDate(BookingDate) == true) {
+                if (validBookingNo(BookingNo) == true) {
+                    if (validTravelerCount(TravelerCount) == true) {
+                        return true;
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid TravelerCount", ButtonType.OK);
+                        alert.show();
+                        return false;
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid BookingNo", ButtonType.OK);
+                    alert.show();
+                    return false;
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid BookingDate", ButtonType.OK);
+                alert.show();
+                return false;
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid BookingId", ButtonType.OK);
+            alert.show();
+            return false;
+        }
+
+    }
+    //Author:Harpreet kalsi
+    public static boolean validateSupplier(String SupplierId, String SuppName) {
+
+        if (validId(SupplierId) == true) {
+            if (validName(SuppName) == true) {
+                return true;
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid SuppName", ButtonType.OK);
+                alert.show();
+                return false;
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid SupplierId", ButtonType.OK);
+            alert.show();
+            return false;
+        }
+    }
+}
+
+
+   /* // Author: Cailan Lay
+>>>>>>> Suppliers_and_bookings
     // Checks field for only letters with the exception of a few special characters as some names do need them
     private static boolean validName(String input) {
         boolean flag = Pattern.matches("^[A-z ,.'-]+$", input);
@@ -92,10 +192,17 @@ public class Validator {
         }
     }
 
+<<<<<<< HEAD
     // Author: Cailan Lay
     // validates the agent text fields
     // NOTE: If there is time change this to validate everything at the same time and not one at a time
     public static boolean validateAgent(String fName, String middleInitial, String lName, String busPhone, String position, String email) {
+=======
+// Author: Cailan Lay
+// validates the agent text fields
+// NOTE: If there is time change this to validate everything at the same time and not one at a time
+   public static boolean validateAgent(String fName, String middleInitial, String lName, String busPhone, String position, String email) {
+>>>>>>> Suppliers_and_bookings
         if (validSingleName(fName) == true) {
             if(validMiddleInitial(middleInitial) == true) {
                 if(validSingleName(lName) == true) {
@@ -209,4 +316,11 @@ public class Validator {
         }
     }
 
+<<<<<<< HEAD
 }
+=======
+*/
+
+
+
+>>>>>>> Suppliers_and_bookings
