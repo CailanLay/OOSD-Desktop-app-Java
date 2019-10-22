@@ -2,12 +2,12 @@
  * Author: Cailan Lay
  */
 #btnAgents, #btnCustomers, #btnBookings, #btnSuppliers {
-    -fx-background-radius: 35 0 0 35;
-    -fx-background-color: #74b9ff;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
 }
 
 #btnAgents:hover, #btnCustomers:hover, #btnBookings:hover, #btnSuppliers:hover {
-    -fx-background-color: #74a5ff;
+    -fx-background-color: #3ddad7;
 }
 
 #btnAbout, #btnCustomerAbout {
