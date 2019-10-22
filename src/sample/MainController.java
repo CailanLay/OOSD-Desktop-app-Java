@@ -8,12 +8,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -79,6 +82,35 @@ public class MainController implements Initializable {
          makeAgentCards();
          makeCustomerCards();
     }
+
+    // Author: Cailan Lay
+    // Action handler for the button that adds a new Customer
+    @FXML
+    void onActionBtnNewCustomer(ActionEvent event) throws IOException {
+        AboutCustomerController aboutCustomer = new AboutCustomerController(true);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_customer.fxml"));
+        loader.setController(aboutCustomer);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Customer");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        vbCustomerItems.getChildren().clear();
+        makeCustomerCards();
+    }
+
 
     private void makeCustomerCards(){
         ArrayList<Customer> customers = new ArrayList<Customer>();
