@@ -34,6 +34,5 @@ public class DBConnection {
 // dont need to hash password before sending
 // send the password to a php file
 
-
 // "jdbc:mysql://infastory.com:3306/infastor_travelexperts", infastor_travel, sait_2019
 //%%_SAIT_%%_oosd_db_2019_$$$
