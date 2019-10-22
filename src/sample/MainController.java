@@ -261,15 +261,4 @@ public class MainController implements Initializable {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
-
-    @FXML
-    void onActionBtnEdit(ActionEvent event) {
-
-    }
-
-    @FXML
-    void onActionBtnSave(ActionEvent event) {
-
-    }
-
 }
