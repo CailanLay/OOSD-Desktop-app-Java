@@ -1,3 +1,6 @@
+/*
+ * Author: Harpreet Kalsi
+ */
 package sample;
 
 import javafx.event.ActionEvent;
@@ -23,8 +26,20 @@ public class SupplierCardController implements Initializable {
     private Label lblSupName;
 
     @FXML
-    private Button btnAbout;
+    private Button btnAboutSupplier;
 
+    private Suppliers suppliers = new Suppliers();
+
+    public SupplierCardController(Suppliers suppliers) {
+        this.suppliers = suppliers;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        lblSupplierID.setText(String.valueOf(suppliers.getSupplierId()));
+        lblSupName.setText(suppliers.getSupName());
+
+    }
     @FXML
     void  onActionBtnSupplierAbout(ActionEvent event) throws IOException {
         AboutSupplierController aboutsuppliers  = new AboutSupplierController(suppliers);
@@ -40,17 +55,5 @@ public class SupplierCardController implements Initializable {
 
     }
 
-    private Suppliers suppliers = new Suppliers();
-
-    public SupplierCardController(Suppliers suppliers) {
-        this.suppliers = suppliers;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        lblSupplierID.setText(String.valueOf(suppliers.getSupplierId()));
-        lblSupName.setText(suppliers.getSupName());
-
-    }
 }
 

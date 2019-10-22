@@ -1,5 +1,6 @@
 /*
  * Author: Cailan Lay
+   Add stuff by: Harpreet kalsi
  */
 #btnAgents, #btnCustomers, #btnBookings, #btnSuppliers {
     -fx-background-radius: 35 0 0 35;
@@ -10,18 +11,18 @@
     -fx-background-color: #74a5ff;
 }
 
-#btnAbout, #btnCustomerAbout {
+#btnAbout, #btnCustomerAbout ,#btnAboutBookings, #btnAboutSupplier{
     -fx-background-color:  #dfe6e9;
     -fx-border-width: 1;
     -fx-border-color: #37474F;
     -fx-border-radius: 3;
 }
 
-#btnAbout:hover, #btnCustomerAbout:hover{
+#btnAbout:hover, #btnCustomerAbout:hover, #btnAboutBookings:hover, #btnAboutSupplier:hover{
     -fx-background-color: #B0BEC5;
 }
 
-#btnCustomerEdit, #btnAgentEdit {
+#btnCustomerEdit, #btnAgentEdit ,#btnBookingEdit,#btnSupplierEdit{
     -fx-background-color: #dfe6e9;
     -fx-border-color: #2d3436;
 }

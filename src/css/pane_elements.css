@@ -1,7 +1,8 @@
 /*
  * Author: Cailan Lay
+   Add stuff: Harpreet kaur
  */
-#hboxHeader, #hboxCustomerHeader {
+#hboxHeaderAgents, #hboxCustomerHeader,#hboxHeaderBookings,#hboxHeaderSuppliers{
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #37474F;
 }

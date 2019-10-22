@@ -1,3 +1,6 @@
+/*
+ * Author: Harpreet Kalsi
+ */
 package sample;
 
 public class Suppliers {

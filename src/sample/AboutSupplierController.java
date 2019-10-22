@@ -1,3 +1,6 @@
+/*
+ * Author: Harpreet Kalsi
+ */
 package sample;
 
 import javafx.event.ActionEvent;
@@ -7,15 +10,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AboutSupplierController implements Initializable {
+
+    DBConnection helper = new DBConnection(); // Global object
     @FXML
     private Button btnSupplierSave;
 
@@ -32,6 +42,34 @@ public class AboutSupplierController implements Initializable {
     private Button btnSupplierBack;
 
     @FXML
+    private Button btnAdd;
+    
+    private Suppliers suppliers = new Suppliers();
+
+    public AboutSupplierController(Suppliers suppliers) {
+        this.suppliers = suppliers;
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        assert btnSupplierSave != null : "fx:id=\"btnSupplierSave\" was not injected: check your FXML file 'about_supplier.fxml'.";
+        assert btnSupplierEdit != null : "fx:id=\"btnSupplierEdit\" was not injected: check your FXML file 'about_supplier.fxml'.";
+        assert txtSID != null : "fx:id=\"txtSID\" was not injected: check your FXML file 'about_supplier.fxml'.";
+        assert txtSName != null : "fx:id=\"txtSName\" was not injected: check your FXML file 'about_supplier.fxml'.";
+        assert btnSupplierBack != null : "fx:id=\"btnSupplierBack\" was not injected: check your FXML file 'about_supplier.fxml'.";
+        loadBoxes();
+        txtSID.setEditable(false);
+        txtSName.setEditable(false);
+
+    }
+    private void loadBoxes() {
+        if (suppliers != null) {
+            txtSID.setText(String.valueOf(suppliers.getSupplierId()));
+            txtSID.setEditable(true);
+            txtSName.setText(suppliers.getSupName());
+            txtSName.setEditable(true);
+        }
+    }
+    @FXML
     void onActionBtnSupplierBack(ActionEvent event) throws IOException {
         Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene aboutScene = new Scene(aboutView);
@@ -42,34 +80,63 @@ public class AboutSupplierController implements Initializable {
 
     @FXML
     void onActionBtnSupplierEdit(ActionEvent event) {
+        txtSID.setEditable(true);
+        txtSName.setEditable(true);
 
     }
 
     @FXML
-    void onActionBtnSupplierSave(ActionEvent event) throws IOException {
+    void onActionBtnSupplierSave(ActionEvent event) throws IOException, SQLException {
         Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
         Scene aboutScene = new Scene(aboutView);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(aboutScene);
         window.show();
 
-    }
-    private Suppliers suppliers = new Suppliers();
-    public AboutSupplierController(Suppliers suppliers) {
-        this.suppliers = suppliers;
-    }
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        loadBoxes();
+        Connection connection = helper.returnConnection();
+        String sql = " UPDATE `suppliers` SET `SupName`=? WHERE `SupplierId`=?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1,String.valueOf( txtSName.getText()));
+        stmt.setString(2, String.valueOf(txtSID.getText()));
+        btnSupplierSave.setDisable(true);
+        btnSupplierEdit.setDisable(false);
 
-    }
-
-
-    private void loadBoxes() {
-        if (suppliers != null) {
-            txtSID.setText(String.valueOf(suppliers.getSupplierId()));
-            txtSName.setText(suppliers.getSupName());
-
+        int rows = stmt.executeUpdate();
+        connection.close();
+        if (rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed, contact tech support", ButtonType.OK);
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful", ButtonType.OK);
+            alert.show();
         }
+
+    }
+    @FXML
+    void onActionbtnSupplierAdd(ActionEvent event) throws IOException, SQLException {
+        Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Scene aboutScene = new Scene(aboutView);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(aboutScene);
+        window.show();
+
+        Connection connection = helper.returnConnection();
+        String sql = " INSERT INTO `suppliers` (SupplierId, `SupName`) VALUES (?,?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, Integer.parseInt(txtSID.getText()));
+        stmt.setString(2,String.valueOf( txtSName.getText()));
+        btnSupplierSave.setDisable(false);
+        btnSupplierEdit.setDisable(true);
+        int rows = stmt.executeUpdate();
+        connection.close();
+        if (rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Insert failed, contact tech support", ButtonType.OK);
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
+            alert.show();
+        }
+
+
     }
     }

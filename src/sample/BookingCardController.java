@@ -1,3 +1,6 @@
+/*
+ * Author: Harpreet Kalsi
+ */
 package sample;
 
 import javafx.event.ActionEvent;
@@ -26,14 +29,12 @@ public class BookingCardController  implements Initializable {
     private Label lblBookingNumber;
 
     @FXML
-    private Button btnAbout;
+    private Button btnAboutBookings;
 
     private Bookings bookings = new Bookings();
 
-    public BookingCardController(Bookings bookings) { {
+    public BookingCardController(Bookings bookings) {
         this.bookings = bookings;
-    }
-
     }
 
     @Override
@@ -43,8 +44,8 @@ public class BookingCardController  implements Initializable {
         lblBookingNumber.setText(String.valueOf(bookings.getBookingNo()));
     }
     @FXML
-    void onActionBtnAbout(ActionEvent event) throws IOException {
-        BookingCardController aboutBookings = new BookingCardController(bookings);
+      void onActionbtnAboutBookings(ActionEvent event) throws IOException {
+        AboutBookingController aboutBookings = new AboutBookingController(bookings);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("about_booking.fxml")));
         loader.setController(aboutBookings);
         Parent aboutView = loader.load();

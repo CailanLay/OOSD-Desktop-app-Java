@@ -1,15 +1,29 @@
+/*
+ * Author: Harpreet Kalsi
+ */
 package sample;
 
 public class Bookings {
     private int bookingId;
     private String date;
-    private int bookingNo;
+    private String bookingNo;
     private int travelerCount;
     private int customerId;
-    private int tripTypeId;
+    private String tripTypeId;
     private int packageId;
 
-    public Bookings(int bookingId, String date, int bookingNo, int travelerCount, int customerId, int tripTypeId, int packageId) {
+    public Bookings(int bookingId, String date, String bookingNo) {
+        this.bookingId = bookingId;
+        this.date = date;
+        this.bookingNo = bookingNo;
+    }
+
+    // Default Constructor
+    public Bookings() { }
+
+
+    // Constructor
+    public Bookings(int bookingId, String date, String bookingNo, int travelerCount, int customerId, String tripTypeId, int packageId) {
         this.bookingId = bookingId;
         this.date = date;
         this.bookingNo = bookingNo;
@@ -19,14 +33,11 @@ public class Bookings {
         this.packageId = packageId;
     }
 
-    public Bookings() {
 
-    }
-
+    // Getters and Setters
     public int getBookingId() {
         return bookingId;
     }
-
     public void setBookingId(int bookingId) {
         this.bookingId = bookingId;
     }
@@ -39,11 +50,11 @@ public class Bookings {
         this.date = date;
     }
 
-    public int getBookingNo() {
+    public String getBookingNo() {
         return bookingNo;
     }
 
-    public void setBookingNo(int bookingNo) {
+    public void setBookingNo(String bookingNo) {
         this.bookingNo = bookingNo;
     }
 
@@ -63,11 +74,11 @@ public class Bookings {
         this.customerId = customerId;
     }
 
-    public int getTripTypeId() {
+    public String getTripTypeId() {
         return tripTypeId;
     }
 
-    public void setTripTypeId(int tripTypeId) {
+    public void setTripTypeId(String tripTypeId) {
         this.tripTypeId = tripTypeId;
     }
 

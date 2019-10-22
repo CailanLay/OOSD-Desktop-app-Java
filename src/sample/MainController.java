@@ -1,5 +1,6 @@
 /*
  * Author: Cailan Lay
+ * Add stuff also by Harpreet kalsi
  */
 package sample;
 
@@ -49,16 +50,28 @@ public class MainController implements Initializable {
     private Pane pnAgents;
 
     @FXML
-    private HBox hboxHeader;
-
-    @FXML
-    private VBox hbItems;
-
-    @FXML
     private Pane pnCustomers;
 
     @FXML
+    private HBox hboxHeaderAgents;
+
+    @FXML
+    private HBox hboxHeaderBookings;
+
+    @FXML
+    private HBox hboxHeaderSuppliers;
+
+    @FXML
     private HBox hboxCustomerHeader;
+
+    @FXML
+    private VBox hbItemsbookings;
+
+    @FXML
+    private VBox hbitemsAgents;
+
+    @FXML
+    private VBox hbItemsSuppliers;
 
     @FXML
     private VBox vbCustomerItems;
@@ -89,7 +102,9 @@ public class MainController implements Initializable {
 
 
     }
-
+    /*
+     * Author: Harpreet Kalsi
+     */
     private void makeSupplierCards() throws SQLException {
         ArrayList<Suppliers> suppliers = new ArrayList<Suppliers>();
 
@@ -103,13 +118,15 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("supplier_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 supplierCards[i] = loader.load(); // add the file to the array of nodes
-                hbItems.getChildren().add(supplierCards[i]); // add the scene to the vbox
+                hbItemsSuppliers.getChildren().add(supplierCards[i]); // add the scene to the vbox
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
+    /*
+     * Author: Harpreet Kalsi
+     */
     private ArrayList<Suppliers> getSuppliers() throws SQLException {
         ArrayList<Suppliers> suppliers = new ArrayList();
 
@@ -129,28 +146,32 @@ public class MainController implements Initializable {
 
 
     }
-
+    /*
+     * Author: Harpreet Kalsi
+     */
     private void makeBookingCards() throws SQLException {
 
         ArrayList<Bookings> bookings = new ArrayList<Bookings>();
 
-        bookings = getBookings(); // populates the the suppliers array
+        bookings = getBookings(); // populates the the bookings array
 
         // the array of nodes to the same size as the as the the array length
         Node[] bookingsCards = new Node[bookings.size()];      // is also the number of cards to be created
         for (int i = 0; i < bookingsCards.length; i++) {
             try {
-                BookingCardController card = new BookingCardController(bookings.get(i)); // create controller and pass the supplier to the controller
+                BookingCardController card = new BookingCardController(bookings.get(i)); // create controller and pass the bookings to the controller
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("booking_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 bookingsCards[i] = loader.load(); // add the file to the array of nodes
-                hbItems.getChildren().add(bookingsCards[i]); // add the scene to the vbox
+                hbItemsbookings.getChildren().add(bookingsCards[i]); // add the scene to the vbox
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
+    /*
+     * Author: Harpreet Kalsi
+     */
     private ArrayList<Bookings> getBookings() throws SQLException {
         ArrayList<Bookings> bookings = new ArrayList();
 
@@ -163,10 +184,10 @@ public class MainController implements Initializable {
             bookings.add(new Bookings(
                     rs.getInt(1),
                     rs.getString(2),
-                    rs.getInt(3),
+                    rs.getString(3),
                     rs.getInt(4),
                     rs.getInt(5),
-                    rs.getInt(6),
+                    rs.getString(6),
                     rs.getInt(7)));
 
         }
@@ -240,7 +261,7 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("agent_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 agentCards[i] = loader.load(); // add the file to the array of nodes
-                hbItems.getChildren().add(agentCards[i]); // add the scene to the vbox
+                hbitemsAgents.getChildren().add(agentCards[i]); // add the scene to the vbox
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -279,7 +300,6 @@ public class MainController implements Initializable {
     void onActionBtnAgents(ActionEvent event) {
         pnAgents.toFront();
         pnAgents.setVisible(true);
-
         pnCustomers.toBack();
         pnCustomers.setVisible(false);
         pnBookings.toBack();
@@ -327,162 +347,4 @@ public class MainController implements Initializable {
         pnAgents.setVisible(false);
     }
 }
-
-    //*************Author Harpreet kalsi**************Bookings table coding********************//
-//    @FXML
-//    private ResourceBundle resources;
-//
-//    @FXML
-//    private URL location;
-//    @FXML
-//    private TextField txtBookingId;
-//
-//    @FXML
-//    private TextField txtBookingDate;
-//
-//    @FXML
-//    private TextField txtBookingNo;
-//
-//    @FXML
-//    private TextField txtTravelerCount;
-//
-//    @FXML
-//    private TextField txtCustomerId;
-//
-//    @FXML
-//    private TextField txtTripTypeId;
-//
-//    @FXML
-//    private TextField txtPackageId;
-//
-//    @FXML
-//    private Button btnEdit;
-//
-//    @FXML
-//    private Button btnSave;
-//
-//    @FXML
-//    private Button btnBack;
-//    @FXML
-//    private ComboBox<Bookings> cmbBookings;
-//
-//
-//    @FXML
-//    void onActionBtnEdit(ActionEvent event) {
-//        txtBookingId.setEditable(false);
-//        txtBookingDate.setEditable(true);
-//        txtBookingNo.setEditable(true);
-//        txtTravelerCount.setEditable(true);
-//        txtCustomerId.setEditable(true);
-//        txtTripTypeId.setEditable(true);
-//        txtPackageId.setEditable(true);
-//        btnEdit.setDisable(true);
-//        btnSave.setDisable(false);
-//
-//    }
-//
-//    @FXML
-//    void onActionBtnSave(ActionEvent event) throws SQLException {
-//        Connection conn = helper.returnConnection();
-//        String sql = " UPDATE `bookings` SET `BookingNo`=?, `BookingDate`=?,`TravelerCount`=?,`CustomerId`=?,`TripTypeId`=?," +
-//                "`PackageId`=? WHERE `BookingId`=?";
-//        PreparedStatement stmt = conn.prepareStatement(sql);
-//
-//        stmt.setInt(1, Integer.parseInt(txtBookingId.getText()));
-//        stmt.setString(2, txtBookingDate.getText());
-//        stmt.setInt(3, Integer.parseInt(txtBookingNo.getText()));
-//        stmt.setInt(4, Integer.parseInt(txtTravelerCount.getText()));
-//        stmt.setInt(5, Integer.parseInt(txtCustomerId.getText()));
-//        stmt.setInt(6, Integer.parseInt(txtTripTypeId.getText()));
-//        stmt.setInt(7, Integer.parseInt(txtPackageId.getText()));
-//        btnSave.setDisable(true);
-//        btnEdit.setDisable(false);
-//
-//        int rows = stmt.executeUpdate();
-//        conn.close();
-//        if (rows == 0) {
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Update failed, contact tech support", ButtonType.OK);
-//            alert.show();
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful", ButtonType.OK);
-//            alert.show();
-//            loadCombo();
-//        }
-//    }
-//
-//
-//            @FXML
-//            void initialize() throws SQLException{
-//
-//                assert txtBookingId != null : "fx:id=\"txtBookingId\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert txtBookingDate != null : "fx:id=\"txtBookingDate\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert txtBookingNo != null : "fx:id=\"txtBookingNo\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert txtTravelerCount != null : "fx:id=\"txtTravelerCount\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert txtCustomerId != null : "fx:id=\"txtCustomerId\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert txtTripTypeId != null : "fx:id=\"txtTripTypeId\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert txtPackageId != null : "fx:id=\"txtPackageId\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert btnSave != null : "fx:id=\"btnSave\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert btnBack != null : "fx:id=\"btnBack\" was not injected: check your FXML file 'sample.fxml'.";
-//                assert cmbBookings != null : "fx:id=\"cmbBookings\" was not injected: check your FXML file 'sample.fxml'.";
-//                loadCombo();
-//
-//
-//
-//            cmbBookings.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Bookings>() {
-//                @Override
-//                public void changed(ObservableValue<? extends Bookings> observable, Bookings oldValue, Bookings newValue) {
-//                    if (newValue != null) {
-//                        txtBookingId.setText(newValue.getBookingId() + "");
-//                        txtBookingId.setEditable(false);
-//
-//                        txtBookingDate.setText(newValue.getDate());
-//                        txtBookingDate.setEditable(false);
-//
-//                        txtTravelerCount.setText(newValue.getTravelerCount() + "");
-//                        txtTravelerCount.setEditable(false);
-//
-//                        txtCustomerId.setText(newValue.getCustomerId() + "");
-//                        txtCustomerId.setEditable(false);
-//
-//                        txtTripTypeId.setText(newValue.getTripTypeId() + "");
-//                        txtTripTypeId.setEditable(false);
-//
-//                        txtPackageId.setText(newValue.getPackageId() + "");
-//                        txtPackageId.setEditable(false);
-//
-//                        btnSave.setDisable(true);
-//                        btnEdit.setDisable(false);
-//
-//                    }
-//
-//
-//                }
-//            });
-//
-//        }
-//
-//
-//
-//    private void loadCombo() throws SQLException {
-//        Connection conn = helper.returnConnection();
-//        Statement stmt = conn.createStatement();
-//        ResultSet rs = stmt.executeQuery("select * from `bookings`");
-//        ArrayList<Bookings> bookingsArrayList = new ArrayList<>();
-//        while (rs.next()){
-//            bookingsArrayList.add(new Bookings(rs.getInt(1),rs.getString(2),rs.getInt(3),
-//                    rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7)));
-//
-//
-//        }
-//     /*  bookings = FXCollections.observableArrayList(bookingsArrayList);
-//        cmbBookings.setItems(bookings);
-//        conn.close();*/
-//    }
-//
-//    @FXML
-//    void onActionBtnDelete(ActionEvent event) {
-//
-//    }
-//    }
 
