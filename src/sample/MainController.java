@@ -82,6 +82,9 @@ public class MainController implements Initializable {
     @FXML
     private VBox hbItemsSuppliers;
 
+    @FXML
+    private VBox hbItemsbookings;
+
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
     private double cardHeight = 0.0; // used for increasing the number of cards that can fit in the scroll pane
@@ -91,6 +94,16 @@ public class MainController implements Initializable {
          makeAgentCards();
          makeCustomerCards();
          makeProductCards();
+        try {
+            makeSupplierCards();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            makeBookingCards();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     // Author: Cailan Lay
