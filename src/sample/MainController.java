@@ -162,6 +162,35 @@ public class MainController implements Initializable {
         return customers; // returns the an array of agents
     }
 
+    // Author: Cailan Lay
+    // Action handler for the button that adds a new Product
+    @FXML
+    void onActionBtnNewProduct(ActionEvent event) throws IOException {
+        NewProductController newProduct = new NewProductController();
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("newProduct.fxml"));
+        loader.setController(newProduct);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Product");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        VBoxProducts.getChildren().clear();
+        makeProductCards();
+    }
+
+    // Author: Cailan Lay
     // Create and adds the agents cards
     private void makeAgentCards(){
         ArrayList<Agent> agents = new ArrayList<Agent>();
