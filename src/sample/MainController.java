@@ -264,6 +264,25 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
+    // Method creates an arraylist of customers from the database
+    private ArrayList<Product> getProducts() throws SQLException {
+        ArrayList<Product> products = new ArrayList();
+
+        Connection connection = helper.returnConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM `products`");
+
+        // Populates the arraylist with agents created from database
+        while(rs.next()) {
+            products.add(new Product(
+                    rs.getInt(1),
+                    rs.getString(2)));
+        }
+        connection.close();
+        return products; // returns the an array of agents
+    }
+
+    // Author: Cailan Lay
     // used to increase the space for cards within the scroll pane
     private void addCardSpace(){
         apScroll.setPrefHeight(cardHeight);
