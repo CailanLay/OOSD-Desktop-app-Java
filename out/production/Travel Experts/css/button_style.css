@@ -47,12 +47,12 @@
     -fx-background-color: #edfafd;
 }
 
-#btnAgentBack, #btnCustomerBack  {
+#btnAgentBack, #btnCustomerBack, #btnBookingBack  {
     -fx-background-color: linear-gradient(from 25% 89% to 50% 50%, #3ddad7, #2a93d5);
     -fx-background-radius: 0;
 }
 
-#btnAgentBack:hover, #btnCustomerBack:hover {
+#btnAgentBack:hover, #btnCustomerBack:hover, #btnBookingBack:hover {
     -fx-background-color: #2a93d5;
 }
 

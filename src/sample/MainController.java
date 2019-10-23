@@ -1,6 +1,3 @@
-/*
- * Author: Cailan Lay
- */
 package sample;
 
 import javafx.event.ActionEvent;
@@ -27,63 +24,16 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-
     @FXML
-    private AnchorPane apMenu;
-
+    private AnchorPane apMenu, apScroll;
     @FXML
-    private Button btnAgents;
-
+    private Button btnAgents, btnSuppliers, btnBookings, btnCustomers, btnClose;
     @FXML
-    private Button btnCustomers;
-
+    private Pane pnBookings, pnAgents, pnSuppliers, pnCustomers, pnProducts;
     @FXML
-    private Button btnBookings;
-
+    private HBox hboxHeader, hboxCustomerHeader;
     @FXML
-    private Button btnSuppliers;
-
-    @FXML
-    private Pane pnSuppliers;
-
-    @FXML
-    private Pane pnBookings;
-
-    @FXML
-    private Pane pnAgents;
-
-    @FXML
-    private HBox hboxHeader;
-
-    @FXML
-    private VBox hbItems;
-
-    @FXML
-    private Pane pnCustomers;
-
-    @FXML
-    private HBox hboxCustomerHeader;
-
-    @FXML
-    private VBox vbCustomerItems;
-
-    @FXML
-    private Pane pnProducts;
-
-    @FXML
-    private Button btnClose;
-
-    @FXML
-    private VBox VBoxProducts;
-
-    @FXML
-    private AnchorPane apScroll;
-
-    @FXML
-    private VBox hbItemsSuppliers;
-
-    @FXML
-    private VBox hbItemsbookings;
+    private VBox hbItems, vbCustomerItems, VBoxProducts, hbItemsSuppliers, hbItemsbookings;
 
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window

@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,7 @@ public class BookingCardController  implements Initializable {
     private Button btnAboutBookings;
 
     private Bookings bookings = new Bookings();
+    private double x, y;
 
     public BookingCardController(Bookings bookings) {
         this.bookings = bookings;
@@ -45,6 +47,7 @@ public class BookingCardController  implements Initializable {
     }
     @FXML
       void onActionbtnAboutBookings(ActionEvent event) throws IOException {
+       /*
         AboutBookingController aboutBookings = new AboutBookingController(bookings);
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("about_booking.fxml")));
         loader.setController(aboutBookings);
@@ -54,6 +57,28 @@ public class BookingCardController  implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(aboutScene);
         window.show();
+        */
 
+        AboutBookingController aboutBookings = new AboutBookingController(bookings);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_booking.fxml"));
+        loader.setController(aboutBookings);
+        root = loader.load();
+        Stage stage = new Stage();
+        //stage.setTitle("About" + bookings.getFName());
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        // renewCard();
     }
 }
