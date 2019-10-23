@@ -11,7 +11,7 @@
     -fx-effect: dropshadow(three-pass-box, #133589, 10, 0, 0, 0);
 }
 
-#btnAbout, #btnCustomerAbout {
+#btnAbout, #btnCustomerAbout, #btnAboutBookings, #btnAboutSupplier {
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-color: #3ddad7;
@@ -19,7 +19,7 @@
     -fx-background-radius: 50;
 }
 
-#btnAbout:hover, #btnCustomerAbout:hover, #btnNewAgent:hover, #btnNewCustomer:hover, #btnNewProduct:hover {
+#btnAbout:hover, #btnCustomerAbout:hover, #btnAboutBookings:hover, #btnAboutSupplier:hover, #btnNewAgent:hover, #btnNewCustomer:hover, #btnNewProduct:hover {
     -fx-background-color: #edfafd;
 }
 
