@@ -319,6 +319,103 @@ public class MainController implements Initializable {
         return products; // returns the an array of agents
     }
 
+    /*
+     * Author: Harpreet Kalsi
+     */
+    private void makeSupplierCards() throws SQLException {
+        ArrayList<Suppliers> suppliers = new ArrayList<Suppliers>();
+
+        suppliers = getSuppliers(); // populates the the suppliers array
+
+        // the array of nodes to the same size as the as the the array length
+        Node[] supplierCards = new Node[suppliers.size()];      // is also the number of cards to be created
+        for (int i = 0; i < supplierCards.length; i++) {
+            try {
+                SupplierCardController card = new SupplierCardController(suppliers.get(i)); // create controller and pass the supplier to the controller
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("supplier_card.fxml")); // get the FXML file
+                loader.setController(card); // set the controller for the fxml file
+                supplierCards[i] = loader.load(); // add the file to the array of nodes
+                hbItemsSuppliers.getChildren().add(supplierCards[i]); // add the scene to the vbox
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /*
+     * Author: Harpreet Kalsi
+     */
+    private ArrayList<Suppliers> getSuppliers() throws SQLException {
+        ArrayList<Suppliers> suppliers = new ArrayList();
+
+        Connection connection = helper.returnConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM `suppliers`");
+
+        // Populates the arraylist with supplier created from database
+        while (rs.next()) {
+            suppliers.add(new Suppliers(
+                    rs.getInt(1),
+                    rs.getString(2)));
+
+        }
+        connection.close();
+        return suppliers; // returns the an array of customer{
+
+
+    }
+
+    /*
+     * Author: Harpreet Kalsi
+     */
+    private void makeBookingCards() throws SQLException {
+
+        ArrayList<Bookings> bookings = new ArrayList<Bookings>();
+
+        bookings = getBookings(); // populates the the bookings array
+
+        // the array of nodes to the same size as the as the the array length
+        Node[] bookingsCards = new Node[bookings.size()];      // is also the number of cards to be created
+        for (int i = 0; i < bookingsCards.length; i++) {
+            try {
+                BookingCardController card = new BookingCardController(bookings.get(i)); // create controller and pass the bookings to the controller
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("booking_card.fxml")); // get the FXML file
+                loader.setController(card); // set the controller for the fxml file
+                bookingsCards[i] = loader.load(); // add the file to the array of nodes
+                hbItemsbookings.getChildren().add(bookingsCards[i]); // add the scene to the vbox
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+     /*
+      * Author: Harpreet Kalsi
+      */
+    private ArrayList<Bookings> getBookings() throws SQLException {
+        ArrayList<Bookings> bookings = new ArrayList();
+
+        Connection connection = helper.returnConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM `bookings`");
+
+        // Populates the arraylist with supplier created from database
+        while (rs.next()) {
+            bookings.add(new Bookings(
+                    rs.getInt(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getInt(4),
+                    rs.getInt(5),
+                    rs.getString(6),
+                    rs.getInt(7)));
+
+        }
+        connection.close();
+        return bookings; // returns the an array of agents {
+
+    }
+
     // Author: Cailan Lay
     // used to increase the space for cards within the scroll pane
     private void addCardSpace(){
