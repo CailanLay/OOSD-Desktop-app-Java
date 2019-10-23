@@ -263,6 +263,11 @@ public class MainController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
+    // used to increase the space for cards within the scroll pane
+    private void addCardSpace(){
+        apScroll.setPrefHeight(cardHeight);
+    }
 
     // Author: Cailan Lay
     // shows the agent page when agent menu button is clicked
