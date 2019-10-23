@@ -17,7 +17,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -89,6 +88,7 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resource) {
          makeAgentCards();
          makeCustomerCards();
+         makeProductCards();
     }
 
     // Author: Cailan Lay
@@ -119,7 +119,8 @@ public class MainController implements Initializable {
         makeCustomerCards();
     }
 
-
+    // Author: Cailan Lay
+    // This populates the hbox in the scroll pane with the products cards
     private void makeCustomerCards(){
         ArrayList<Customer> customers = new ArrayList<Customer>();
         try {
@@ -140,6 +141,7 @@ public class MainController implements Initializable {
         }
     }
 
+    // Author Cailan Lay
     // Method creates an arraylist of customers from the database
     private ArrayList<Customer> getCustomers() throws SQLException {
         ArrayList<Customer> customers = new ArrayList();
@@ -218,6 +220,7 @@ public class MainController implements Initializable {
         }
     }
 
+    // Author: Cailan Lay
     // Method to create an arraylist of agents from the databse
     private ArrayList<Agent> getAgents() throws SQLException {
         ArrayList<Agent> agents = new ArrayList();
@@ -388,6 +391,7 @@ public class MainController implements Initializable {
         pnProducts.setVisible(false);
     }
 
+    // Author: Cailan Lay
     // shows the products page when the customer menu is clicked
     @FXML
     void onactionBtnProducts(ActionEvent event) {
@@ -403,6 +407,8 @@ public class MainController implements Initializable {
         pnProducts.setVisible(true);
     }
 
+    // Author: Cailan Lay
+    // Closes the application
     @FXML
     void onActionBtnClose(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
