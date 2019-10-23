@@ -74,6 +74,9 @@ public class MainController implements Initializable {
     @FXML
     private Button btnClose;
 
+    @FXML
+    private VBox VBoxProducts;
+
 
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
