@@ -163,34 +163,6 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
-    // Action handler for the button that adds a new Product
-    @FXML
-    void onActionBtnNewProduct(ActionEvent event) throws IOException {
-        NewProductController newProduct = new NewProductController();
-        Parent root;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("newProduct.fxml"));
-        loader.setController(newProduct);
-        root = loader.load();
-        Stage stage = new Stage();
-        stage.setTitle("New Product");
-        stage.setScene(new Scene(root));
-        stage.initStyle(StageStyle.UNDECORATED);
-        //stage.setOpacity(0.7); this makes the stage transparent
-        // this allows the window to be dragged
-        root.setOnMousePressed(eventTwo -> {
-            x = eventTwo.getSceneX();
-            y = eventTwo.getSceneY();
-        });
-        root.setOnMouseDragged(eventTwo -> {
-            stage.setX(eventTwo.getScreenX() - x);
-            stage.setY(eventTwo.getScreenY() - y);
-        });
-        stage.showAndWait();
-        VBoxProducts.getChildren().clear();
-        makeProductCards();
-    }
-
-    // Author: Cailan Lay
     // Create and adds the agents cards
     private void makeAgentCards(){
         ArrayList<Agent> agents = new ArrayList<Agent>();
@@ -235,6 +207,60 @@ public class MainController implements Initializable {
         }
         connection.close();
         return agents; // returns the an array of agents
+    }
+
+    // Author: Cailan Lay
+    // Action handler for the button that adds a new Product
+    @FXML
+    void onActionBtnNewProduct(ActionEvent event) throws IOException {
+        NewProductController newProduct = new NewProductController();
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("newProduct.fxml"));
+        loader.setController(newProduct);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Product");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        VBoxProducts.getChildren().clear();
+        makeProductCards();
+    }
+
+    // Author: Cailan Lay
+    // Create and adds the agents cards
+    private void makeProductCards(){
+        ArrayList<Product> products = new ArrayList<Product>();
+        try {
+            products = getProducts(); // populates the the agents array
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        cardHeight = 0.0;
+        addCardSpace();
+        // the array of nodes to the same size as the as the the array length
+        Node[] productCards = new Node[products.size()]; // is also the number of cards to be created
+        for(int i = 0; i < productCards.length; i++) {
+            try {
+                ProductsCardController card = new ProductsCardController(products.get(i)); // create controller and pass the agent to the controller
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("products_card.fxml")); // get the FXML file
+                loader.setController(card); // set the controller for the fxml file
+                productCards[i] = loader.load(); // add the file to the array of nodes
+                cardHeight += 50.0;
+                addCardSpace(); // used to dynamicaly increase the scroll space to add more cards
+                VBoxProducts.getChildren().add(productCards[i]); // add the scene to the vbox
+            } catch(IOException  e) { e.printStackTrace();}
+        }
     }
 
 
