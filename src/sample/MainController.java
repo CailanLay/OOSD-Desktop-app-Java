@@ -79,6 +79,8 @@ public class MainController implements Initializable {
     @FXML
     private AnchorPane apScroll;
 
+    @FXML
+    private VBox hbItemsSuppliers;
 
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
