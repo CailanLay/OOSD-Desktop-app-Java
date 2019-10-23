@@ -56,7 +56,7 @@
             <TextField fx:id="txtBID" layoutX="140.0" layoutY="50.0" stylesheets="@../css/textbox_style.css" />
             <TextField fx:id="txtBDate" layoutX="140.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
             <TextField fx:id="txtCId" layoutX="440.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
-            <Button fx:id="btnBookingSave" layoutX="577.0" layoutY="260.0" mnemonicParsing="false" onAction="#onActionBtnBookingSave" text="Save">
+            <Button fx:id="btnBookingSave" layoutX="577.0" layoutY="260.0" mnemonicParsing="false" onAction="#onActionBtnBookingSave" stylesheets="@../css/button_style.css" text="Save">
                <font>
                   <Font size="14.0" />
                </font>
@@ -104,7 +104,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnBookingEdit" layoutX="581.0" layoutY="260.0" mnemonicParsing="false" onAction="#onActionBtnBookingEdit" text="Edit">
+            <Button fx:id="btnBookingEdit" layoutX="581.0" layoutY="260.0" mnemonicParsing="false" onAction="#onActionBtnBookingEdit" stylesheets="@../css/button_style.css" text="Edit">
                <font>
                   <Font size="14.0" />
                </font>
@@ -165,7 +165,7 @@
             <TextField fx:id="txtBID1" layoutX="140.0" layoutY="50.0" stylesheets="@../css/textbox_style.css" />
             <TextField fx:id="txtBDate1" layoutX="140.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
             <TextField fx:id="txtCId1" layoutX="440.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
-            <Button fx:id="btnAdd" layoutX="584.0" layoutY="266.0" mnemonicParsing="false" onAction="#onActionbtnBookingAdd" text="Add" />
+            <Button fx:id="btnAdd" layoutX="584.0" layoutY="266.0" mnemonicParsing="false" onAction="#onActionbtnBookingAdd" stylesheets="@../css/button_style.css" text="Add" />
          </children>
       </Pane>
       <Label fx:id="lblBookingsTitle" layoutX="100.0" layoutY="20.0" prefHeight="53.0" prefWidth="302.0" text="New Booking">

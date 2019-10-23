@@ -23,7 +23,7 @@
     -fx-background-color: #edfafd;
 }
 
-#btnCustomerEdit, #btnAgentEdit, #btnEdit, #btnCancel {
+#btnCustomerEdit, #btnAgentEdit, #btnEdit, #btnBookingEdit, #btnCancel {
     -fx-background-color: transp, arent;
     -fx-border-width: 1;
     -fx-border-color: #2d3436;
@@ -31,11 +31,11 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover, #btnCancel:hover {
+#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover, #btnBookingEdit:hover, #btnCancel:hover {
     -fx-background-color: #ECEFF1;
 }
 
-#btnCustomerSave, #btnAgentSave, #btnProductsSave, #btnAddAgent, #btnAddProduct {
+#btnCustomerSave, #btnAgentSave, #btnProductsSave, #btnBookingSave, #btnAddAgent, #btnAddProduct, #btnAdd {
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-color: #3ddad7;
@@ -43,7 +43,7 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerSave:hover, #btnAgentSave:hover, #btnProductsSave:hover, #btnAddAgent:hover, #btnAddProduct:hover {
+#btnCustomerSave:hover, #btnAgentSave:hover, #btnProductsSave:hover, #btnBookingSave:hover, #btnAddAgent:hover, #btnAddProduct:hover, #btnAdd:hover {
     -fx-background-color: #edfafd;
 }
 
