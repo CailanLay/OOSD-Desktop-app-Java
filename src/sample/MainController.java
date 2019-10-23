@@ -169,6 +169,34 @@ public class MainController implements Initializable {
     }
 
     // Author: Cailan Lay
+    // Action handler for the button that adds a new agent
+    @FXML
+    void onActionBtnNewAgent(ActionEvent event) throws IOException {
+        AboutAgentController aboutAgent = new AboutAgentController(true);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_agent.fxml"));
+        loader.setController(aboutAgent);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Agent");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        hbItems.getChildren().clear();
+        makeAgentCards();
+    }
+
+    // Author: Cailan Lay
     // Create and adds the agents cards
     private void makeAgentCards(){
         ArrayList<Agent> agents = new ArrayList<Agent>();
