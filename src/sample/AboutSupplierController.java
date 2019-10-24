@@ -26,6 +26,9 @@ import java.util.ResourceBundle;
 public class AboutSupplierController implements Initializable {
 
     DBConnection helper = new DBConnection(); // Global object
+
+    @FXML
+    private Button btnNewSupplier;
     @FXML
     private Button btnSupplierSave;
 
@@ -43,9 +46,14 @@ public class AboutSupplierController implements Initializable {
 
     @FXML
     private Button btnAdd;
-    
+
+    private Suppliers agent = new Suppliers();
+    private boolean newSupplier;
+    // Author: Harpreet kalsi
+    // Controller constructor
     private Suppliers suppliers = new Suppliers();
 
+    // Author: Harpreet kalsi
     public AboutSupplierController(Suppliers suppliers) {
         this.suppliers = suppliers;
     }
@@ -61,6 +69,7 @@ public class AboutSupplierController implements Initializable {
         txtSName.setEditable(false);
 
     }
+    // Author: Harpreet kalsi
     private void loadBoxes() {
         if (suppliers != null) {
             txtSID.setText(String.valueOf(suppliers.getSupplierId()));
@@ -69,6 +78,7 @@ public class AboutSupplierController implements Initializable {
             txtSName.setEditable(true);
         }
     }
+    // Author: Harpreet kalsi
     @FXML
     void onActionBtnSupplierBack(ActionEvent event) throws IOException {
         Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -83,7 +93,7 @@ public class AboutSupplierController implements Initializable {
         txtSID.setEditable(true);
         txtSName.setEditable(true);
     }
-
+    // Author: Harpreet kalsi
     @FXML
     void onActionBtnSupplierSave(ActionEvent event) throws IOException, SQLException {
         if (Validator.validateSupplier(txtSName.getText(),txtSID.getText())) {
@@ -91,7 +101,9 @@ public class AboutSupplierController implements Initializable {
             String sql = " UPDATE `suppliers` SET `SupName`=? WHERE `SupplierId`=?";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, String.valueOf(txtSName.getText()));
+            suppliers.setSupplierId(Integer.valueOf(txtSID.getText()));
             stmt.setString(2, String.valueOf(txtSID.getText()));
+            suppliers.setSupName(txtSName.getText());
             btnSupplierSave.setDisable(true);
             btnSupplierEdit.setDisable(false);
 
@@ -111,6 +123,7 @@ public class AboutSupplierController implements Initializable {
             window.show();
         }
     }
+    // Author: Harpreet kalsi
     @FXML
     void onActionbtnSupplierAdd(ActionEvent event) throws IOException, SQLException {
         if (Validator.validateSupplier(txtSName.getText(),txtSID.getText())) {
@@ -118,7 +131,9 @@ public class AboutSupplierController implements Initializable {
             String sql = " INSERT INTO `suppliers` (SupplierId, `SupName`) VALUES (?,?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, Integer.parseInt(txtSID.getText()));
+            suppliers.setSupplierId(Integer.valueOf(txtSID.getText()));
             stmt.setString(2, String.valueOf(txtSName.getText()));
+            suppliers.setSupName(txtSName.getText());
             btnSupplierSave.setDisable(false);
             btnSupplierEdit.setDisable(true);
             int rows = stmt.executeUpdate();

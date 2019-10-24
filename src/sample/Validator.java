@@ -20,7 +20,7 @@ public class Validator {
 
     //Author:Harpreet kalsi
     private static boolean validBookingDate(String input) {
-        boolean flag = Pattern.matches("\\d{4}-[01]\\d-[0-3]\\d\\s[0-2]\\d((:[0-5]\\d)?){2}[.]\\d", input);
+        boolean flag = Pattern.matches("\\d{4}-[01]\\d-[0-3]\\d", input);
         if (flag == true) {
             return true;
         } else {

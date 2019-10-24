@@ -61,10 +61,17 @@ public class AboutBookingController implements Initializable {
     private Button btnAdd;
 
     private Bookings bookings = new Bookings();
+    private boolean flag;
 
     // Controller constructor
+    // Author: Harpreet kalsi
     public AboutBookingController(Bookings bookings) {
         this.bookings = bookings;
+    }
+
+    // Author: Harpreet kalsi
+    public AboutBookingController(boolean flag) {
+        this.flag = flag;
     }
 
     @Override
@@ -90,6 +97,7 @@ public class AboutBookingController implements Initializable {
         txtPId.setEditable(false);
     }
 
+    // Author: Harpreet kalsi
     // populates the text fields
     private void loadBoxes() {
         if (bookings != null) {
@@ -103,7 +111,7 @@ public class AboutBookingController implements Initializable {
         }
     }
 
-
+    // Author: Harpreet kalsi
     @FXML
     void onActionBtnBookingBack(ActionEvent event) throws IOException {
         Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -113,6 +121,7 @@ public class AboutBookingController implements Initializable {
         window.show();
     }
 
+    // Author: Harpreet kalsi
     @FXML
     void onActionBtnBookingEdit(ActionEvent event) {
         txtBID.setEditable(true);
@@ -126,6 +135,7 @@ public class AboutBookingController implements Initializable {
         btnBookingSave.setDisable(false);
     }
 
+    // Author: Harpreet kalsi
     @FXML
     void onActionBtnBookingSave(ActionEvent event) throws SQLException, IOException {
         if (Validator.validateBooking(txtBID.getText(), txtBDate.getText(), txtBNo.getText(), txtTCount.getText())) {
@@ -135,11 +145,17 @@ public class AboutBookingController implements Initializable {
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             stmt.setString(1, String.valueOf(txtBNo.getText()));
+            bookings.setBookingNo(txtBNo.getText());
             stmt.setString(2, String.valueOf(txtBDate.getText()));
+            bookings.setBookingId(Integer.valueOf(txtBDate.getText()));
             stmt.setInt(3, Integer.parseInt(txtTCount.getText()));
+            bookings.setTravelerCount(Integer.valueOf(txtTCount.getText()));
             stmt.setInt(4, Integer.parseInt(txtCId.getText()));
+            bookings.setCustomerId(Integer.valueOf(txtCId.getText()));
             stmt.setString(5, String.valueOf(txtTTypeId.getText()));
+            bookings.setTripTypeId(txtTTypeId.getText());
             stmt.setInt(6, Integer.parseInt(txtPId.getText()));
+            bookings.setPackageId(Integer.valueOf(txtPId.getText()));
             stmt.setInt(7, Integer.parseInt(txtBID.getText()));
             btnBookingSave.setDisable(true);
             btnBookingEdit.setDisable(false);
@@ -161,43 +177,53 @@ public class AboutBookingController implements Initializable {
         }
     }
 
-        @FXML
-        void onActionbtnBookingAdd(ActionEvent event) throws IOException, SQLException {
-            if (Validator.validateBooking(txtBID.getText(), txtBDate.getText(), txtBNo.getText(), txtTCount.getText())) {
-                Connection connection = helper.returnConnection();
-                String sql = " INSERT INTO `bookings` (BookingNo, BookingDate,TravelerCount,CustomerId,TripTypeId, PackageId,BookingId) VALUES (?,?,?,?,?,?,?)";
-                PreparedStatement stmt = connection.prepareStatement(sql);
-                stmt.setString(1, String.valueOf(txtBNo.getText()));
-                stmt.setString(2, String.valueOf(txtBDate.getText()));
-                stmt.setInt(3, Integer.parseInt(txtTCount.getText()));
-                stmt.setInt(4, Integer.parseInt(txtCId.getText()));
-                stmt.setString(5, String.valueOf(txtTTypeId.getText()));
-                stmt.setInt(6, Integer.parseInt(txtPId.getText()));
-                stmt.setInt(7, Integer.parseInt(txtBID.getText()));
-                btnBookingSave.setDisable(true);
-                btnBookingEdit.setDisable(false);
-                int rows = stmt.executeUpdate();
-                connection.close();
-                if (rows == 0) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Insert failed, contact tech support", ButtonType.OK);
-                    alert.show();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
-                    alert.show();
-                }
-                Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-                Scene aboutScene = new Scene(aboutView);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(aboutScene);
-                window.show();
+    // Author: Harpreet kalsi
+    // Action handler for the add new booking button
+    @FXML
+    void onActionbtnBookingAdd(ActionEvent event) throws IOException, SQLException {
+        if (Validator.validateBooking(txtBID.getText(), txtBDate.getText(), txtBNo.getText(), txtTCount.getText())) {
+            Connection connection = helper.returnConnection();
+            String sql = " INSERT INTO `bookings` (BookingNo, BookingDate,TravelerCount,CustomerId,TripTypeId, PackageId,BookingId) VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1, String.valueOf(txtBNo.getText()));
+            bookings.setBookingNo(txtBNo.getText());
+            stmt.setString(2, String.valueOf(txtBDate.getText()));
+            bookings.setBookingId(Integer.valueOf(txtBDate.getText()));
+            stmt.setInt(3, Integer.parseInt(txtTCount.getText()));
+            bookings.setTravelerCount(Integer.valueOf(txtTCount.getText()));
+            stmt.setInt(4, Integer.parseInt(txtCId.getText()));
+            bookings.setCustomerId(Integer.valueOf(txtCId.getText()));
+            stmt.setString(5, String.valueOf(txtTTypeId.getText()));
+            bookings.setTripTypeId(txtTTypeId.getText());
+            stmt.setInt(6, Integer.parseInt(txtPId.getText()));
+            bookings.setPackageId(Integer.valueOf(txtPId.getText()));
+            stmt.setInt(7, Integer.parseInt(txtBID.getText()));
+            bookings.setBookingId(Integer.valueOf(txtBID.getText()));
+            btnBookingSave.setDisable(true);
+            btnBookingEdit.setDisable(false);
+            int rows = stmt.executeUpdate();
+            // connection.close();
+            if (rows == 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Error adding Booking, contact tech support", ButtonType.OK);
+                alert.show();
             } else {
-
-                   }
-
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "New Booking Added", ButtonType.OK);
+                alert.show();
+            }
+            Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            Scene aboutScene = new Scene(aboutView);
+            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            window.setScene(aboutScene);
+            window.show();
+        } else {
 
         }
 
+
     }
+}
+
 
 
 

@@ -39,5 +39,6 @@
       <TextField fx:id="txtSName" layoutX="108.0" layoutY="217.0" prefHeight="30.0" prefWidth="192.0" stylesheets="@../css/textbox_style.css" />
       <Button fx:id="btnSupplierBack" layoutX="23.0" layoutY="325.0" mnemonicParsing="false" onAction="#onActionBtnSupplierBack" stylesheets="@../css/button_style.css" text="Back" />
       <Button fx:id="btnAdd" layoutX="159.0" layoutY="325.0" mnemonicParsing="false" onAction="#onActionbtnSupplierAdd" text="Add" />
+      <Button fx:id="btnNewSupplier" layoutX="292.0" layoutY="103.0" mnemonicParsing="false" onAction="#onActionbtnNewsupplier" text="New" />
    </children>
 </AnchorPane>

@@ -85,6 +85,9 @@ public class MainController implements Initializable {
     @FXML
     private VBox hbItemsbookings;
 
+    @FXML
+    private Button btnNewBooking;
+
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
     private double cardHeight = 0.0; // used for increasing the number of cards that can fit in the scroll pane
@@ -104,6 +107,7 @@ public class MainController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
     // Author: Cailan Lay
@@ -378,6 +382,34 @@ public class MainController implements Initializable {
         return suppliers; // returns the an array of customer{
 
 
+    }
+    /*
+     * Author: Harpreet Kalsi
+     */
+    @FXML
+    void onActionbtnNewBooking(ActionEvent event) throws IOException, SQLException {
+        AboutBookingController aboutbooking = new AboutBookingController(true);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_booking.fxml"));
+        loader.setController(aboutbooking);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Booking");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        hbItemsbookings.getChildren().clear();
+        makeBookingCards();
     }
 
     /*
