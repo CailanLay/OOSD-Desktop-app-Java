@@ -19,9 +19,9 @@ public class DBConnection {
             Properties userInfo = new Properties();
             userInfo.put("user", "root"); // this is the username for the localhost
             userInfo.put("password", ""); // this is the password for the localhost
-            // connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/travelexperts", userInfo);
+            connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/travelexperts", userInfo);
 
-            connection = DriverManager.getConnection("jdbc:mariadb://192.168.137.213:3306/travelexperts?user=jaygervais&password=sait890316");
+            // connection = DriverManager.getConnection("jdbc:mariadb://192.168.137.213:3306/travelexperts?user=jaygervais&password=sait890316");
         } catch (SQLException e) {
             e.printStackTrace();
         }

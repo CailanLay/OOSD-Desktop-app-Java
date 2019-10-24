@@ -23,7 +23,7 @@
     -fx-background-color: #edfafd;
 }
 
-#btnCustomerEdit, #btnAgentEdit, #btnEdit, #btnBookingEdit, #btnCancel, #BtnRefresh {
+#btnCustomerEdit, #btnAgentEdit, #btnEdit, #btnBookingEdit, #btnCancel, #BtnRefresh, #btnSupplierEdit {
     -fx-background-color: transp, arent;
     -fx-border-width: 1;
     -fx-border-color: #2d3436;
@@ -31,11 +31,11 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover, #btnBookingEdit:hover, #btnCancel:hover, #BtnRefresh:hover {
+#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover, #btnBookingEdit:hover, #btnSupplierEdit:hover, #btnCancel:hover, #BtnRefresh:hover {
     -fx-background-color: #ECEFF1;
 }
 
-#btnCustomerSave, #btnAgentSave, #btnProductsSave, #btnBookingSave, #btnAddAgent, #btnAddProduct, #btnAdd {
+#btnCustomerSave, #btnAgentSave, #btnProductsSave, #btnBookingSave, #btnSupplierSave, #btnAddAgent, #btnAddProduct, #btnAdd, #btnNewSupplier, #btnAdd {
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-color: #3ddad7;
@@ -43,16 +43,16 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerSave:hover, #btnAgentSave:hover, #btnProductsSave:hover, #btnBookingSave:hover, #btnAddAgent:hover, #btnAddProduct:hover, #btnAdd:hover {
+#btnCustomerSave:hover, #btnAgentSave:hover, #btnProductsSave:hover, #btnBookingSave:hover, #btnSupplierSave:hover, #btnAddAgent:hover, #btnAddProduct:hover, #btnAdd:hover, #btnAdd:hover, #btnNewSupplier:hover {
     -fx-background-color: #edfafd;
 }
 
-#btnAgentBack, #btnCustomerBack, #btnBookingBack  {
+#btnAgentBack, #btnCustomerBack, #btnBookingBack, #btnSupplierBack {
     -fx-background-color: linear-gradient(from 25% 89% to 50% 50%, #3ddad7, #2a93d5);
     -fx-background-radius: 0;
 }
 
-#btnAgentBack:hover, #btnCustomerBack:hover, #btnBookingBack:hover {
+#btnAgentBack:hover, #btnCustomerBack:hover, #btnBookingBack:hover, #btnSupplierBack:hover {
     -fx-background-color: #2a93d5;
 }
 

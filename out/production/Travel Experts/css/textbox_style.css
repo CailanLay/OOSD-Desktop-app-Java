@@ -4,7 +4,7 @@
 #tfCustomerID, #tfCustomerFName, #tfCustomerLName, #tfCustomerAddress, #tfCustomerCity, #tfCustomerProvince, #tfCustomerPostalCode,
 #tfCustomerCountry, #tfCustomerHomePhone, #tfCustomerBusPhone, #tfCustomerEmail, #tfCustomerAgentID, #txtID, #txtFName, #txtMiddleInitial,
 #txtLName, #txtBusPhone, #txtEmail, #txtPosition, #txtPassword, #txtAgencyID, #tfProductName, #tfProductID, #txtNewProductName, #txtBID1,
-#txtBDate1, #txtTTypeId1, #txtBNo1, #txtCId1, #txtPId1, #txtTCount1, #txtBID, #txtBDate, #txtCId, #txtTTypeId, #txtPId, #txtBNo, #txtTCount {
+#txtBDate1, #txtTTypeId1, #txtBNo1, #txtCId1, #txtPId1, #txtTCount1, #txtBID, #txtBDate, #txtCId, #txtTTypeId, #txtPId, #txtBNo, #txtTCount, #txtSID1, #txtSName1 {
     -fx-background-color: #ffff;
     -fx-border-width: 0 0 1 0;
     -fx-border-color: #3ddad7;

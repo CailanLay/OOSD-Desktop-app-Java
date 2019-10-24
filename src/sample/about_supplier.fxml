@@ -5,39 +5,83 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="368.0" prefWidth="448.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="260.0" prefWidth="468.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="108.0" layoutY="80.0" text="SupplierID">
+      <Button fx:id="btnSupplierBack" layoutX="23.0" layoutY="325.0" mnemonicParsing="false" onAction="#onActionBtnSupplierBack" prefHeight="260.0" prefWidth="84.0" stylesheets="@../css/button_style.css" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="384.0" AnchorPane.topAnchor="0.0" />
+      <Line endX="260.0" layoutX="194.0" layoutY="84.0" startX="-100.0" style="-fx-stroke: #2a93d5;" />
+      <Label fx:id="lblSupplierTitle" layoutX="96.0" layoutY="14.0" prefHeight="53.0" prefWidth="361.0" text="New Supplier">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="108.0" layoutY="174.0" text="SupplierName">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnSupplierSave" layoutX="380.0" layoutY="322.0" mnemonicParsing="false" onAction="#onActionBtnSupplierSave" text="Save">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
-         </padding>
-      </Button>
-      <Button fx:id="btnSupplierEdit" layoutX="318.0" layoutY="322.0" mnemonicParsing="false" onAction="#onActionBtnSupplierEdit" text="Edit">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
-         </padding>
-      </Button>
-      <TextField fx:id="txtSID" layoutX="108.0" layoutY="100.0" prefHeight="30.0" prefWidth="154.0" stylesheets="@../css/textbox_style.css" />
-      <TextField fx:id="txtSName" layoutX="108.0" layoutY="217.0" prefHeight="30.0" prefWidth="192.0" stylesheets="@../css/textbox_style.css" />
-      <Button fx:id="btnSupplierBack" layoutX="23.0" layoutY="325.0" mnemonicParsing="false" onAction="#onActionBtnSupplierBack" stylesheets="@../css/button_style.css" text="Back" />
-      <Button fx:id="btnAdd" layoutX="159.0" layoutY="325.0" mnemonicParsing="false" onAction="#onActionbtnSupplierAdd" text="Add" />
+      <Pane fx:id="pnAddSupplier" layoutX="112.0" layoutY="149.0" prefHeight="158.0" prefWidth="384.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="25.0" layoutY="23.0" text="Supplier ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="73.0" text="Supplier Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSID1" layoutX="133.0" layoutY="18.0" prefHeight="30.0" prefWidth="92.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtSName1" layoutX="133.0" layoutY="68.0" prefHeight="30.0" prefWidth="192.0" stylesheets="@../css/textbox_style.css" />
+            <Button fx:id="btnAdd" layoutX="332.0" layoutY="119.0" mnemonicParsing="false" onAction="#onActionbtnSupplierAdd" stylesheets="@../css/button_style.css" text="Add" />
+         </children>
+      </Pane>
+      <Pane fx:id="pnViewSupplier" layoutX="112.0" prefHeight="158.0" prefWidth="384.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="25.0" layoutY="23.0" text="Supplier ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="73.0" text="Supplier Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblSupplierName" layoutX="136.0" layoutY="75.0" text="Label" />
+            <Label fx:id="lblSupplierID" layoutX="136.0" layoutY="25.0" text="Label" />
+            <Button fx:id="btnSupplierEdit" layoutX="330.0" layoutY="114.0" mnemonicParsing="false" onAction="#onActionBtnSupplierEdit" stylesheets="@../css/button_style.css" text="Edit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="pnEditSipplier" layoutX="84.0" layoutY="59.0" prefHeight="158.0" prefWidth="384.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0">
+         <children>
+            <Label layoutX="25.0" layoutY="23.0" text="Supplier ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="73.0" text="Supplier Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtSName" layoutX="133.0" layoutY="68.0" prefHeight="30.0" prefWidth="192.0" stylesheets="@../css/textbox_style.css" />
+            <Button fx:id="btnSupplierSave" layoutX="325.0" layoutY="114.0" mnemonicParsing="false" onAction="#onActionBtnSupplierSave" stylesheets="@../css/button_style.css" text="Save">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
+            <Label fx:id="lblEditSupplierID" layoutX="133.0" layoutY="25.0" prefHeight="17.0" prefWidth="92.0" text="Label" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

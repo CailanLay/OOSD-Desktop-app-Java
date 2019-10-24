@@ -78,18 +78,11 @@ public class Validator {
 
     }
     //Author:Harpreet kalsi
-    public static boolean validateSupplier(String SupplierId, String SuppName) {
-
-        if (validId(SupplierId) == true) {
-            if (validName(SuppName) == true) {
-                return true;
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid SuppName", ButtonType.OK);
-                alert.show();
-                return false;
-            }
+    public static boolean validateSupplier(String SuppName) {
+        if (validName(SuppName) == true) {
+            return true;
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid SupplierId", ButtonType.OK);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid SuppName", ButtonType.OK);
             alert.show();
             return false;
         }

@@ -112,6 +112,15 @@ public class MainController implements Initializable {
     @FXML
     private VBox hbItemsSuppliers;
 
+    @FXML
+    private Button btnNewSupplier;
+
+    @FXML
+    private AnchorPane apSuppliersScroll;
+
+    @FXML
+    private AnchorPane apBookingsScroll;
+
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
     private double cardHeight = 0.0; // used for increasing the number of cards that can fit in the scroll pane
@@ -369,6 +378,32 @@ public class MainController implements Initializable {
         return products; // returns the an array of agents
     }
 
+    @FXML
+    void onActionBtnNewSupplier(ActionEvent event) throws IOException {
+        AboutSupplierController aboutSupplier = new AboutSupplierController(true);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_supplier.fxml"));
+        loader.setController(aboutSupplier);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Supplier");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        hbItems.getChildren().clear();
+        makeAgentCards();
+    }
+
     /*
      * Author: Harpreet Kalsi
      */
@@ -376,7 +411,8 @@ public class MainController implements Initializable {
         ArrayList<Suppliers> suppliers = new ArrayList<Suppliers>();
 
         suppliers = getSuppliers(); // populates the the suppliers array
-
+        cardHeight = 0.0;
+        apSuppliersScroll.setPrefHeight(cardHeight);
         // the array of nodes to the same size as the as the the array length
         Node[] supplierCards = new Node[suppliers.size()];      // is also the number of cards to be created
         for (int i = 0; i < supplierCards.length; i++) {
@@ -385,6 +421,8 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("supplier_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 supplierCards[i] = loader.load(); // add the file to the array of nodes
+                cardHeight += 50.0;
+                apSuppliersScroll.setPrefHeight(cardHeight);
                 hbItemsSuppliers.getChildren().add(supplierCards[i]); // add the scene to the vbox
             } catch (IOException e) {
                 e.printStackTrace();
@@ -423,7 +461,8 @@ public class MainController implements Initializable {
         ArrayList<Bookings> bookings = new ArrayList<Bookings>();
 
         bookings = getBookings(); // populates the the bookings array
-
+        cardHeight = 0.0;
+        apBookingsScroll.setPrefHeight(cardHeight);
         // the array of nodes to the same size as the as the the array length
         Node[] bookingsCards = new Node[bookings.size()];      // is also the number of cards to be created
         for (int i = 0; i < bookingsCards.length; i++) {
@@ -432,6 +471,8 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("booking_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 bookingsCards[i] = loader.load(); // add the file to the array of nodes
+                cardHeight += 50.0;
+                apBookingsScroll.setPrefHeight(cardHeight);
                 hbItemsbookings.getChildren().add(bookingsCards[i]); // add the scene to the vbox
             } catch (IOException e) {
                 e.printStackTrace();
