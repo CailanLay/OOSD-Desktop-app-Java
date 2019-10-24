@@ -100,8 +100,6 @@ public class ProductsCardController implements Initializable {
         }
     }
 
-
-
     // Author: Cailan Lay
     // This the the event handler for the edit button the card
     @FXML
