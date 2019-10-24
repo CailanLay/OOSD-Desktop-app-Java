@@ -24,16 +24,93 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
+
     @FXML
-    private AnchorPane apMenu, apScroll;
+    private AnchorPane apMenu;
+
     @FXML
-    private Button btnAgents, btnSuppliers, btnBookings, btnCustomers, btnClose;
+    private Button btnAgents;
+
     @FXML
-    private Pane pnBookings, pnAgents, pnSuppliers, pnCustomers, pnProducts;
+    private Button btnCustomers;
+
     @FXML
-    private HBox hboxHeader, hboxCustomerHeader;
+    private Button btnProducts;
+
     @FXML
-    private VBox hbItems, vbCustomerItems, VBoxProducts, hbItemsSuppliers, hbItemsbookings;
+    private Button btnBookings;
+
+    @FXML
+    private Button btnSuppliers;
+
+    @FXML
+    private Pane pnBookings;
+
+    @FXML
+    private HBox hboxHeaderBookings;
+
+    @FXML
+    private VBox hbItemsbookings;
+
+    @FXML
+    private Button btnClose;
+
+    @FXML
+    private Pane pnCustomers;
+
+    @FXML
+    private AnchorPane apCustomerScroll;
+
+    @FXML
+    private VBox vbCustomerItems;
+
+    @FXML
+    private HBox hboxCustomerHeader;
+
+    @FXML
+    private Button btnNewCustomer;
+
+    @FXML
+    private Button BtnRefresh;
+
+    @FXML
+    private Pane pnAgents;
+
+    @FXML
+    private HBox hboxHeader;
+
+    @FXML
+    private AnchorPane apAgentsScroll;
+
+    @FXML
+    private VBox hbItems;
+
+    @FXML
+    private Button btnNewAgent;
+
+    @FXML
+    private Pane pnProducts;
+
+    @FXML
+    private AnchorPane apProductsScroll;
+
+    @FXML
+    private VBox VBoxProducts;
+
+    @FXML
+    private HBox HBoxTitleBox;
+
+    @FXML
+    private Button btnNewProduct;
+
+    @FXML
+    private Pane pnSuppliers;
+
+    @FXML
+    private HBox hboxHeaderSuppliers;
+
+    @FXML
+    private VBox hbItemsSuppliers;
 
     private DBConnection helper = new DBConnection(); // Global object
     private double x, y; // used for screen positioning when moving the window
@@ -93,6 +170,8 @@ public class MainController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        cardHeight = 0.0;
+       apCustomerScroll.setPrefHeight(cardHeight);
         // the array of nodes to the same size as the as the the array length
         Node[] customerCards = new Node[customers.size()]; // is also the number of cards to be created
         for(int i = 0; i < customerCards.length; i++) {
@@ -101,6 +180,8 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("customer_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 customerCards[i] = loader.load(); // add the file to the array of nodes
+                cardHeight += 50.0;
+                apCustomerScroll.setPrefHeight(cardHeight); // used to dynamicaly increase the scroll space to add more cards
                 vbCustomerItems.getChildren().add(customerCards[i]); // add the scene to the vbox
             } catch(IOException  e) { e.printStackTrace();}
         }
@@ -172,6 +253,8 @@ public class MainController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        cardHeight = 0.0;
+        apAgentsScroll.setPrefHeight(cardHeight);
         // the array of nodes to the same size as the as the the array length
         Node[] agentCards = new Node[agents.size()]; // is also the number of cards to be created
         for(int i = 0; i < agentCards.length; i++) {
@@ -180,6 +263,8 @@ public class MainController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("agent_card.fxml")); // get the FXML file
                 loader.setController(card); // set the controller for the fxml file
                 agentCards[i] = loader.load(); // add the file to the array of nodes
+                cardHeight += 50.0;
+                apAgentsScroll.setPrefHeight(cardHeight); // used to dynamicaly increase the scroll space to add more cards
                 hbItems.getChildren().add(agentCards[i]); // add the scene to the vbox
             } catch(IOException  e) { e.printStackTrace();}
         }
@@ -249,7 +334,7 @@ public class MainController implements Initializable {
             e.printStackTrace();
         }
         cardHeight = 0.0;
-        addCardSpace();
+        apProductsScroll.setPrefHeight(cardHeight);
         // the array of nodes to the same size as the as the the array length
         Node[] productCards = new Node[products.size()]; // is also the number of cards to be created
         for(int i = 0; i < productCards.length; i++) {
@@ -259,7 +344,7 @@ public class MainController implements Initializable {
                 loader.setController(card); // set the controller for the fxml file
                 productCards[i] = loader.load(); // add the file to the array of nodes
                 cardHeight += 50.0;
-                addCardSpace(); // used to dynamicaly increase the scroll space to add more cards
+                apProductsScroll.setPrefHeight(cardHeight); // used to dynamicaly increase the scroll space to add more cards
                 VBoxProducts.getChildren().add(productCards[i]); // add the scene to the vbox
             } catch(IOException  e) { e.printStackTrace();}
         }
@@ -383,9 +468,12 @@ public class MainController implements Initializable {
 
     // Author: Cailan Lay
     // used to increase the space for cards within the scroll pane
+    /*
     private void addCardSpace(){
         apScroll.setPrefHeight(cardHeight);
     }
+
+     */
 
     // Author: Cailan Lay
     // shows the agent page when agent menu button is clicked
@@ -475,5 +563,16 @@ public class MainController implements Initializable {
     void onActionBtnClose(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
+    }
+
+    // Author: Cailan Lay
+    // Action handler for the refresh button
+    @FXML
+    void onActionBtnRefresh(ActionEvent event) throws SQLException {
+        makeAgentCards();
+        makeCustomerCards();
+        makeProductCards();
+        makeBookingCards();
+        makeSupplierCards();
     }
 }

@@ -129,6 +129,9 @@ public class AboutAgentController implements Initializable {
     @FXML
     private Label lblEditAgentID;
 
+    @FXML
+    private Button btnDeleteAgent;
+
     private Agent agent = new Agent();
     private boolean newAgent;
 
@@ -233,25 +236,25 @@ public class AboutAgentController implements Initializable {
         if(Validator.validateAgent(tfNewAgentFName.getText(), tfNewAgentMiddleInitial.getText(), tfNewAgentLName.getText(), tfNewAgentBusPhone.getText(), tfNewAgentPosition.getText(), tfNewAgentEmail.getText()) == true) {
             DBConnection helper = new DBConnection();
             Connection connection = helper.returnConnection();
-            String sql = "INSERT INTO `agents`(`AgentId`, `AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`, `Password`) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO `agents`(`AgtFirstName`, `AgtMiddleInitial`, `AgtLastName`, `AgtBusPhone`, `AgtEmail`, `AgtPosition`, `AgencyId`, `Password`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1,Integer.valueOf(tfNewAgentID.getText()));
-            agent.setId(Integer.valueOf(tfNewAgentID.getText()));
-            stmt.setString(2, tfNewAgentFName.getText());
+            // stmt.setInt(1,Integer.valueOf(tfNewAgentID.getText()));
+            // agent.setId(Integer.valueOf(tfNewAgentID.getText()));
+            stmt.setString(1, tfNewAgentFName.getText());
             agent.setFName(tfNewAgentFName.getText());
-            stmt.setString(3, tfNewAgentMiddleInitial.getText());
+            stmt.setString(2, tfNewAgentMiddleInitial.getText());
             agent.setMiddleInitial(tfNewAgentMiddleInitial.getText());
-            stmt.setString(4, tfNewAgentLName.getText());
+            stmt.setString(3, tfNewAgentLName.getText());
             agent.setLName(tfNewAgentLName.getText());
-            stmt.setString(5, tfNewAgentBusPhone.getText());
+            stmt.setString(4, tfNewAgentBusPhone.getText());
             agent.setBusPhone(tfNewAgentBusPhone.getText());
-            stmt.setString(6, tfNewAgentEmail.getText());
+            stmt.setString(5, tfNewAgentEmail.getText());
             agent.setEmail(tfNewAgentEmail.getText());
-            stmt.setString(7, tfNewAgentPosition.getText());
+            stmt.setString(6, tfNewAgentPosition.getText());
             agent.setPosition(tfNewAgentPosition.getText());
-            stmt.setInt(8, Integer.valueOf(tfNewAgencyID.getText()));
+            stmt.setInt(7, Integer.valueOf(tfNewAgencyID.getText()));
             agent.setAgencyId(Integer.valueOf(tfNewAgencyID.getText()));
-            stmt.setString(9, tfNewAgentPassword.getText());
+            stmt.setString(8, tfNewAgentPassword.getText());
             agent.setPassword(tfNewAgentPassword.getText());
             int rows = stmt.executeUpdate();
             if(rows == 0) {
@@ -339,6 +342,24 @@ public class AboutAgentController implements Initializable {
         } else {
             loadBoxes();
         }
+    }
 
+    // Author: Cailan Lay
+    // Action handler for the delete button that deletes the agent
+    @FXML
+    void onActionBtnDeleteAgent(ActionEvent event) throws SQLException {
+        DBConnection helper = new DBConnection();
+        Connection connection = helper.returnConnection();
+        String sql = "DELETE FROM `agents` WHERE AgentId = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, String.valueOf(agent.getId()));
+        int rows = stmt.executeUpdate();
+        if(rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
+            alert.show();
+        }
+        connection.close();
+        Stage stage = (Stage) btnAgentBack.getScene().getWindow();
+        stage.close();
     }
 }

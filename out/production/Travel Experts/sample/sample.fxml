@@ -52,145 +52,6 @@
       </AnchorPane>
       <AnchorPane layoutX="250.0" prefHeight="500.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane fx:id="pnProducts" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;">
-               <children>
-                  <Label layoutX="20.0" layoutY="15.0" text="Products">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="337.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
-                     <content>
-                        <AnchorPane fx:id="apScroll" minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="521.0" style="-fx-background-color: #ffff;">
-                           <children>
-                              <VBox fx:id="VBoxProducts" layoutX="1.0" layoutY="5.0" prefHeight="311.0" prefWidth="520.0" style="-fx-background-color: #ffff;" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <HBox fx:id="HBoxTitleBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="104.0" prefHeight="33.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
-                     <children>
-                        <Label text="ID">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="50.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label text="Name">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="90.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Button fx:id="btnClose" layoutX="545.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnNewProduct" layoutX="180.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnNewProduct" prefHeight="30.0" prefWidth="90.0" stylesheets="@../css/button_style.css" text="New" />
-               </children>
-            </Pane>
-            <Pane fx:id="pnAgents" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox fx:id="hboxHeader" layoutX="20.0" layoutY="110.0" prefHeight="27.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
-                     <children>
-                        <Label text="ID">
-                           <padding>
-                              <Insets left="60.0" />
-                           </padding>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="First Name">
-                           <padding>
-                              <Insets left="100.0" />
-                           </padding>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="Last Name">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <padding>
-                              <Insets left="80.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="337.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="521.0" style="-fx-background-color: #dfe6e9;">
-                           <children>
-                              <VBox fx:id="hbItems" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <Label layoutX="20.0" layoutY="15.0" text="Agents">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnClose" layoutX="545.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnNewAgent" layoutX="152.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnNewAgent" prefHeight="30.0" prefWidth="90.0" stylesheets="@../css/button_style.css" text="New" />
-               </children>
-            </Pane>
-            <Pane fx:id="pnSuppliers" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;">
-               <children>
-                  <HBox fx:id="hboxHeaderSuppliers" layoutX="20.0" layoutY="110.0" prefHeight="27.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
-                     <children>
-                        <Label prefHeight="22.0" prefWidth="161.0" text="SupplierId">
-                           <padding>
-                              <Insets left="30.0" />
-                           </padding>
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="SupplierName">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <padding>
-                              <Insets left="50.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="331.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="521.0" style="-fx-background-color: #ffff;">
-                           <children>
-                              <VBox fx:id="hbItemsSuppliers" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-                  <Label layoutX="20.0" layoutY="15.0" text="Suppliers">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnClose" layoutX="545.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
             <Pane fx:id="pnBookings" prefHeight="500.0" prefWidth="581.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="0.0">
                <children>
                   <HBox fx:id="hboxHeaderBookings" layoutX="20.0" layoutY="110.0" prefHeight="27.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
@@ -251,7 +112,7 @@
                   </Label>
                   <ScrollPane layoutX="20.0" layoutY="149.0" prefHeight="337.0" prefWidth="537.0" style="-fx-background-color: transparent;">
                      <content>
-                        <AnchorPane fx:id="apScroll" minHeight="0.0" minWidth="0.0" prefHeight="481.0" prefWidth="522.0" style="-fx-background-color: #dfe6e9;">
+                        <AnchorPane fx:id="apCustomerScroll" minHeight="0.0" minWidth="0.0" prefHeight="481.0" prefWidth="522.0" style="-fx-background-color: #dfe6e9;">
                            <children>
                               <VBox fx:id="vbCustomerItems" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
                            </children>
@@ -292,6 +153,148 @@
                      </font>
                   </Button>
                   <Button fx:id="btnNewCustomer" layoutX="210.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnNewCustomer" prefHeight="30.0" prefWidth="90.0" stylesheets="@../css/button_style.css" text="New" />
+                  <Button fx:id="BtnRefresh" layoutX="313.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnRefresh" prefHeight="30.0" prefWidth="67.0" stylesheets="@../css/button_style.css" text="Refresh" />
+               </children>
+            </Pane>
+            <Pane fx:id="pnProducts" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <Label layoutX="20.0" layoutY="15.0" text="Products">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="337.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
+                     <content>
+                        <AnchorPane fx:id="apProductsScroll" minHeight="0.0" minWidth="0.0" prefHeight="347.0" prefWidth="521.0" style="-fx-background-color: #ffff;">
+                           <children>
+                              <VBox fx:id="VBoxProducts" layoutX="1.0" layoutY="5.0" prefHeight="311.0" prefWidth="520.0" style="-fx-background-color: #ffff;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <HBox fx:id="HBoxTitleBox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="104.0" prefHeight="33.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
+                     <children>
+                        <Label text="ID">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="Name">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="90.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button fx:id="btnClose" layoutX="545.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnNewProduct" layoutX="180.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnNewProduct" prefHeight="30.0" prefWidth="90.0" stylesheets="@../css/button_style.css" text="New" />
+                  <Button fx:id="BtnRefresh" layoutX="284.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnRefresh" prefHeight="30.0" prefWidth="67.0" stylesheets="@../css/button_style.css" text="Refresh" />
+               </children>
+            </Pane>
+            <Pane fx:id="pnSuppliers" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <HBox fx:id="hboxHeaderSuppliers" layoutX="20.0" layoutY="110.0" prefHeight="27.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
+                     <children>
+                        <Label prefHeight="22.0" prefWidth="161.0" text="SupplierId">
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="SupplierName">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="331.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="521.0" style="-fx-background-color: #ffff;">
+                           <children>
+                              <VBox fx:id="hbItemsSuppliers" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <Label layoutX="20.0" layoutY="15.0" text="Suppliers">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnClose" layoutX="545.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="pnAgents" prefHeight="500.0" prefWidth="570.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox fx:id="hboxHeader" layoutX="20.0" layoutY="110.0" prefHeight="27.0" prefWidth="537.0" stylesheets="@../css/pane_elements.css">
+                     <children>
+                        <Label text="ID">
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="First Name">
+                           <padding>
+                              <Insets left="100.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="Last Name">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="80.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ScrollPane layoutX="20.0" layoutY="150.0" prefHeight="337.0" prefWidth="537.0" style="-fx-background-color: #ffff;">
+                     <content>
+                        <AnchorPane fx:id="apAgentsScroll" minHeight="0.0" minWidth="0.0" prefHeight="397.0" prefWidth="521.0" style="-fx-background-color: #dfe6e9;">
+                           <children>
+                              <VBox fx:id="hbItems" prefHeight="331.0" prefWidth="521.0" style="-fx-background-color: #ffff;" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+                  <Label layoutX="20.0" layoutY="15.0" text="Agents">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnClose" layoutX="545.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnNewAgent" layoutX="152.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnNewAgent" prefHeight="30.0" prefWidth="90.0" stylesheets="@../css/button_style.css" text="New" />
+                  <Button fx:id="BtnRefresh" layoutX="256.0" layoutY="27.0" mnemonicParsing="false" onAction="#onActionBtnRefresh" prefHeight="30.0" prefWidth="67.0" stylesheets="@../css/button_style.css" text="Refresh" />
                </children>
             </Pane>
          </children>

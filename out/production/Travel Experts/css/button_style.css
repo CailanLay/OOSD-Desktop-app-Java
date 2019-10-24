@@ -23,7 +23,7 @@
     -fx-background-color: #edfafd;
 }
 
-#btnCustomerEdit, #btnAgentEdit, #btnEdit, #btnBookingEdit, #btnCancel {
+#btnCustomerEdit, #btnAgentEdit, #btnEdit, #btnBookingEdit, #btnCancel, #BtnRefresh {
     -fx-background-color: transp, arent;
     -fx-border-width: 1;
     -fx-border-color: #2d3436;
@@ -31,7 +31,7 @@
     -fx-background-radius: 5;
 }
 
-#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover, #btnBookingEdit:hover, #btnCancel:hover {
+#btnCustomerEdit:hover, #btnAgentEdit:hover, #btnEdit:hover, #btnBookingEdit:hover, #btnCancel:hover, #BtnRefresh:hover {
     -fx-background-color: #ECEFF1;
 }
 
@@ -74,4 +74,15 @@
     -fx-background-radius: 5;
 }
 
+#btnDeleteAgent {
+    -fx-background-color: transparent;
+    -fx-border-width: 1;
+    -fx-border-color: #C62828;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+#btnDeleteAgent:hover {
+    -fx-background-color: #FFCDD2;
+}
 
