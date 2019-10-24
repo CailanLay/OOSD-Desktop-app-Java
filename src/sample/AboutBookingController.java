@@ -225,7 +225,7 @@ public class AboutBookingController implements Initializable {
             stmt.setString(1, String.valueOf(txtBNo.getText()));
             bookings.setBookingNo(txtBNo.getText());
             stmt.setString(2, String.valueOf(txtBDate.getText()));
-            bookings.setBookingId(Integer.valueOf(txtBDate.getText()));
+            bookings.setDate(String.valueOf(txtBDate.getText()));
             stmt.setInt(3, Integer.parseInt(txtTCount.getText()));
             bookings.setTravelerCount(Integer.valueOf(txtTCount.getText()));
             stmt.setInt(4, Integer.parseInt(txtCId.getText()));
