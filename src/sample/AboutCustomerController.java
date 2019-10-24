@@ -158,6 +158,9 @@ public class AboutCustomerController implements Initializable {
     @FXML
     private Label lblEditCustomerAgentID;
 
+    @FXML
+    private Button btnDeleteCustomer;
+
     private Customer customer = new Customer();
     private boolean newCustomer;
 
@@ -390,5 +393,24 @@ public class AboutCustomerController implements Initializable {
         } else {
             loadLabeles();
         }
+    }
+
+    // Author: Cailan Lay
+    // Event handler for the delete button
+    @FXML
+    void onActionBtnDeleteCustomer(ActionEvent event) throws SQLException {
+        DBConnection helper = new DBConnection();
+        Connection connection = helper.returnConnection();
+        String sql = "DELETE FROM `customers` WHERE CustomerId = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, String.valueOf(customer.getId()));
+        int rows = stmt.executeUpdate();
+        if(rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
+            alert.show();
+        }
+        connection.close();
+        Stage stage = (Stage) btnDeleteCustomer.getScene().getWindow();
+        stage.close();
     }
 }
