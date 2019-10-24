@@ -294,7 +294,7 @@
                      </font>
                   </Button>
                   <Button fx:id="btnNewAgent" layoutX="152.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnNewAgent" prefHeight="30.0" prefWidth="90.0" stylesheets="@../css/button_style.css" text="New" />
-                  <Button fx:id="BtnRefresh" layoutX="256.0" layoutY="27.0" mnemonicParsing="false" onAction="#onActionBtnRefresh" prefHeight="30.0" prefWidth="67.0" stylesheets="@../css/button_style.css" text="Refresh" />
+                  <Button fx:id="BtnRefresh" layoutX="256.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnRefresh" prefHeight="30.0" prefWidth="67.0" stylesheets="@../css/button_style.css" text="Refresh" />
                </children>
             </Pane>
          </children>

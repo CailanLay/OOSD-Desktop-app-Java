@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,6 +39,10 @@ public class ProductsCardController implements Initializable {
 
     @FXML
     private Button btnProductsSave;
+
+    @FXML
+    private Button btnProductsDelete;
+
 
     private Product product;
 
@@ -105,5 +111,22 @@ public class ProductsCardController implements Initializable {
         HBoxView.setVisible(false);
         HBoxEdit.toFront();
         HBoxEdit.setVisible(true);
+    }
+
+    // Author: Cailan Lay
+    // Event handler for the delete button on the products card
+    @FXML
+    void onActionBtnProdictsDelete(ActionEvent event) throws SQLException {
+        DBConnection helper = new DBConnection();
+        Connection connection = helper.returnConnection();
+        String sql = "DELETE FROM `products` WHERE `ProductId`= ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, String.valueOf(product.getId()));
+        int rows = stmt.executeUpdate();
+        if(rows == 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error saving changes", ButtonType.OK);
+            alert.show();
+        }
+        connection.close();
     }
 }

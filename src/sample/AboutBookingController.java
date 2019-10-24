@@ -138,6 +138,10 @@ public class AboutBookingController implements Initializable {
         assert btnBookingBack != null : "fx:id=\"btnBookingBack\" was not injected: check your FXML file 'about_booking.fxml'.";
         loadLabelsView();
         loadBoxes();
+
+        btnBookingEdit.setDisable(true);
+        btnBookingEdit.setVisible(false);
+
         txtBID.setEditable(false);
         txtBDate.setEditable(false);
         txtBNo.setEditable(false);
@@ -277,13 +281,6 @@ public class AboutBookingController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
                     alert.show();
                 }
-                /*
-                Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-                Scene aboutScene = new Scene(aboutView);
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                window.setScene(aboutScene);
-                window.show();
-                 */
                 loadLabelsView();
             }
         }

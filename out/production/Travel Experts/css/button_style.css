@@ -74,7 +74,7 @@
     -fx-background-radius: 5;
 }
 
-#btnDeleteAgent {
+#btnDeleteAgent, #btnProductsDelete, #btnDeleteCustomer {
     -fx-background-color: transparent;
     -fx-border-width: 1;
     -fx-border-color: #C62828;
@@ -82,7 +82,7 @@
     -fx-background-radius: 5;
 }
 
-#btnDeleteAgent:hover {
+#btnDeleteAgent:hover, #btnProductsDelete:hover, #btnDeleteCustomer:hover {
     -fx-background-color: #FFCDD2;
 }
 
