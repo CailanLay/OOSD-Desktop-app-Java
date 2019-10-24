@@ -338,6 +338,32 @@ public class MainController implements Initializable {
         return products; // returns the an array of agents
     }
 
+    @FXML
+    void onActionBtnNewSupplier(ActionEvent event) throws IOException, SQLException {
+        AboutSupplierController aboutSupplier = new AboutSupplierController(true);
+        Parent root;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("about_supplier.fxml"));
+        loader.setController(aboutSupplier);
+        root = loader.load();
+        Stage stage = new Stage();
+        stage.setTitle("New Suppliers");
+        stage.setScene(new Scene(root));
+        stage.initStyle(StageStyle.UNDECORATED);
+        //stage.setOpacity(0.7); this makes the stage transparent
+        // this allows the window to be dragged
+        root.setOnMousePressed(eventTwo -> {
+            x = eventTwo.getSceneX();
+            y = eventTwo.getSceneY();
+        });
+        root.setOnMouseDragged(eventTwo -> {
+            stage.setX(eventTwo.getScreenX() - x);
+            stage.setY(eventTwo.getScreenY() - y);
+        });
+        stage.showAndWait();
+        hbItemsSuppliers.getChildren().clear();
+        makeSupplierCards();
+    }
+
     /*
      * Author: Harpreet Kalsi
      */
@@ -394,7 +420,7 @@ public class MainController implements Initializable {
         loader.setController(aboutbooking);
         root = loader.load();
         Stage stage = new Stage();
-        stage.setTitle("New Booking");
+        stage.setTitle("New Bookings");
         stage.setScene(new Scene(root));
         stage.initStyle(StageStyle.UNDECORATED);
         //stage.setOpacity(0.7); this makes the stage transparent

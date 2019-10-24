@@ -10,10 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,7 +26,23 @@ public class AboutSupplierController implements Initializable {
     DBConnection helper = new DBConnection(); // Global object
 
     @FXML
+    private Pane pnViewSupplier;
+
+    @FXML
+    private Pane pnEditSupplier;
+
+    @FXML
+    private Pane pnNewSupplier;
+
+    @FXML
+    private Label lblSupplierID;
+
+    @FXML
+    private Label lblSupplierName;
+
+    @FXML
     private Button btnNewSupplier;
+
     @FXML
     private Button btnSupplierSave;
 
@@ -47,31 +61,80 @@ public class AboutSupplierController implements Initializable {
     @FXML
     private Button btnAdd;
 
-    private Suppliers agent = new Suppliers();
-    private boolean newSupplier;
-    // Author: Harpreet kalsi
-    // Controller constructor
     private Suppliers suppliers = new Suppliers();
+    private boolean newSuppliers;
 
     // Author: Harpreet kalsi
+    // Controller constructor
     public AboutSupplierController(Suppliers suppliers) {
         this.suppliers = suppliers;
     }
+
+    // Author: Harpreet kalsi
+    // Controller default constructor
+    public AboutSupplierController(boolean newSuppliers){ this.newSuppliers = newSuppliers; }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        assert btnSupplierSave != null : "fx:id=\"btnSupplierSave\" was not injected: check your FXML file 'about_supplier.fxml'.";
-        assert btnSupplierEdit != null : "fx:id=\"btnSupplierEdit\" was not injected: check your FXML file 'about_supplier.fxml'.";
-        assert txtSID != null : "fx:id=\"txtSID\" was not injected: check your FXML file 'about_supplier.fxml'.";
-        assert txtSName != null : "fx:id=\"txtSName\" was not injected: check your FXML file 'about_supplier.fxml'.";
-        assert btnSupplierBack != null : "fx:id=\"btnSupplierBack\" was not injected: check your FXML file 'about_supplier.fxml'.";
-        loadBoxes();
+       // loadBoxes();
+        if(newSuppliers== true) {
+            loadnewSuppliersView();
+        } else {
+            loadLabeles();
+        }
+    }
+
+    // sets the text fields to non editable
+    // Author: Harpreet kalsi
+    private void notEditable() {
         txtSID.setEditable(false);
         txtSName.setEditable(false);
-
     }
+
+    // checks if the supplier object is not null
     // Author: Harpreet kalsi
+    private boolean notNull(Suppliers suppliers){
+        if(suppliers != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // load the window for a new supplier to be added
+    // Author: Harpreet kalsi
+    private void loadnewSuppliersView() {
+        pnNewSupplier.toFront();
+        pnNewSupplier.setVisible(true);
+        pnEditSupplier.toBack();
+        pnEditSupplier.setVisible(false);
+        pnViewSupplier.toBack();
+        pnViewSupplier.setVisible(false);
+    }
+
+    // set the label text to to the supplier data
+    // Author: Harpreet kalsi
+    private void loadLabeles() {
+        pnEditSupplier.toBack();
+        pnEditSupplier.setVisible(false);
+        pnNewSupplier.toBack();
+        pnNewSupplier.setVisible(false);
+        pnViewSupplier.toFront();
+        pnViewSupplier.setVisible(true);
+        btnSupplierBack.setText("Done");
+        notEditable();
+        if(notNull(suppliers)) {
+            lblSupplierID.setText(String.valueOf(suppliers.getSupplierId()));
+            lblSupplierName.setText(String.valueOf(suppliers.getSupName()));
+
+        }
+    }
+
+    // Author: Harpreet kalsi
+    // populates the text fields
     private void loadBoxes() {
-        if (suppliers != null) {
+        if (notNull(suppliers )) {
             txtSID.setText(String.valueOf(suppliers.getSupplierId()));
             txtSID.setEditable(true);
             txtSName.setText(suppliers.getSupName());
@@ -79,21 +142,36 @@ public class AboutSupplierController implements Initializable {
         }
     }
     // Author: Harpreet kalsi
+    // Action handler for the back button on the about supplier page
     @FXML
     void onActionBtnSupplierBack(ActionEvent event) throws IOException {
-        Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Scene aboutScene = new Scene(aboutView);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(aboutScene);
-        window.show();
+        if(pnEditSupplier.isVisible() && !pnViewSupplier.isVisible()) {
+            btnSupplierBack.setText("Back");
+            loadLabeles();
+        } else {
+            Stage stage = (Stage) btnSupplierBack.getScene().getWindow();
+            stage.close();
+        }
     }
 
+    // action handler for the edit button on the about supplier page
+    // Author: Harpreet kalsi
     @FXML
     void onActionBtnSupplierEdit(ActionEvent event) {
+        pnEditSupplier.toFront();
+        pnEditSupplier.setVisible(false);
+        pnNewSupplier.toBack();
+        pnNewSupplier.setVisible(true);
+        pnViewSupplier.toBack();
+        pnViewSupplier.setVisible(false);
+        loadBoxes();
+
         txtSID.setEditable(true);
         txtSName.setEditable(true);
+
     }
     // Author: Harpreet kalsi
+    // action handler for the save button on the about supplier page
     @FXML
     void onActionBtnSupplierSave(ActionEvent event) throws IOException, SQLException {
         if (Validator.validateSupplier(txtSName.getText(),txtSID.getText())) {
@@ -116,14 +194,20 @@ public class AboutSupplierController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful", ButtonType.OK);
                 alert.show();
             }
+            connection.close();
+            loadLabeles();
+        } else {
+            loadBoxes();
+        }
             Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
             Scene aboutScene = new Scene(aboutView);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
             window.setScene(aboutScene);
             window.show();
         }
-    }
+
     // Author: Harpreet kalsi
+    // Action handler for the add new supplier button
     @FXML
     void onActionbtnSupplierAdd(ActionEvent event) throws IOException, SQLException {
         if (Validator.validateSupplier(txtSName.getText(),txtSID.getText())) {
@@ -145,6 +229,10 @@ public class AboutSupplierController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Insert successful", ButtonType.OK);
                 alert.show();
             }
+            loadLabeles();
+        } else {
+            loadLabeles();
+        }
             Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
             Scene aboutScene = new Scene(aboutView);
             Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -152,4 +240,4 @@ public class AboutSupplierController implements Initializable {
             window.show();
         }
     }
-}
+

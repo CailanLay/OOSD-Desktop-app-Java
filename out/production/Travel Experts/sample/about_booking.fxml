@@ -5,69 +5,173 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="368.0" prefWidth="599.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="101.0" layoutY="45.0" text="SelectBookingID">
+      <Button fx:id="btnBookingBack" layoutX="31.0" layoutY="330.0" mnemonicParsing="false" onAction="#onActionBtnBookingBack" prefHeight="400.0" prefWidth="65.0" stylesheets="@../css/button_style.css" text="Back" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Line fx:id="line" endX="500.0" layoutX="190.0" layoutY="95.0" startX="-100.0" style="-fx-stroke: #2a93d5;" />
+      <Pane fx:id="pnViewBooking" prefHeight="304.0" prefWidth="636.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="203.0" text="BookingNo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="322.0" layoutY="203.0" text="TravelerCount">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="153.0" text="TripTypeID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="323.0" layoutY="153.0" text="PackageID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="53.0" text="SelectBookingID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="103.0" text="BookingDate">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="329.0" layoutY="103.0" text="CustomerID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnBookingEdit" layoutX="581.0" layoutY="260.0" mnemonicParsing="false" onAction="#onActionBtnBookingEdit" stylesheets="@../css/button_style.css" text="Edit">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
+            <Label fx:id="lblBookingID" layoutX="140.0" layoutY="54.0" prefWidth="150.0" />
+            <Label fx:id="lblBookingDate" layoutX="140.0" layoutY="104.0" prefWidth="150.0" />
+            <Label fx:id="lblTripID" layoutX="140.0" layoutY="155.0" prefWidth="150.0" />
+            <Label fx:id="lblBookingNO" layoutX="140.0" layoutY="204.0" prefWidth="150.0" />
+            <Label fx:id="lblCustomerID" layoutX="440.0" layoutY="105.0" prefWidth="150.0" />
+            <Label fx:id="lblPackageID" layoutX="440.0" layoutY="155.0" prefWidth="150.0" />
+            <Label fx:id="lblTravelerCount" layoutX="440.0" layoutY="204.0" prefWidth="150.0" />
+         </children>
+      </Pane>
+      <Pane fx:id="pnNewBooking" layoutX="75.0" layoutY="106.0" prefHeight="304.0" prefWidth="636.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="203.0" text="BookingNo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="322.0" layoutY="203.0" text="TravelerCount">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="153.0" text="TripTypeID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="323.0" layoutY="153.0" text="PackageID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtBNo1" layoutX="140.0" layoutY="200.0" prefHeight="25.0" prefWidth="81.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtTCount1" layoutX="440.0" layoutY="200.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtTTypeId1" layoutX="140.0" layoutY="150.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtPId1" layoutX="440.0" layoutY="150.0" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="14.0" layoutY="53.0" text="SelectBookingID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="103.0" text="BookingDate">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="329.0" layoutY="103.0" text="CustomerID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtBID1" layoutX="140.0" layoutY="50.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtBDate1" layoutX="140.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtCId1" layoutX="440.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
+            <Button fx:id="btnAdd" layoutX="584.0" layoutY="266.0" mnemonicParsing="false" onAction="#onActionbtnBookingAdd" stylesheets="@../css/button_style.css" text="Add" />
+         </children>
+      </Pane>
+      <Label fx:id="lblBookingsTitle" layoutX="100.0" layoutY="20.0" prefHeight="53.0" prefWidth="302.0" text="New Booking">
          <font>
-            <Font size="14.0" />
+            <Font size="36.0" />
          </font>
       </Label>
-      <Label layoutX="98.0" layoutY="129.0" text="BookingDate">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="274.0" layoutY="129.0" text="BookingNo">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="374.0" layoutY="129.0" text="TravelerCount">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="98.0" layoutY="188.0" text="CustomerID">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="273.0" layoutY="188.0" text="TripTypeID">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="101.0" layoutY="239.0" text="PackageID">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnBookingSave" layoutX="541.0" layoutY="327.0" mnemonicParsing="false" onAction="#onActionBtnBookingSave" text="Save">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
-         </padding>
-      </Button>
-      <Button fx:id="btnBookingEdit" layoutX="483.0" layoutY="327.0" mnemonicParsing="false" onAction="#onActionBtnBookingEdit" text="Edit">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <padding>
-            <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
-         </padding>
-      </Button>
-      <TextField fx:id="txtBID" layoutX="98.0" layoutY="76.0" stylesheets="@../css/textbox_style.css" />
-      <TextField fx:id="txtBDate" layoutX="98.0" layoutY="149.0" stylesheets="@../css/textbox_style.css" />
-      <TextField fx:id="txtBNo" layoutX="273.0" layoutY="149.0" prefHeight="25.0" prefWidth="81.0" stylesheets="@../css/textbox_style.css" />
-      <TextField fx:id="txtTCount" layoutX="374.0" layoutY="149.0" stylesheets="@../css/textbox_style.css" />
-      <TextField fx:id="txtCId" layoutX="98.0" layoutY="208.0" stylesheets="@../css/textbox_style.css" />
-      <TextField fx:id="txtTTypeId" layoutX="273.0" layoutY="208.0" stylesheets="@../css/textbox_style.css" />
-      <TextField fx:id="txtPId" layoutX="98.0" layoutY="259.0" stylesheets="@../css/textbox_style.css" />
-      <Button fx:id="btnBookingBack" layoutX="31.0" layoutY="330.0" mnemonicParsing="false" onAction="#onActionBtnBookingBack" stylesheets="@../css/button_style.css" text="Back" />
-      <Button fx:id="btnAdd" layoutX="295.0" layoutY="330.0" mnemonicParsing="false" onAction="#onActionbtnBookingAdd" text="Add" />
+      <Pane fx:id="pnEditBookings" layoutX="65.0" layoutY="96.0" prefHeight="304.0" prefWidth="636.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="203.0" text="BookingNo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="322.0" layoutY="203.0" text="TravelerCount">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="153.0" text="TripTypeID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="323.0" layoutY="153.0" text="PackageID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtBNo" layoutX="140.0" layoutY="200.0" prefHeight="25.0" prefWidth="81.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtTCount" layoutX="440.0" layoutY="200.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtTTypeId" layoutX="140.0" layoutY="150.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtPId" layoutX="440.0" layoutY="150.0" stylesheets="@../css/textbox_style.css" />
+            <Label layoutX="14.0" layoutY="53.0" text="SelectBookingID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="15.0" layoutY="103.0" text="BookingDate">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="329.0" layoutY="103.0" text="CustomerID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtBID" layoutX="140.0" layoutY="50.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtBDate" layoutX="140.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
+            <TextField fx:id="txtCId" layoutX="440.0" layoutY="100.0" stylesheets="@../css/textbox_style.css" />
+            <Button fx:id="btnBookingSave" layoutX="577.0" layoutY="260.0" mnemonicParsing="false" onAction="#onActionBtnBookingSave" stylesheets="@../css/button_style.css" text="Save">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
+               </padding>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

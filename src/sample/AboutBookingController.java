@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.w3c.dom.css.CSSValueList;
 
@@ -25,6 +26,39 @@ import java.util.ResourceBundle;
 public class AboutBookingController implements Initializable {
 
     DBConnection helper = new DBConnection(); // Global object
+
+    @FXML
+    private Pane pnViewBooking;
+
+    @FXML
+    private Pane pnNewBooking;
+
+    @FXML
+    private Pane pnEditBookings;
+
+    @FXML
+    private Label lblBookingID;
+
+    @FXML
+    private Label lblBookingDate;
+
+    @FXML
+    private Label lblTripID;
+
+    @FXML
+    private Label lblBookingNO;
+
+    @FXML
+    private Label lblCustomerID;
+
+    @FXML
+    private Label lblPackageID;
+
+    @FXML
+    private Label lblTravelerCount;
+
+    @FXML
+    private Label lblBookingsTitle;
 
     @FXML
     private TextField txtBID;
@@ -61,7 +95,7 @@ public class AboutBookingController implements Initializable {
     private Button btnAdd;
 
     private Bookings bookings = new Bookings();
-    private boolean flag;
+    private boolean newBooking;
 
     // Controller constructor
     // Author: Harpreet kalsi
@@ -70,24 +104,21 @@ public class AboutBookingController implements Initializable {
     }
 
     // Author: Harpreet kalsi
-    public AboutBookingController(boolean flag) {
-        this.flag = flag;
+    public AboutBookingController(boolean newBooking) {
+        this.newBooking = newBooking;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        assert btnBookingSave != null : "fx:id=\"btnBookingSave\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert btnBookingEdit != null : "fx:id=\"btnBookingEdit\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert txtBID != null : "fx:id=\"txtBID\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert txtBDate != null : "fx:id=\"txtBDate\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert txtBNo != null : "fx:id=\"txtBNo\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert txtTCount != null : "fx:id=\"txtTCount\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert txtCId != null : "fx:id=\"txtCId\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert txtTTypeId != null : "fx:id=\"txtTTypeId\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert txtPId != null : "fx:id=\"txtPId\" was not injected: check your FXML file 'about_booking.fxml'.";
-        assert btnBookingBack != null : "fx:id=\"btnBookingBack\" was not injected: check your FXML file 'about_booking.fxml'.";
-        loadBoxes();
+        if (newBooking == true) {
+            loadnewBookingView();
+        } else {
+            loadLabeles();
+        }
+    }
 
+        //loadBoxes();
+        private void notEditable() {
         txtBID.setEditable(false);
         txtBDate.setEditable(false);
         txtBNo.setEditable(false);
@@ -97,10 +128,48 @@ public class AboutBookingController implements Initializable {
         txtPId.setEditable(false);
     }
 
+    private boolean notNull(Bookings bookings){
+        if(bookings != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void loadnewBookingView() {
+        pnNewBooking.toFront();
+        pnNewBooking.setVisible(true);
+        pnEditBookings.toBack();
+        pnEditBookings.setVisible(false);
+        pnViewBooking.toBack();
+        pnViewBooking.setVisible(false);
+    }
+
+    private void loadLabeles() {
+        pnEditBookings.toBack();
+        pnEditBookings.setVisible(false);
+        pnNewBooking.toBack();
+        pnNewBooking.setVisible(false);
+        pnViewBooking.toFront();
+        pnViewBooking.setVisible(true);
+        btnBookingBack.setText("Done");
+        notEditable();
+        if(notNull(bookings)) {
+            lblBookingID.setText(String.valueOf(bookings.getBookingId()));
+            lblBookingDate.setText(String.valueOf(bookings.getDate()));
+            lblBookingNO.setText(String.valueOf(bookings.getBookingNo()));
+            lblTravelerCount.setText(String.valueOf(bookings.getTravelerCount()));
+            lblCustomerID.setText(String.valueOf(bookings.getCustomerId()));
+            lblTripID.setText(bookings.getTripTypeId());
+            lblPackageID.setText(String.valueOf(bookings.getPackageId()));
+        }
+    }
+
+
     // Author: Harpreet kalsi
     // populates the text fields
     private void loadBoxes() {
-        if (bookings != null) {
+        if (notNull(bookings )) {
             txtBID.setText(String.valueOf(bookings.getBookingId()));
             txtBDate.setText(bookings.getDate());
             txtBNo.setText(String.valueOf(bookings.getBookingNo()));
@@ -114,16 +183,25 @@ public class AboutBookingController implements Initializable {
     // Author: Harpreet kalsi
     @FXML
     void onActionBtnBookingBack(ActionEvent event) throws IOException {
-        Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        Scene aboutScene = new Scene(aboutView);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(aboutScene);
-        window.show();
+        if(pnEditBookings.isVisible() && !pnViewBooking.isVisible()) {
+            btnBookingBack.setText("Back");
+            loadLabeles();
+        } else {
+            Stage stage = (Stage) btnBookingBack.getScene().getWindow();
+            stage.close();
+        }
     }
 
     // Author: Harpreet kalsi
     @FXML
     void onActionBtnBookingEdit(ActionEvent event) {
+        pnEditBookings.toFront();
+        pnEditBookings.setVisible(true);
+        pnNewBooking.toBack();
+        pnNewBooking.setVisible(false);
+        pnViewBooking.toBack();
+        pnViewBooking.setVisible(false);
+        loadBoxes();
         txtBID.setEditable(true);
         txtBDate.setEditable(true);
         txtBNo.setEditable(true);
@@ -211,13 +289,9 @@ public class AboutBookingController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "New Booking Added", ButtonType.OK);
                 alert.show();
             }
-            Parent aboutView = FXMLLoader.load(getClass().getResource("sample.fxml"));
-            Scene aboutScene = new Scene(aboutView);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            window.setScene(aboutScene);
-            window.show();
-        } else {
-
+            loadLabeles();
+        }   else {
+            loadLabeles();
         }
 
 

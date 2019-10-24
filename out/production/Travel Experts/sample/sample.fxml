@@ -236,6 +236,16 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
+                  <Button fx:id="btnNewSupplioer" layoutX="184.0" layoutY="35.0" mnemonicParsing="false" onAction="#onActionBtnNewProduct" prefHeight="25.0" prefWidth="66.0" stylesheets="@../css/button_style.css" text="New">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnClose" layoutX="552.0" layoutY="2.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Pane fx:id="pnBookings" layoutX="2.0" layoutY="2.0" prefHeight="484.0" prefWidth="570.0" style="-fx-background-color: #ffff;">
@@ -282,6 +292,12 @@
                         <Font size="36.0" />
                      </font>
                   </Label>
+                  <Button fx:id="btnNewBooking" layoutX="182.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionbtnNewBooking" text="New" />
+                  <Button fx:id="btnClose" layoutX="544.0" layoutY="2.0" mnemonicParsing="false" onAction="#onActionBtnClose" prefHeight="25.0" prefWidth="25.0" stylesheets="@../css/button_style.css" text="X">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
